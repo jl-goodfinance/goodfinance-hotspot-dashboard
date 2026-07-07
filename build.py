@@ -171,6 +171,42 @@ def get_cnyes_news():
     return out
 
 
+def get_taiex():
+    """大盤：近 3 個月每日指數與成交金額（FMTQIK）＋盤中即時指數（mis）"""
+    days = []
+    now = datetime.now(TZ)
+    months = []
+    y, m = now.year, now.month
+    for _ in range(3):
+        months.append(f"{y}{m:02d}01")
+        m -= 1
+        if m == 0:
+            y, m = y - 1, 12
+    for stamp in reversed(months):
+        try:
+            d = json.loads(fetch_text(
+                f"https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date={stamp}&response=json"))
+            for r in d.get("data", []):
+                days.append({
+                    "date": r[0],
+                    "amount": round(float(r[2].replace(",", "")) / 1e8),  # 億元
+                    "index": float(r[4].replace(",", "")),
+                    "change": float(r[5].replace(",", "")),
+                })
+        except Exception as e:
+            print(f"taiex {stamp} error:", e)
+    days = days[-60:]
+    rt = None
+    try:
+        q = json.loads(fetch_text(
+            "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw&json=1&delay=0"))
+        a = q["msgArray"][0]
+        rt = {"z": float(a["z"]), "y": float(a["y"]), "t": a["t"], "d": a["d"]}
+    except Exception as e:
+        print("taiex realtime error:", e)
+    return {"days": days, "rt": rt}
+
+
 def get_twse_top():
     """證交所成交量前 20（取前 10）"""
     try:
@@ -391,6 +427,7 @@ def aggregate():
         "ptt": get_ptt_hot(),
         "watch": get_watch_trends(),
         "social": load_social(),
+        "taiex": get_taiex(),
     }
 
 
@@ -544,6 +581,86 @@ def render_kol_table(kols):
     return "\n".join(rows)
 
 
+def render_market_hero(taiex):
+    """大盤全寬卡：指數折線 + 成交量柱 + 量能指標（台股慣例紅漲綠跌）"""
+    days = taiex.get("days") or []
+    if not days:
+        return ""
+    last = days[-1]
+    rt = taiex.get("rt")
+    # 以即時值為主（收盤後 mis 回傳的即為收盤值）
+    idx = rt["z"] if rt else last["index"]
+    prev = rt["y"] if rt else (days[-2]["index"] if len(days) > 1 else idx)
+    chg = idx - prev
+    pct = chg / prev * 100 if prev else 0
+    up = chg >= 0
+    ccls, sign = ("up", "▲") if up else ("down", "▼")
+    amt = last["amount"]
+    avg20 = statistics.mean(d["amount"] for d in days[-20:])
+    vol_ratio = amt / avg20 if avg20 else 1
+    lo = min(d["index"] for d in days)
+    hi = max(d["index"] for d in days)
+    pos = (idx - lo) / (hi - lo) * 100 if hi > lo else 50
+    nd = len(days)
+
+    # SVG：上方指數線、下方量柱
+    W, H, VH = 1000, 210, 52   # VH = 量柱區高
+    LH = H - VH - 10
+    n = len(days)
+    xs = [i * W / (n - 1) for i in range(n)]
+    pad = (hi - lo) * 0.08 or 1
+    ylo, yhi = lo - pad, hi + pad
+
+    def yv(v):
+        return round(LH - (v - ylo) / (yhi - ylo) * LH, 1)
+    line = " ".join(f"{round(x,1)},{yv(d['index'])}" for x, d in zip(xs, days))
+    area = f"0,{LH} " + line + f" {W},{LH}"
+    amx = max(d["amount"] for d in days)
+    bw = max(2, round(W / n * 0.55, 1))
+    bars = "".join(
+        f'<rect x="{round(x - bw/2,1)}" y="{round(H - d["amount"]/amx*VH,1)}" '
+        f'width="{bw}" height="{round(d["amount"]/amx*VH,1)}" rx="1" '
+        f'fill="rgba(61,139,253,{0.55 if i == n-1 else 0.28})"/>'
+        for i, (x, d) in enumerate(zip(xs, days)))
+    grid = "".join(
+        f'<line x1="0" y1="{round(LH*f,1)}" x2="{W}" y2="{round(LH*f,1)}" '
+        f'stroke="rgba(148,178,255,.08)"/>' for f in (0.25, 0.5, 0.75))
+    t_label = f'{rt["t"][:5]} 更新' if rt else "收盤"
+    return f'''
+      <div class="card" style="grid-column:span 12">
+        <div class="mk-top">
+          <div>
+            <div class="kicker" style="margin:0">台股加權指數 <span class="pill">{esc(last["date"])} · {esc(t_label)}</span></div>
+            <div class="mk-idx">{idx:,.2f}<span class="mk-chg {ccls}">{sign} {abs(chg):,.2f}（{pct:+.2f}%）</span></div>
+          </div>
+          <div class="mk-stats">
+            <div class="mk-stat"><span>成交金額</span><b>{amt/10000:,.2f} 兆</b></div>
+            <div class="mk-stat"><span>量能（vs 20日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
+            <div class="mk-stat"><span>{nd}日區間位置</span><b>{pos:.0f}%</b></div>
+            <div class="mk-stat"><span>{nd}日高／低</span><b>{hi:,.0f} / {lo:,.0f}</b></div>
+          </div>
+        </div>
+        <svg class="mk-chart" viewBox="0 0 {W} {H}" preserveAspectRatio="none" aria-label="加權指數近 {nd} 個交易日走勢與成交量">
+          <defs>
+            <linearGradient id="mkl" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/>
+            </linearGradient>
+            <linearGradient id="mka" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(61,139,253,.28)"/><stop offset="1" stop-color="rgba(61,139,253,0)"/>
+            </linearGradient>
+          </defs>
+          {grid}
+          {bars}
+          <polygon points="{area}" fill="url(#mka)"/>
+          <polyline points="{line}" fill="none" stroke="url(#mkl)" stroke-width="2.2"
+            style="filter:drop-shadow(0 0 6px rgba(61,139,253,.7))"/>
+          <circle cx="{W}" cy="{yv(days[-1]['index'])}" r="4" fill="#7c6ff0"
+            style="filter:drop-shadow(0 0 7px #7c6ff0)"/>
+        </svg>
+        <div class="focus-why">折線＝加權指數（近 {nd} 個交易日）· 柱狀＝每日成交金額（今日 {amt:,} 億）· 台股慣例紅漲綠跌</div>
+      </div>'''
+
+
 def render_watch(watch):
     if not watch:
         return ('<div class="focus-why">Google Trends 暫時無法取得，'
@@ -635,6 +752,7 @@ def main():
     template = (ROOT / "template.html").read_text(encoding="utf-8")
     page = (template
             .replace("<!--UPDATED-->", esc(data["updated"]))
+            .replace("<!--MARKET_HERO-->", render_market_hero(data["taiex"]))
             .replace("<!--FOCUS_CARDS-->", render_focus(data))
             .replace("<!--CAT_CARDS-->", render_cat_cards(data))
             .replace("<!--KOL_ROWS-->", render_kol_table(data["kols"]))

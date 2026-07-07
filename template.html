@@ -125,6 +125,17 @@
   tr.hot .rankball{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 0 14px rgba(61,139,253,.65)}
   tbody tr:first-child .rankball{background:linear-gradient(135deg,#f7b267,#f0924a);color:#2a1504;border-color:transparent;box-shadow:0 0 16px rgba(240,146,74,.7)}
 
+  .mk-top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;margin-bottom:14px}
+  .mk-idx{font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums}
+  .mk-chg{font-size:16px;font-weight:700;margin-left:12px}
+  .up{color:#ff6b61}
+  .down{color:#3ddc84}
+  .mk-stats{display:flex;gap:26px;flex-wrap:wrap;margin-left:auto}
+  .mk-stat span{display:block;font-size:11.5px;color:var(--sub)}
+  .mk-stat b{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+  .mk-chart{display:block;width:100%;height:210px}
+  @media (max-width:760px){.mk-chart{height:150px}.mk-stats{margin-left:0}}
+
   .watch{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
   @media (max-width:1000px){.watch{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:620px){.watch{grid-template-columns:repeat(2,1fr)}}
@@ -165,6 +176,7 @@
     </header>
 
     <div class="grid">
+<!--MARKET_HERO-->
 
       <div class="card span6" id="market">
         <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill"><!--TWSE_DATE--> 收盤</span></div>
