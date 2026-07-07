@@ -20,6 +20,7 @@
     --r:18px;
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
     margin:0;color:var(--text);
     font-family:-apple-system,"SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
@@ -36,7 +37,9 @@
   @media (max-width:760px){.shell{grid-template-columns:1fr}.side{display:none}}
 
   .side{background:rgba(15,21,31,.6);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);border:1px solid rgba(148,178,255,.13);border-radius:16px;height:fit-content;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:28px}
-  .side .ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--sub)}
+  .side .ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--sub);text-decoration:none;transition:background .15s,color .15s}
+  .side .ic:hover{background:rgba(148,178,255,.14);color:#dbe6ff}
+  .side .ic:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .side .ic.on{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(61,139,253,.4)}
   .side svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
@@ -122,14 +125,14 @@
 <body>
 <div class="orbs" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i></div>
 <div class="shell">
-  <nav class="side" aria-label="選單（示意）">
-    <span class="ic on"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6h-6v6H3z"/></svg></span>
-    <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-    <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3.5-4 3 2.5L19 8"/></svg></span>
-    <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
+  <nav class="side" aria-label="快速跳轉">
+    <a class="ic on" href="#top" title="回到頂部"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6h-6v6H3z"/></svg></a>
+    <a class="ic" href="#market" title="市場排行與熱搜"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3.5-4 3 2.5L19 8"/></svg></a>
+    <a class="ic" href="#categories" title="五大分類熱點"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a>
+    <a class="ic" href="#community" title="PTT 爆文與人物熱度"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></a>
   </nav>
 
-  <main>
+  <main id="top">
     <header>
       <div>
         <div class="hi">GOOD FINANCE 美好證券 · 每日市場熱度總覽</div>
@@ -141,7 +144,7 @@
 
     <div class="grid">
 
-      <div class="card span6">
+      <div class="card span6" id="market">
         <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill"><!--TWSE_DATE--> 收盤</span></div>
         <table>
           <thead><tr><th style="width:40px">#</th><th>代號</th><th>名稱</th></tr></thead>
@@ -162,9 +165,10 @@
       </div>
 
 <!--FOCUS_CARDS-->
+      <span id="categories" style="grid-column:1/-1;height:0"></span>
 <!--CAT_CARDS-->
 
-      <div class="card span6">
+      <div class="card span6" id="community">
         <div class="card-head"><h2>PTT Stock 本週爆文</h2><span class="pill blue">推文數破百 · 近 7 天</span></div>
         <table>
           <thead><tr><th style="width:36px">#</th><th>標題</th><th>分類</th><th class="num">日期</th></tr></thead>
@@ -200,7 +204,7 @@
     </div>
 
     <footer>
-      <b>資料源</b>：Google Trends RSS（geo=TW）· 鉅亨網 newslist API × 8 分類 · 證交所 MI_INDEX20 · YouTube · Google News RSS · SoundOn Podcast RSS。左側選單為視覺示意。
+      <b>資料源</b>：Google Trends RSS（geo=TW）· 鉅亨網 newslist API × 8 分類 · 證交所 MI_INDEX20 · YouTube · Google News RSS · SoundOn Podcast RSS。
     </footer>
   </main>
 </div>
