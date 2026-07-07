@@ -706,7 +706,7 @@ def render_kol_card(data):
     if social:
         g_body = post_lines(social.get("gooaye", []))
         b_body = post_lines(social.get("banini", []))
-        note = f'FB 貼文擷取於 {esc(social.get("updated", ""))}（半自動更新）'
+        note = f'FB 貼文擷取於 {esc(social.get("updated", ""))}（自動更新）'
         insight = social.get("insight", "")
     else:
         g_body = ('<div class="kol-what">'
@@ -716,7 +716,7 @@ def render_kol_card(data):
                   + " · ".join(esc(x["title"].split(" - ")[0][:38]) for x in data["banini"][:3])
                   + "</div>") if data["banini"] else ""
         note, insight = "以媒體報導代理（無貼文擷取資料）", ""
-    insight_html = (f'<div class="insight"><div class="insight-label">內容鋪陳觀察</div>'
+    insight_html = (f'<div class="insight"><div class="insight-label">觀察</div>'
                     f'{esc(insight)}</div>') if insight else ""
     return f'''
       <div class="card" style="grid-column:span 12" id="kol">

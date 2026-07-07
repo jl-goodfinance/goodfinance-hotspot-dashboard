@@ -133,6 +133,7 @@ def main():
     if not changed:
         return
     data["updated"] = datetime.now(TZ).strftime("%Y-%m-%d %H:%M")
+    data["insight_stale"] = True  # 觀察由排程中的 Claude 任務重寫
     SOCIAL.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     subprocess.run(["git", "-C", str(REPO), "pull", "--rebase", "-X", "ours",
                     "origin", "main"], capture_output=True)
