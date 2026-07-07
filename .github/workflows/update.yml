@@ -2,8 +2,8 @@ name: Update dashboard
 
 on:
   schedule:
-    # 台北 09:05 開盤（UTC 01:05）、12:00 盤中（UTC 04:00）、15:00 收盤後（UTC 07:00）
-    - cron: "5 1 * * *"
+    # 台北 06:30 盤前（UTC 22:30 前一日）、12:00 盤中（UTC 04:00）、15:00 收盤後（UTC 07:00）
+    - cron: "30 22 * * *"
     - cron: "0 4 * * *"
     - cron: "0 7 * * *"
   workflow_dispatch:
