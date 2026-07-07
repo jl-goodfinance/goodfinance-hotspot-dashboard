@@ -6,10 +6,14 @@ KOL 訂閱數與動態，分類計算關鍵字熱度後，渲染 docs/index.html
 
 僅使用 Python 標準函式庫，供 GitHub Actions 排程執行。
 """
+import http.cookiejar
 import json
 import re
 import ssl
+import statistics
+import time
 import html as htmlmod
+import urllib.error
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -70,6 +74,9 @@ KOL_POOL = {
     "慢活夫妻": ("@GeorgeDewi", "理財生活", ""),
 }
 GOOAYE_RSS = "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml"
+
+# 自訂監測關鍵字（Google Trends 相對熱度，彼此比較、峰值=100）
+WATCH_KEYWORDS = ["開戶", "定期定額", "固定收益", "保本保息", "美好證券"]
 
 PTT_SKIP = re.compile(r"^\[公告\]|盤[中後]閒聊")
 PTT_ENT = re.compile(
@@ -205,6 +212,65 @@ def get_gooaye():
     return {"ep": ep, "ep_date": ep_date, "news": news}
 
 
+def get_watch_trends():
+    """自訂關鍵字的 Google Trends 90 天日序列（非官方端點，含重試）。
+
+    失敗時退回上一次成功的 docs/watch.json，讓卡片持續有資料。
+    """
+    cache = DOCS / "watch.json"
+    try:
+        cj = http.cookiejar.CookieJar()
+        opener = urllib.request.build_opener(
+            urllib.request.HTTPCookieProcessor(cj),
+            urllib.request.HTTPSHandler(context=CTX))
+        opener.addheaders = [
+            ("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"),
+            ("Accept-Language", "zh-TW,zh;q=0.9"),
+            ("Referer", "https://trends.google.com/trends/explore?geo=TW")]
+
+        def get(url, tries=4):
+            for i in range(tries):
+                try:
+                    return opener.open(url, timeout=20).read().decode("utf-8", "ignore")
+                except urllib.error.HTTPError as e:
+                    if e.code == 429 and i < tries - 1:
+                        time.sleep(6 * (i + 1))
+                    else:
+                        raise
+
+        get("https://trends.google.com/trends/?geo=TW")
+        time.sleep(2)
+        req = {"comparisonItem": [{"keyword": k, "geo": "TW", "time": "today 3-m"}
+                                  for k in WATCH_KEYWORDS],
+               "category": 0, "property": ""}
+        raw = get("https://trends.google.com/trends/api/explore?hl=zh-TW&tz=-480&req="
+                  + urllib.parse.quote(json.dumps(req, ensure_ascii=False)))
+        data = json.loads(raw.split("\n", 1)[1] if raw.startswith(")]}") else raw)
+        tl = next(w for w in data["widgets"] if w["id"] == "TIMESERIES")
+        time.sleep(3)
+        raw2 = get("https://trends.google.com/trends/api/widgetdata/multiline"
+                   "?hl=zh-TW&tz=-480&req="
+                   + urllib.parse.quote(json.dumps(tl["request"], ensure_ascii=False))
+                   + "&token=" + tl["token"])
+        d2 = json.loads(raw2.split("\n", 1)[1] if raw2.startswith(")]}") else raw2)
+        pts = d2["default"]["timelineData"]
+        out = {"fetched": datetime.now(TZ).strftime("%Y-%m-%d %H:%M"),
+               "series": {WATCH_KEYWORDS[i]: [p["value"][i] for p in pts]
+                          for i in range(len(WATCH_KEYWORDS))},
+               "last_date": pts[-1]["formattedTime"]}
+        DOCS.mkdir(exist_ok=True)
+        cache.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+        return out
+    except Exception as e:
+        print("watch trends error:", e)
+        if cache.exists():
+            old = json.loads(cache.read_text(encoding="utf-8"))
+            old["stale"] = True
+            return old
+        return None
+
+
 def get_ptt_hot(days=7, limit=10):
     """PTT Stock 板近一週爆文（推文數破百），排除公告與每日閒聊串"""
     out = []
@@ -300,6 +366,7 @@ def aggregate():
         "twse": twse, "twse_date": twse_date,
         "kols": kols, "gooaye": gooaye, "banini": banini,
         "ptt": get_ptt_hot(),
+        "watch": get_watch_trends(),
     }
 
 
@@ -406,6 +473,46 @@ def render_kol_table(kols):
     return "\n".join(rows)
 
 
+def render_watch(watch):
+    if not watch:
+        return ('<div class="focus-why">Google Trends 暫時無法取得，'
+                '下次更新自動重試。</div>')
+    panels = []
+    for kw, vals in watch["series"].items():
+        latest = vals[-1]
+        avg4w = statistics.mean(vals[-28:]) if len(vals) >= 28 else statistics.mean(vals)
+        if avg4w < 0.5 and latest < 1:
+            arrow, cls, note = "—", "", "無搜尋量"
+        elif latest > avg4w * 1.3:
+            arrow, cls, note = "↑", "up", "竄升中"
+        elif latest < avg4w * 0.7:
+            arrow, cls, note = "↓", "down", "降溫"
+        else:
+            arrow, cls, note = "→", "", "持平"
+        # sparkline：90 點 polyline，y 以全體最大值 100 為尺度
+        w, h = 210, 44
+        n = len(vals)
+        mx = max(max(vals), 1)
+        pts = " ".join(f"{round(i * w / (n - 1), 1)},{round(h - v / mx * (h - 6) - 2, 1)}"
+                       for i, v in enumerate(vals))
+        panels.append(f'''<div class="wk">
+          <div class="wk-name">{esc(kw)}</div>
+          <svg viewBox="0 0 {w} {h}" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="{pts}" fill="none" stroke="url(#wg)" stroke-width="2"
+              style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
+          </svg>
+          <div class="wk-val"><b>{latest}</b><span class="wk-delta {cls}">{arrow} {note}</span></div>
+        </div>''')
+    stale = '（快取資料，本次更新失敗）' if watch.get("stale") else ""
+    return (f'<svg width="0" height="0" style="position:absolute"><defs>'
+            f'<linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">'
+            f'<stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/>'
+            f'</linearGradient></defs></svg>'
+            f'<div class="watch">{"".join(panels)}</div>'
+            f'<div class="focus-why" style="margin-top:12px">數值為五個關鍵字互相比較的相對熱度'
+            f'（90 天內峰值＝100），資料至 {esc(watch.get("last_date", ""))}{stale}。</div>')
+
+
 def render_ptt(posts):
     rows = []
     for i, p in enumerate(posts, 1):
@@ -463,7 +570,8 @@ def main():
             .replace("<!--TRENDS_ROWS-->", render_trends_table(data["trends"]))
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
             .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
-            .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"])))
+            .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
+            .replace("<!--WATCH_PANELS-->", render_watch(data["watch"])))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 

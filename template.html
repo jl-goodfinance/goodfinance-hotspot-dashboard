@@ -115,6 +115,17 @@
   tr.hot .rankball{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 0 14px rgba(61,139,253,.65)}
   tbody tr:first-child .rankball{background:linear-gradient(135deg,#f7b267,#f0924a);color:#2a1504;border-color:transparent;box-shadow:0 0 16px rgba(240,146,74,.7)}
 
+  .watch{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  @media (max-width:1000px){.watch{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:620px){.watch{grid-template-columns:repeat(2,1fr)}}
+  .wk-name{font-weight:700;font-size:13.5px;margin-bottom:6px}
+  .wk svg{display:block;width:100%;height:44px}
+  .wk-val{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+  .wk-val b{font-size:22px;font-variant-numeric:tabular-nums}
+  .wk-delta{font-size:11.5px;font-weight:600;color:var(--sub)}
+  .wk-delta.up{color:var(--green)}
+  .wk-delta.down{color:#ff8f85}
+
   .methodology{font-size:12.5px;color:var(--sub);line-height:1.7}
   .methodology b{color:#c6cede}
 
@@ -162,6 +173,11 @@
 <!--TRENDS_ROWS-->
           </tbody>
         </table>
+      </div>
+
+      <div class="card" style="grid-column:span 12">
+        <div class="card-head"><h2>自訂關鍵字監測</h2><span class="pill violet">Google Trends 台灣 · 90 天趨勢</span></div>
+<!--WATCH_PANELS-->
       </div>
 
 <!--FOCUS_CARDS-->
