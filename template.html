@@ -177,10 +177,12 @@
 <div class="orbs" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i></div>
 <div class="shell">
   <nav class="side" aria-label="快速跳轉">
-    <a class="ic on" href="#top" title="回到頂部"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6h-6v6H3z"/></svg></a>
-    <a class="ic" href="#market" title="市場排行與熱搜"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3.5-4 3 2.5L19 8"/></svg></a>
+    <a class="ic on" href="#top" title="大盤走勢（頂部）"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3.5-4 3 2.5L19 8"/></svg></a>
+    <a class="ic" href="#watch" title="自訂關鍵字監測"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+    <a class="ic" href="#market" title="成交量排行與 Google 熱搜"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="3" width="4" height="17" rx="1"/></svg></a>
     <a class="ic" href="#categories" title="五大分類熱點"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a>
-    <a class="ic" href="#community" title="PTT 爆文與人物熱度"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></a>
+    <a class="ic" href="#yt" title="YT 頻道監測"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M10.5 9.3v5.4l4.8-2.7z"/></svg></a>
+    <a class="ic" href="#kol" title="KOL 風向、PTT 爆文與人物熱度"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-2.5A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></a>
   </nav>
 
   <main id="top">
@@ -216,7 +218,7 @@
         </table>
       </div>
 
-      <div class="card" style="grid-column:span 12">
+      <div class="card" style="grid-column:span 12" id="watch">
         <div class="card-head"><h2>自訂關鍵字監測</h2><span class="pill violet">Google Trends 台灣 · 90 天趨勢</span></div>
 <!--WATCH_PANELS-->
       </div>
@@ -225,7 +227,7 @@
       <span id="categories" style="grid-column:1/-1;height:0"></span>
 <!--CAT_CARDS-->
 
-      <div class="card" style="grid-column:span 12">
+      <div class="card" style="grid-column:span 12" id="yt">
         <div class="card-head"><h2>YT 頻道監測</h2><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
         <div class="yt-grid">
 <!--YT_BLOCKS-->

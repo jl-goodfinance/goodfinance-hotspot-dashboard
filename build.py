@@ -719,7 +719,7 @@ def render_kol_card(data):
     insight_html = (f'<div class="insight"><div class="insight-label">內容鋪陳觀察</div>'
                     f'{esc(insight)}</div>') if insight else ""
     return f'''
-      <div class="card" style="grid-column:span 12">
+      <div class="card" style="grid-column:span 12" id="kol">
         <div class="card-head"><h2>KOL 風向</h2><span class="pill orange">{note}</span></div>
         <div class="kol-grid">
           <div class="kol">
