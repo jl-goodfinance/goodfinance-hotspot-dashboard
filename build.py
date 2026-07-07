@@ -71,6 +71,12 @@ KOL_POOL = {
 }
 GOOAYE_RSS = "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml"
 
+PTT_SKIP = re.compile(r"^\[公告\]|盤[中後]閒聊")
+PTT_ENT = re.compile(
+    r'<div class="r-ent">.*?<div class="nrec">(?:<span class="hl f\d+">)?([^<]*)'
+    r'(?:</span>)?</div>.*?(?:<a href="(/bbs/Stock/[^"]+)">([^<]+)</a>).*?'
+    r'<div class="date">([^<]+)</div>', re.S)
+
 TREND_OFFTOPIC = {"體育": ["世界盃", "足球", "篮球", "籃球", "棒球", "NBA", "WNBA",
                         "lukaku", "球員", "中職"],
                   "娛樂": ["八點檔", "男星", "女星", "藝人", "演唱會", "專輯", "戲劇",
@@ -199,6 +205,43 @@ def get_gooaye():
     return {"ep": ep, "ep_date": ep_date, "news": news}
 
 
+def get_ptt_hot(days=7, limit=10):
+    """PTT Stock 板近一週爆文（推文數破百），排除公告與每日閒聊串"""
+    out = []
+    try:
+        first = fetch_text("https://www.ptt.cc/bbs/Stock/index.html")
+        m = re.search(r'href="/bbs/Stock/index(\d+)\.html">&lsaquo;', first)
+        if not m:
+            return out
+        latest = int(m.group(1)) + 1
+        now = datetime.now(TZ)
+        cutoff = now.timetuple().tm_yday - days
+        for i in range(latest, latest - 12, -1):
+            page = first if i == latest else fetch_text(
+                f"https://www.ptt.cc/bbs/Stock/index{i}.html")
+            stop = False
+            for ent in PTT_ENT.finditer(page):
+                nrec, link, title, date = [g.strip() for g in ent.groups()]
+                if nrec != "爆" or PTT_SKIP.search(title):
+                    continue
+                try:
+                    mth, day = date.split("/")
+                    d = datetime(now.year, int(mth), int(day), tzinfo=TZ)
+                    if d.timetuple().tm_yday < cutoff:
+                        stop = True
+                        continue
+                except ValueError:
+                    pass
+                out.append({"title": title, "url": "https://www.ptt.cc" + link,
+                            "date": date})
+            if stop:
+                break
+    except Exception as e:
+        print("ptt error:", e)
+    out.sort(key=lambda x: x["date"], reverse=True)
+    return out[:limit]
+
+
 def google_news(query, limit=5):
     try:
         url = ("https://news.google.com/rss/search?q=" + urllib.parse.quote(query)
@@ -256,6 +299,7 @@ def aggregate():
         "cat_counts": cat_counts,
         "twse": twse, "twse_date": twse_date,
         "kols": kols, "gooaye": gooaye, "banini": banini,
+        "ptt": get_ptt_hot(),
     }
 
 
@@ -358,9 +402,22 @@ def render_kol_table(kols):
         pill = f'pill {k["color"]}'.strip()
         rows.append(f'<tr{hot}><td><span class="rankball">{i}</span></td>'
                     f'<td style="font-weight:600">{esc(k["name"])}</td>'
-                    f'<td class="num">{esc(k["subs"])}</td>'
                     f'<td><span class="{pill}">{esc(k["topic"])}</span></td></tr>')
     return "\n".join(rows)
+
+
+def render_ptt(posts):
+    rows = []
+    for i, p in enumerate(posts, 1):
+        hot = ' class="hot"' if i <= 3 else ""
+        m = re.match(r"\[(\S+)\]\s*(.*)", p["title"])
+        tag, title = (m.group(1), m.group(2)) if m else ("", p["title"])
+        rows.append(f'<tr{hot}><td><span class="rankball">{i}</span></td>'
+                    f'<td><a href="{esc(p["url"])}" target="_blank" rel="noopener" '
+                    f'style="color:inherit;text-decoration:none;font-weight:600">{esc(title)}</a></td>'
+                    f'<td><span class="pill">{esc(tag)}</span></td>'
+                    f'<td class="num">{esc(p["date"])}</td></tr>')
+    return "\n".join(rows) or '<tr><td colspan="4">本週暫無爆文</td></tr>'
 
 
 def render_trends_table(trends):
@@ -390,8 +447,13 @@ def render_twse(twse):
 def main():
     data = aggregate()
     DOCS.mkdir(exist_ok=True)
-    (DOCS / "data.json").write_text(
-        json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    payload = json.dumps(data, ensure_ascii=False, indent=1)
+    (DOCS / "data.json").write_text(payload, encoding="utf-8")
+    # 歷史快照：累積供之後計算「熱度變化率」「連續在榜」
+    hist = DOCS / "history"
+    hist.mkdir(exist_ok=True)
+    stamp = data["updated"].replace("-", "").replace(":", "").replace(" ", "-")
+    (hist / f"{stamp}.json").write_text(payload, encoding="utf-8")
     template = (ROOT / "template.html").read_text(encoding="utf-8")
     page = (template
             .replace("<!--UPDATED-->", esc(data["updated"]))
@@ -400,7 +462,8 @@ def main():
             .replace("<!--KOL_ROWS-->", render_kol_table(data["kols"]))
             .replace("<!--TRENDS_ROWS-->", render_trends_table(data["trends"]))
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
-            .replace("<!--TWSE_DATE-->", esc(data["twse_date"])))
+            .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
+            .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"])))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 

@@ -108,8 +108,9 @@
   th{text-align:left;font-size:11.5px;color:var(--sub);font-weight:600;padding:2px 6px 9px}
   td{padding:8px 6px;border-top:1px solid var(--line)}
   .num{text-align:right;font-weight:700}
-  .rankball{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;background:rgba(148,178,255,.1);font-size:11.5px;font-weight:700;color:#aab6cc}
-  tr.hot .rankball{background:var(--grad);color:#fff;box-shadow:0 0 12px rgba(61,139,253,.45)}
+  .rankball{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(61,139,253,.28);font-size:11.5px;font-weight:700;color:#cfe1ff;border:1px solid rgba(125,180,255,.35)}
+  tr.hot .rankball{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 0 14px rgba(61,139,253,.65)}
+  tbody tr:first-child .rankball{background:linear-gradient(135deg,#f7b267,#f0924a);color:#2a1504;border-color:transparent;box-shadow:0 0 16px rgba(240,146,74,.7)}
 
   .methodology{font-size:12.5px;color:var(--sub);line-height:1.7}
   .methodology b{color:#c6cede}
@@ -134,11 +135,50 @@
         <div class="hi">GOOD FINANCE 美好證券 · 每日市場熱度總覽</div>
         <h1>節目選題熱點</h1>
       </div>
-      <span class="timepill"><span class="dot"></span>資料更新 2026-07-07 14:11 台北</span>
+      <span class="timepill"><span class="dot"></span>資料更新 2026-07-07 14:18 台北</span>
       <div class="stamp-sub">每日 07:30 / 18:30 自動更新（GitHub Actions）</div>
     </header>
 
     <div class="grid">
+
+      <div class="card span6">
+        <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill">20260707 收盤</span></div>
+        <table>
+          <thead><tr><th style="width:40px">#</th><th>代號</th><th>名稱</th></tr></thead>
+          <tbody>
+<tr class="hot"><td><span class="rankball">1</span></td><td>00685L</td><td style="font-weight:600">群益臺灣加權正2</td></tr>
+<tr class="hot"><td><span class="rankball">2</span></td><td>3481</td><td style="font-weight:600">群創</td></tr>
+<tr class="hot"><td><span class="rankball">3</span></td><td>2409</td><td style="font-weight:600">友達</td></tr>
+<tr><td><span class="rankball">4</span></td><td>00403A</td><td style="font-weight:600">主動統一升級50</td></tr>
+<tr><td><span class="rankball">5</span></td><td>00631L</td><td style="font-weight:600">元大台灣50正2</td></tr>
+<tr><td><span class="rankball">6</span></td><td>00981A</td><td style="font-weight:600">主動統一台股增長</td></tr>
+<tr><td><span class="rankball">7</span></td><td>00405A</td><td style="font-weight:600">主動富邦台灣龍耀</td></tr>
+<tr><td><span class="rankball">8</span></td><td>00991A</td><td style="font-weight:600">主動復華未來50</td></tr>
+<tr><td><span class="rankball">9</span></td><td>1409</td><td style="font-weight:600">新纖</td></tr>
+<tr><td><span class="rankball">10</span></td><td>00988A</td><td style="font-weight:600">主動統一全球創新</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card span6">
+        <div class="card-head"><h2>Google 台灣即時熱搜</h2><span class="pill green">財經自動標記</span></div>
+        <table>
+          <thead><tr><th>關鍵字</th><th>分類</th><th class="num">搜尋量</th></tr></thead>
+          <tbody>
+<tr><td style="font-weight:600">預測</td><td><span class="pill">其他</span></td><td class="num">20000+</td></tr>
+<tr class="hot"><td style="font-weight:600">台股</td><td><span class="pill blue">股票交易</span></td><td class="num">10000+</td></tr>
+<tr class="hot"><td style="font-weight:600">台股大跌</td><td><span class="pill blue">股票交易</span></td><td class="num">5000+</td></tr>
+<tr><td style="font-weight:600">中油</td><td><span class="pill blue">總經</span></td><td class="num">1000+</td></tr>
+<tr><td style="font-weight:600">大谷 翔平</td><td><span class="pill">其他</span></td><td class="num">500+</td></tr>
+<tr><td style="font-weight:600">籃籃</td><td><span class="pill">其他</span></td><td class="num">200+</td></tr>
+<tr><td style="font-weight:600">美 伊</td><td><span class="pill blue">總經</span></td><td class="num">200+</td></tr>
+<tr><td style="font-weight:600">林宥嘉</td><td><span class="pill">娛樂</span></td><td class="num">200+</td></tr>
+<tr><td style="font-weight:600">6257</td><td><span class="pill">其他</span></td><td class="num">100+</td></tr>
+<tr><td style="font-weight:600">台積電法說會</td><td><span class="pill blue">總經</span></td><td class="num">100+</td></tr>
+          </tbody>
+        </table>
+      </div>
+
 
       <div class="card span4">
         <span class="pill blue">今日最熱 · Google 搜尋 10000+</span>
@@ -288,70 +328,53 @@
       </div>
 
       <div class="card span6">
-        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考 · YouTube 訂閱數即時抓取</span></div>
+        <div class="card-head"><h2>PTT Stock 本週爆文</h2><span class="pill blue">推文數破百 · 近 7 天</span></div>
         <table>
-          <thead><tr><th style="width:36px">#</th><th>創作者</th><th class="num">訂閱數</th><th>主題</th></tr></thead>
+          <thead><tr><th style="width:36px">#</th><th>標題</th><th>分類</th><th class="num">日期</th></tr></thead>
           <tbody>
-<tr class="hot"><td><span class="rankball">1</span></td><td style="font-weight:600">志祺七七</td><td class="num">167萬</td><td><span class="pill">泛知識 · 財經合作款</span></td></tr>
-<tr class="hot"><td><span class="rankball">2</span></td><td style="font-weight:600">Cheap</td><td class="num">163萬</td><td><span class="pill">歷史 · 時事評論</span></td></tr>
-<tr class="hot"><td><span class="rankball">3</span></td><td style="font-weight:600">柴鼠兄弟</td><td class="num">116萬</td><td><span class="pill orange">ETF · 理財入門</span></td></tr>
-<tr><td><span class="rankball">4</span></td><td style="font-weight:600">好葉</td><td class="num">102萬</td><td><span class="pill">自我成長</span></td></tr>
-<tr><td><span class="rankball">5</span></td><td style="font-weight:600">游庭皓的財經皓角</td><td class="num">67.8萬</td><td><span class="pill blue">每日盤勢 · 總經</span></td></tr>
-<tr><td><span class="rankball">6</span></td><td style="font-weight:600">SHIN LI 李勛</td><td class="num">47.1萬</td><td><span class="pill orange">小資理財 · 信用卡</span></td></tr>
-<tr><td><span class="rankball">7</span></td><td style="font-weight:600">阿格力</td><td class="num">30.8萬</td><td><span class="pill blue">存股 · 生活選股</span></td></tr>
-<tr><td><span class="rankball">8</span></td><td style="font-weight:600">Ms.Selena</td><td class="num">19.2萬</td><td><span class="pill orange">被動收入 · 房產</span></td></tr>
-<tr><td><span class="rankball">9</span></td><td style="font-weight:600">股癌 Gooaye</td><td class="num">16.9萬</td><td><span class="pill green">Podcast 台灣榜首</span></td></tr>
-<tr><td><span class="rankball">10</span></td><td style="font-weight:600">M觀點</td><td class="num">13.1萬</td><td><span class="pill">科技 · 商業</span></td></tr>
+<tr class="hot"><td><span class="rankball">1</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783384228.A.19A.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">AI算力成本腰斬！AMD MI355X跑GLM 5.2</a></td><td><span class="pill">新聞</span></td><td class="num">7/07</td></tr>
+<tr class="hot"><td><span class="rankball">2</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783336056.A.AC3.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">超驚人！三星迎史上最賺一年，2026 年獲</a></td><td><span class="pill">新聞</span></td><td class="num">7/06</td></tr>
+<tr class="hot"><td><span class="rankball">3</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783306535.A.FC6.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">台股大盤彈幕小工具</a></td><td><span class="pill">創作</span></td><td class="num">7/06</td></tr>
+<tr><td><span class="rankball">4</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783236661.A.3BE.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">2317 鴻海 115年6月營收</a></td><td><span class="pill">情報</span></td><td class="num">7/05</td></tr>
+<tr><td><span class="rankball">5</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783242062.A.581.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">質押信貸 四代同堂 斷頭疑慮</a></td><td><span class="pill">請益</span></td><td class="num">7/05</td></tr>
+<tr><td><span class="rankball">6</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783249642.A.F34.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">問題油最新進度！食藥署公布257家業者名</a></td><td><span class="pill">新聞</span></td><td class="num">7/05</td></tr>
+<tr><td><span class="rankball">7</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783098364.A.523.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">美光有設、SK 海力士不跟 傳取消長約價</a></td><td><span class="pill">新聞</span></td><td class="num">7/04</td></tr>
+<tr><td><span class="rankball">8</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783149646.A.21A.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">《大賣空》貝瑞放空美光！稱股價恐迎30%</a></td><td><span class="pill">新聞</span></td><td class="num">7/04</td></tr>
+<tr><td><span class="rankball">9</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783157376.A.27E.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">0050規模已達台灣房市整年交易量！　謝金</a></td><td><span class="pill">新聞</span></td><td class="num">7/04</td></tr>
+<tr><td><span class="rankball">10</span></td><td><a href="https://www.ptt.cc/bbs/Stock/M.1783165089.A.876.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600">存一年的買車基金，買0050適當嗎？</a></td><td><span class="pill">請益</span></td><td class="num">7/04</td></tr>
           </tbody>
         </table>
-        <div class="focus-why" style="margin-top:10px">訂閱數為本次更新時即時抓取值；巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
+        <div class="focus-why" style="margin-top:10px">已排除置底公告與每日閒聊串。爆文＝散戶情緒最高點，適合做 QA 或迷因切入。</div>
       </div>
 
       <div class="card span6">
-        <div class="card-head"><h2>Google 台灣即時熱搜</h2><span class="pill green">財經自動標記</span></div>
+        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考</span></div>
         <table>
-          <thead><tr><th>關鍵字</th><th>分類</th><th class="num">搜尋量</th></tr></thead>
+          <thead><tr><th style="width:36px">#</th><th>創作者</th><th>主題</th></tr></thead>
           <tbody>
-<tr><td style="font-weight:600">預測</td><td><span class="pill">其他</span></td><td class="num">20000+</td></tr>
-<tr class="hot"><td style="font-weight:600">台股</td><td><span class="pill blue">股票交易</span></td><td class="num">10000+</td></tr>
-<tr class="hot"><td style="font-weight:600">台股大跌</td><td><span class="pill blue">股票交易</span></td><td class="num">5000+</td></tr>
-<tr><td style="font-weight:600">中油</td><td><span class="pill blue">總經</span></td><td class="num">1000+</td></tr>
-<tr><td style="font-weight:600">大谷 翔平</td><td><span class="pill">其他</span></td><td class="num">500+</td></tr>
-<tr><td style="font-weight:600">籃籃</td><td><span class="pill">其他</span></td><td class="num">200+</td></tr>
-<tr><td style="font-weight:600">美 伊</td><td><span class="pill blue">總經</span></td><td class="num">200+</td></tr>
-<tr><td style="font-weight:600">林宥嘉</td><td><span class="pill">娛樂</span></td><td class="num">200+</td></tr>
-<tr><td style="font-weight:600">6257</td><td><span class="pill">其他</span></td><td class="num">100+</td></tr>
-<tr><td style="font-weight:600">台積電法說會</td><td><span class="pill blue">總經</span></td><td class="num">100+</td></tr>
+<tr class="hot"><td><span class="rankball">1</span></td><td style="font-weight:600">志祺七七</td><td><span class="pill">泛知識 · 財經合作款</span></td></tr>
+<tr class="hot"><td><span class="rankball">2</span></td><td style="font-weight:600">Cheap</td><td><span class="pill">歷史 · 時事評論</span></td></tr>
+<tr class="hot"><td><span class="rankball">3</span></td><td style="font-weight:600">柴鼠兄弟</td><td><span class="pill orange">ETF · 理財入門</span></td></tr>
+<tr><td><span class="rankball">4</span></td><td style="font-weight:600">好葉</td><td><span class="pill">自我成長</span></td></tr>
+<tr><td><span class="rankball">5</span></td><td style="font-weight:600">游庭皓的財經皓角</td><td><span class="pill blue">每日盤勢 · 總經</span></td></tr>
+<tr><td><span class="rankball">6</span></td><td style="font-weight:600">SHIN LI 李勛</td><td><span class="pill orange">小資理財 · 信用卡</span></td></tr>
+<tr><td><span class="rankball">7</span></td><td style="font-weight:600">阿格力</td><td><span class="pill blue">存股 · 生活選股</span></td></tr>
+<tr><td><span class="rankball">8</span></td><td style="font-weight:600">Ms.Selena</td><td><span class="pill orange">被動收入 · 房產</span></td></tr>
+<tr><td><span class="rankball">9</span></td><td style="font-weight:600">股癌 Gooaye</td><td><span class="pill green">Podcast 台灣榜首</span></td></tr>
+<tr><td><span class="rankball">10</span></td><td style="font-weight:600">M觀點</td><td><span class="pill">科技 · 商業</span></td></tr>
           </tbody>
         </table>
+        <div class="focus-why" style="margin-top:10px">依社群規模即時排序；巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
       </div>
 
-      <div class="card span6">
-        <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill">20260707 收盤</span></div>
-        <table>
-          <thead><tr><th style="width:40px">#</th><th>代號</th><th>名稱</th></tr></thead>
-          <tbody>
-<tr class="hot"><td><span class="rankball">1</span></td><td>00685L</td><td style="font-weight:600">群益臺灣加權正2</td></tr>
-<tr class="hot"><td><span class="rankball">2</span></td><td>3481</td><td style="font-weight:600">群創</td></tr>
-<tr class="hot"><td><span class="rankball">3</span></td><td>2409</td><td style="font-weight:600">友達</td></tr>
-<tr><td><span class="rankball">4</span></td><td>00403A</td><td style="font-weight:600">主動統一升級50</td></tr>
-<tr><td><span class="rankball">5</span></td><td>00631L</td><td style="font-weight:600">元大台灣50正2</td></tr>
-<tr><td><span class="rankball">6</span></td><td>00981A</td><td style="font-weight:600">主動統一台股增長</td></tr>
-<tr><td><span class="rankball">7</span></td><td>00405A</td><td style="font-weight:600">主動富邦台灣龍耀</td></tr>
-<tr><td><span class="rankball">8</span></td><td>00991A</td><td style="font-weight:600">主動復華未來50</td></tr>
-<tr><td><span class="rankball">9</span></td><td>1409</td><td style="font-weight:600">新纖</td></tr>
-<tr><td><span class="rankball">10</span></td><td>00988A</td><td style="font-weight:600">主動統一全球創新</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card span6">
+      <div class="card span6" style="grid-column:span 12">
         <div class="card-head"><h2>關鍵字怎麼來的</h2></div>
         <div class="methodology">
           <b>① 分類卡片的關鍵字</b>：鉅亨網每則新聞的編輯關鍵字標籤，統計當日 8 個新聞分類的標記則數 — 則數就是熱度。<br>
           <b>② 五大分類歸類</b>：關鍵字字典自動歸類（固定收益 → 融資 → 財富管理 → 總經 → 股票交易優先序），字典可持續調整。<br>
           <b>③ Google 即時熱搜</b>：Google Trends 台灣每日熱搜榜（全站主題），財經字進榜＝「破圈」訊號。<br>
-          <b>④ KOL 監測</b>：YouTube 訂閱數即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。
+          <b>④ KOL 監測</b>：YouTube 社群規模即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。<br>
+          <b>⑤ PTT Stock 爆文</b>：近 7 天推文數破百（爆）的文章，排除公告與每日閒聊串 — 散戶情緒與話題濃度指標。
         </div>
       </div>
 

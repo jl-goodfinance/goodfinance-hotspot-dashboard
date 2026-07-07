@@ -108,8 +108,9 @@
   th{text-align:left;font-size:11.5px;color:var(--sub);font-weight:600;padding:2px 6px 9px}
   td{padding:8px 6px;border-top:1px solid var(--line)}
   .num{text-align:right;font-weight:700}
-  .rankball{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;background:rgba(148,178,255,.1);font-size:11.5px;font-weight:700;color:#aab6cc}
-  tr.hot .rankball{background:var(--grad);color:#fff;box-shadow:0 0 12px rgba(61,139,253,.45)}
+  .rankball{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(61,139,253,.28);font-size:11.5px;font-weight:700;color:#cfe1ff;border:1px solid rgba(125,180,255,.35)}
+  tr.hot .rankball{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 0 14px rgba(61,139,253,.65)}
+  tbody tr:first-child .rankball{background:linear-gradient(135deg,#f7b267,#f0924a);color:#2a1504;border-color:transparent;box-shadow:0 0 16px rgba(240,146,74,.7)}
 
   .methodology{font-size:12.5px;color:var(--sub);line-height:1.7}
   .methodology b{color:#c6cede}
@@ -139,29 +140,6 @@
     </header>
 
     <div class="grid">
-<!--FOCUS_CARDS-->
-<!--CAT_CARDS-->
-
-      <div class="card span6">
-        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考 · YouTube 訂閱數即時抓取</span></div>
-        <table>
-          <thead><tr><th style="width:36px">#</th><th>創作者</th><th class="num">訂閱數</th><th>主題</th></tr></thead>
-          <tbody>
-<!--KOL_ROWS-->
-          </tbody>
-        </table>
-        <div class="focus-why" style="margin-top:10px">訂閱數為本次更新時即時抓取值；巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
-      </div>
-
-      <div class="card span6">
-        <div class="card-head"><h2>Google 台灣即時熱搜</h2><span class="pill green">財經自動標記</span></div>
-        <table>
-          <thead><tr><th>關鍵字</th><th>分類</th><th class="num">搜尋量</th></tr></thead>
-          <tbody>
-<!--TRENDS_ROWS-->
-          </tbody>
-        </table>
-      </div>
 
       <div class="card span6">
         <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill"><!--TWSE_DATE--> 收盤</span></div>
@@ -174,12 +152,48 @@
       </div>
 
       <div class="card span6">
+        <div class="card-head"><h2>Google 台灣即時熱搜</h2><span class="pill green">財經自動標記</span></div>
+        <table>
+          <thead><tr><th>關鍵字</th><th>分類</th><th class="num">搜尋量</th></tr></thead>
+          <tbody>
+<!--TRENDS_ROWS-->
+          </tbody>
+        </table>
+      </div>
+
+<!--FOCUS_CARDS-->
+<!--CAT_CARDS-->
+
+      <div class="card span6">
+        <div class="card-head"><h2>PTT Stock 本週爆文</h2><span class="pill blue">推文數破百 · 近 7 天</span></div>
+        <table>
+          <thead><tr><th style="width:36px">#</th><th>標題</th><th>分類</th><th class="num">日期</th></tr></thead>
+          <tbody>
+<!--PTT_ROWS-->
+          </tbody>
+        </table>
+        <div class="focus-why" style="margin-top:10px">已排除置底公告與每日閒聊串。爆文＝散戶情緒最高點，適合做 QA 或迷因切入。</div>
+      </div>
+
+      <div class="card span6">
+        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考</span></div>
+        <table>
+          <thead><tr><th style="width:36px">#</th><th>創作者</th><th>主題</th></tr></thead>
+          <tbody>
+<!--KOL_ROWS-->
+          </tbody>
+        </table>
+        <div class="focus-why" style="margin-top:10px">依社群規模即時排序；巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
+      </div>
+
+      <div class="card span6" style="grid-column:span 12">
         <div class="card-head"><h2>關鍵字怎麼來的</h2></div>
         <div class="methodology">
           <b>① 分類卡片的關鍵字</b>：鉅亨網每則新聞的編輯關鍵字標籤，統計當日 8 個新聞分類的標記則數 — 則數就是熱度。<br>
           <b>② 五大分類歸類</b>：關鍵字字典自動歸類（固定收益 → 融資 → 財富管理 → 總經 → 股票交易優先序），字典可持續調整。<br>
           <b>③ Google 即時熱搜</b>：Google Trends 台灣每日熱搜榜（全站主題），財經字進榜＝「破圈」訊號。<br>
-          <b>④ KOL 監測</b>：YouTube 訂閱數即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。
+          <b>④ KOL 監測</b>：YouTube 社群規模即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。<br>
+          <b>⑤ PTT Stock 爆文</b>：近 7 天推文數破百（爆）的文章，排除公告與每日閒聊串 — 散戶情緒與話題濃度指標。
         </div>
       </div>
 
