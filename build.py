@@ -685,9 +685,7 @@ def render_focus(data):
         <div class="kicker">同時竄進全站熱搜的財經字</div>
         <div class="focus-title" style="font-size:18px;margin-top:8px">{others}</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
-      </div>
-
-{render_kol_card(data)}'''
+      </div>'''
 
 
 def render_kol_card(data):
@@ -987,7 +985,8 @@ def main():
             .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
             .replace("<!--WATCH_PANELS-->", render_watch(data["watch"]))
-            .replace("<!--YT_BLOCKS-->", render_yt(data["yt"])))
+            .replace("<!--YT_BLOCKS-->", render_yt(data["yt"]))
+            .replace("<!--KOL_CARD-->", render_kol_card(data)))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 
