@@ -657,26 +657,18 @@ def render_focus(data):
     """三張焦點卡：最熱財經熱搜、其餘台股題材、KOL 風向"""
     ft = data["fin_trends"]
     top = ft[0] if ft else {"kw": "—", "traffic": "", "news": [""]}
-    top_why = esc((top.get("news") or [""])[0][:90])
+    top_news = [n for n in (top.get("news") or []) if n]
+    if not top_news and top["kw"] != "—":
+        top_news = [n["title"].split(" - ")[0] for n in google_news(top["kw"], 2)]
+    top_why = esc((top_news or ["—"])[0][:90])
     others = "、".join(esc(t["kw"]) for t in ft[1:5]) or "—"
     g = data["gooaye"]
     return f'''
       <div class="card span4">
-        <span class="pill blue">今日最熱 · Google 搜尋 {esc(top["traffic"])}</span>
-        <div class="focus-title" style="font-size:19px;margin-top:12px">{esc(top["kw"])}</div>
-        <svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/>
-            </linearGradient>
-            <linearGradient id="sa" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="rgba(61,139,253,.35)"/><stop offset="1" stop-color="rgba(61,139,253,0)"/>
-            </linearGradient>
-          </defs>
-          <path d="M0 48 L40 44 L80 46 L120 36 L160 40 L200 24 L240 28 L300 8" fill="none" stroke="url(#sg)" stroke-width="2.5" style="filter:drop-shadow(0 0 6px rgba(61,139,253,.8))"/>
-          <path d="M0 48 L40 44 L80 46 L120 36 L160 40 L200 24 L240 28 L300 8 L300 56 L0 56 Z" fill="url(#sa)"/>
-          <circle cx="300" cy="8" r="3.5" fill="#7c6ff0" style="filter:drop-shadow(0 0 6px #7c6ff0)"/>
-        </svg>
+        <span class="pill blue">今日最熱財經熱搜</span>
+        <div class="kicker">Google 搜尋量</div>
+        <div class="big">{esc(top["traffic"])}</div>
+        <div class="focus-title" style="font-size:19px">{esc(top["kw"])}</div>
         <div class="focus-why">{top_why}</div>
       </div>
 
