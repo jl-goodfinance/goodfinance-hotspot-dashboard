@@ -674,7 +674,7 @@ def render_focus(data):
 
       <div class="card span4" style="grid-column:span 8">
         <span class="pill violet">財經熱搜題材</span>
-        <div class="kicker">同時竄進全站熱搜的財經字</div>
+        <div class="kicker violet">同時竄進全站熱搜的財經字</div>
         <div class="focus-title" style="font-size:18px;margin-top:8px">{others}</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
       </div>'''
