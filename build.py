@@ -361,6 +361,18 @@ def get_yt_comments(video_id):
     return out[:YT_MAX_COMMENTS]
 
 
+def yt_is_short(video_id):
+    """Shorts 判斷：/shorts/{id} 若非 Shorts 會被轉址到 /watch"""
+    try:
+        r = urllib.request.urlopen(urllib.request.Request(
+            f"https://www.youtube.com/shorts/{video_id}", headers=UA),
+            timeout=15, context=CTX)
+        return "/shorts/" in r.geturl()
+    except Exception as e:
+        print(f"yt shorts check {video_id} error:", e)
+        return False  # 判斷失敗時保留影片，寧可多列不漏列
+
+
 def get_yt_monitor(hours=24):
     """指定頻道近 N 小時上片清單 + 高讚留言"""
     ns = {"a": "http://www.w3.org/2005/Atom",
@@ -382,17 +394,21 @@ def get_yt_monitor(hours=24):
             for ent in entries:
                 if (now - ent["pub"]).total_seconds() > hours * 3600:
                     continue
+                if yt_is_short(ent["id"]):
+                    continue
                 videos.append({"id": ent["id"], "title": ent["title"],
                                "at": ent["pub"].strftime("%m/%d %H:%M"),
                                "fallback": False, "comments": []})
                 if len(videos) >= YT_MAX_VIDEOS:
                     break
-            # 24 小時內無上片 → 退回最新一支（標註非 24h 內）
+            # 24 小時內無上片 → 退回最新一支非 Shorts 影片（標註非 24h 內）
             if not videos and entries:
-                ent = max(entries, key=lambda x: x["pub"])
-                videos.append({"id": ent["id"], "title": ent["title"],
-                               "at": ent["pub"].strftime("%m/%d %H:%M"),
-                               "fallback": True, "comments": []})
+                for ent in sorted(entries, key=lambda x: -x["pub"].timestamp()):
+                    if not yt_is_short(ent["id"]):
+                        videos.append({"id": ent["id"], "title": ent["title"],
+                                       "at": ent["pub"].strftime("%m/%d %H:%M"),
+                                       "fallback": True, "comments": []})
+                        break
             for v in videos:
                 try:
                     v["comments"] = get_yt_comments(v["id"])
