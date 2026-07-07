@@ -369,25 +369,35 @@ def get_yt_monitor(hours=24):
     result = []
     for name, cid in YT_CHANNELS.items():
         videos = []
+        entries = []
         try:
             root = ET.fromstring(fetch(
                 f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}"))
             for e in root.findall("a:entry", ns):
-                pub = datetime.fromisoformat(e.findtext("a:published", namespaces=ns))
-                if (now - pub.astimezone(TZ)).total_seconds() > hours * 3600:
+                pub = datetime.fromisoformat(
+                    e.findtext("a:published", namespaces=ns)).astimezone(TZ)
+                entries.append({"id": e.findtext("yt:videoId", namespaces=ns),
+                                "title": e.findtext("a:title", namespaces=ns) or "",
+                                "pub": pub})
+            for ent in entries:
+                if (now - ent["pub"]).total_seconds() > hours * 3600:
                     continue
-                vid = e.findtext("yt:videoId", namespaces=ns)
-                v = {"id": vid,
-                     "title": e.findtext("a:title", namespaces=ns) or "",
-                     "at": pub.astimezone(TZ).strftime("%m/%d %H:%M"),
-                     "comments": []}
-                try:
-                    v["comments"] = get_yt_comments(vid)
-                except Exception as e2:
-                    print(f"yt comments {vid} error:", e2)
-                videos.append(v)
+                videos.append({"id": ent["id"], "title": ent["title"],
+                               "at": ent["pub"].strftime("%m/%d %H:%M"),
+                               "fallback": False, "comments": []})
                 if len(videos) >= YT_MAX_VIDEOS:
                     break
+            # 24 小時內無上片 → 退回最新一支（標註非 24h 內）
+            if not videos and entries:
+                ent = max(entries, key=lambda x: x["pub"])
+                videos.append({"id": ent["id"], "title": ent["title"],
+                               "at": ent["pub"].strftime("%m/%d %H:%M"),
+                               "fallback": True, "comments": []})
+            for v in videos:
+                try:
+                    v["comments"] = get_yt_comments(v["id"])
+                except Exception as e2:
+                    print(f"yt comments {v['id']} error:", e2)
         except Exception as e:
             print(f"yt channel {name} error:", e)
         result.append({"channel": name, "videos": videos})
@@ -865,19 +875,23 @@ def render_yt(channels):
     blocks = []
     for ch in channels:
         vids = []
+        fallback = any(v.get("fallback") for v in ch["videos"])
         for v in ch["videos"]:
             cms = "".join(
                 f'<div class="yt-cm"><span class="yt-like">{esc(c["likes"])} 讚</span>'
                 f'<span class="yt-author">{esc(c["author"])}</span>{esc(c["text"])}</div>'
                 for c in v["comments"]) or '<div class="yt-cm none">尚無讚數 ≥ 3 的留言</div>'
+            note = '<span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span>' \
+                if v.get("fallback") else ""
             vids.append(
                 f'<div class="yt-video">'
                 f'<a href="https://www.youtube.com/watch?v={esc(v["id"])}" target="_blank" '
                 f'rel="noopener" class="yt-title">{esc(v["title"])}</a>'
-                f'<span class="yt-at">{esc(v["at"])}</span>{cms}</div>')
-        body = "".join(vids) or '<div class="yt-cm none">近 24 小時無上片</div>'
+                f'<span class="yt-at">{esc(v["at"])}</span>{note}{cms}</div>')
+        body = "".join(vids) or '<div class="yt-cm none">頻道暫無影片資料</div>'
+        chip = "24h 無上片 · 顯示最新一支" if fallback else f'{len(ch["videos"])} 支'
         blocks.append(f'<div class="yt-ch"><div class="yt-ch-name">{esc(ch["channel"])}'
-                      f'<span class="pill" style="margin-left:8px">{len(ch["videos"])} 支</span></div>{body}</div>')
+                      f'<span class="pill" style="margin-left:8px">{chip}</span></div>{body}</div>')
     return "".join(blocks)
 
 
