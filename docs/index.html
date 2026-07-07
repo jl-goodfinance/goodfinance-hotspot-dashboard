@@ -34,7 +34,7 @@
   .orbs .o3{width:560px;height:560px;left:34%;bottom:-260px;background:radial-gradient(circle,rgba(124,111,240,.38),transparent 68%)}
   .orbs .o4{width:340px;height:340px;right:20%;top:-140px;background:radial-gradient(circle,rgba(47,212,196,.22),transparent 70%)}
   .shell{max-width:1240px;margin:0 auto;padding:28px 20px 64px;display:grid;grid-template-columns:60px 1fr;gap:20px;position:relative;z-index:1}
-  @media (max-width:760px){.shell{grid-template-columns:1fr}.side{display:none}}
+  @media (max-width:760px){.shell{grid-template-columns:1fr}}
 
   .side{background:rgba(15,21,31,.6);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);border:1px solid rgba(148,178,255,.13);border-radius:16px;height:fit-content;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:28px}
   .side .ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--sub);text-decoration:none;transition:background .15s,color .15s}
@@ -182,6 +182,7 @@
 
   /* ---- 行動版 ---- */
   @media (max-width:760px){
+    .side{display:none}
     header{align-items:flex-start}
     .stamp{margin-left:0;align-items:flex-start;width:100%}
     .stamp-sub{text-align:left}
@@ -228,7 +229,7 @@
         <h1>每日市場熱度總覽</h1>
       </div>
       <div class="stamp">
-        <span class="timepill"><span class="dot"></span>資料更新 2026-07-07 20:20 台北</span>
+        <span class="timepill"><span class="dot"></span>資料更新 2026-07-07 20:25 台北</span>
         <div class="stamp-sub">每日 06:30 盤前 · 12:00 盤中 · 15:00 收盤後 自動更新（GitHub Actions）</div>
       </div>
     </header>
@@ -301,7 +302,7 @@
           <tbody>
 <tr><td style="font-weight:600">林志玲</td><td><span class="pill">其他</span></td><td class="num">2000+</td></tr>
 <tr class="hot"><td style="font-weight:600">華 邦 電</td><td><span class="pill blue">股票交易</span></td><td class="num">2000+</td></tr>
-<tr><td style="font-weight:600">台新新光金融控股</td><td><span class="pill">其他</span></td><td class="num">1000+</td></tr>
+<tr class="hot"><td style="font-weight:600">台新新光金融控股</td><td><span class="pill orange">財富管理</span></td><td class="num">1000+</td></tr>
 <tr><td style="font-weight:600">玉山 金融 控股 公司</td><td><span class="pill">其他</span></td><td class="num">1000+</td></tr>
 <tr><td style="font-weight:600">三立新聞網</td><td><span class="pill">社會</span></td><td class="num">1000+</td></tr>
 <tr><td style="font-weight:600">陳 鴻</td><td><span class="pill">社會</span></td><td class="num">500+</td></tr>
@@ -325,7 +326,7 @@
       <div class="card span8">
         <span class="pill violet">財經熱搜題材</span>
         <div class="kicker violet">同時竄進全站熱搜的財經字</div>
-        <div class="focus-title" style="font-size:18px;margin-top:8px">母胎單身大作戰 2、日產x-trail</div>
+        <div class="focus-title" style="font-size:18px;margin-top:8px">台新新光金融控股、母胎單身大作戰 2、日產x-trail</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
       </div>
       <span id="categories" style="grid-column:1/-1;height:0"></span>
@@ -479,13 +480,13 @@
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
           <div class="wk-val"><b>1</b><span class="wk-avg">4週均 0.4</span><span class="wk-delta up">↑ 竄升中</span></div>
-        </div></div><div class="focus-why" style="margin-top:12px">數值為五個關鍵字互相比較的相對熱度（90 天內峰值＝100），資料至 2026年7月7日。</div>
+        </div></div><div class="focus-why" style="margin-top:12px">數值為五個關鍵字互相比較的相對熱度（90 天內峰值＝100），資料至 2026年7月7日（快取資料，本次更新失敗）。</div>
       </div>
 
       <div class="card" style="grid-column:span 12" id="yt">
         <div class="card-head"><h2>YT 頻道監測</h2><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
         <div class="yt-grid">
-<div class="yt-ch"><div class="yt-ch-name">小Lin说<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=OcKl98ZQbMQ" target="_blank" rel="noopener" class="yt-title">AI巨头们之间的资本混战，到底是个什么情况？</a><span class="yt-at">07/01 21:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">1253 讚</span><span class="yt-author">@laughingGor123</span>这个AI风格太棒了，笑死😂</div><div class="yt-cm"><span class="yt-like">805 讚</span><span class="yt-author">@pengroger6757</span>那段ai牌桌上的爾虞我詐 表現得太屌了！小 Lin真神❤</div><div class="yt-cm"><span class="yt-like">406 讚</span><span class="yt-author">@ChiKwongchow-r6v</span>小Lin 真的不愧是頂級網紅.  製作真的不一樣。 輕鬆容易理解複雜的. &#x27;亂&#x27;.  絕對是我最喜歡的 奶茶店.  👍❤️🌹</div><div class="yt-cm"><span class="yt-like">200 讚</span><span class="yt-author">@claireliu3100</span>小lin的视频总是那么深入浅出，太喜欢了！</div><div class="yt-cm"><span class="yt-like">186 讚</span><span class="yt-author">@司徒布魯</span>最後 小 Lin 的動畫 做得很好!!  很活潑可愛。</div></div></div><div class="yt-ch"><div class="yt-ch-name">游庭皓的財經皓角<span class="pill" style="margin-left:8px">1 支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=vkwgbSsMB2A" target="_blank" rel="noopener" class="yt-title">2026/7/7(二)道瓊再創高 散戶歸隊?大賣空貝瑞狙擊美光 修正來了嗎?【早晨財經速解讀】</a><span class="yt-at">07/07 09:07</span><div class="yt-cm"><span class="yt-like">45 讚</span><span class="yt-author">@周小玉-f4m</span>😂😂皓哥：他是不是沒看他的財報</div><div class="yt-cm"><span class="yt-like">18 讚</span><span class="yt-author">@馬交大塞</span>「謝謝美光」，本身就是一句獲利了結的陳詞😂</div><div class="yt-cm"><span class="yt-like">18 讚</span><span class="yt-author">@楊大衛-e1j</span>不要不要的，推論皓哥實際用過很多次，感覺很熟練自然</div><div class="yt-cm"><span class="yt-like">16 讚</span><span class="yt-author">@yutinghaofinance</span>00:00 市場總覽 02:10 軟硬切換 05:40 美股追蹤 08:00 BIS示警 10:30 貝瑞空美光 16:00 韓股波動 20:00 台股波動 22:00 台股市況 26:00 產業邏輯 27:30 日股波動 32:30 總結</div><div class="yt-cm"><span class="yt-like">5 讚</span><span class="yt-author">@dolasl5775</span>拒絕杞人-&gt;質疑杞人-&gt;接受杞人-&gt;研究杞人-成為杞人</div></div></div><div class="yt-ch"><div class="yt-ch-name">Nicolas 楊應超<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=C2aLMT30OoQ" target="_blank" rel="noopener" class="yt-title">跌了不要怕！Ai沒有泡沫！下半年繼續持有這些股票！</a><span class="yt-at">07/06 20:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">362 讚</span><span class="yt-author">@slan1220</span>老實講，上漲時說甚麼我都沒甚麼興趣聽，反正會投的就那些 這頻道最重要的用途是下跌時來聽一下可以加強信念扛過去</div><div class="yt-cm"><span class="yt-like">99 讚</span><span class="yt-author">@mercy9327</span>刷了一天 就等你</div><div class="yt-cm"><span class="yt-like">93 讚</span><span class="yt-author">@lyumiranda3457</span>看了那么多投资的视频，我真是觉得团长最靠谱，最主要是思维清晰，逻辑闭环。 ❤</div><div class="yt-cm"><span class="yt-like">42 讚</span><span class="yt-author">@gianfrancoferrelilac</span>不要讓眼前的數字成為牽掛說得真好，股票投資最難的地方就是這裡，得得失失是一回事，經常懷疑自己做錯決定，經常覺得自己怎樣做都錯，讓人十分心力交瘁，很希望可以鍛煉到一天在股票市場上遊刃有餘。 現在團長不光教人買股票，還從中啟發人生智慧，真的太好</div><div class="yt-cm"><span class="yt-like">19 讚</span><span class="yt-author">@jianjiang1277</span>团长视频从AI产业链到个股的分析布局，视野既开阔，又不乏深度，从招数到内功心法都有，非常钦佩，非常感谢🙏</div></div></div><div class="yt-ch"><div class="yt-ch-name">工商時報<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=hhKCQnps9XI" target="_blank" rel="noopener" class="yt-title">AI股價劇烈震盪是泡沫前奏？深度解析AI算力基礎建設Token成本下降與企業級AI Agent應用實況 ft.凱基銀行 廖亭亭【#市場觀測站Podcast EP180】CC字幕 @cteevideo​</a><span class="yt-at">07/04 19:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">3 讚</span><span class="yt-author">@marklin2574</span>廖協理漂亮專業有氣質，被稱讚顏值只是輕鬆說謝謝😊</div><div class="yt-cm"><span class="yt-like">3 讚</span><span class="yt-author">@徐姑娘</span>影片看完了！亭亭不只人美、氣質好，講起 AI 基礎建設和資產配置更是條理分明，專業度爆表！真的非常厲害👍</div></div></div>
+<div class="yt-ch"><div class="yt-ch-name">小Lin说<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=OcKl98ZQbMQ" target="_blank" rel="noopener" class="yt-title">AI巨头们之间的资本混战，到底是个什么情况？</a><span class="yt-at">07/01 21:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">1254 讚</span><span class="yt-author">@laughingGor123</span>这个AI风格太棒了，笑死😂</div><div class="yt-cm"><span class="yt-like">805 讚</span><span class="yt-author">@pengroger6757</span>那段ai牌桌上的爾虞我詐 表現得太屌了！小 Lin真神❤</div><div class="yt-cm"><span class="yt-like">406 讚</span><span class="yt-author">@ChiKwongchow-r6v</span>小Lin 真的不愧是頂級網紅.  製作真的不一樣。 輕鬆容易理解複雜的. &#x27;亂&#x27;.  絕對是我最喜歡的 奶茶店.  👍❤️🌹</div><div class="yt-cm"><span class="yt-like">200 讚</span><span class="yt-author">@claireliu3100</span>小lin的视频总是那么深入浅出，太喜欢了！</div><div class="yt-cm"><span class="yt-like">186 讚</span><span class="yt-author">@司徒布魯</span>最後 小 Lin 的動畫 做得很好!!  很活潑可愛。</div></div></div><div class="yt-ch"><div class="yt-ch-name">游庭皓的財經皓角<span class="pill" style="margin-left:8px">1 支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=vkwgbSsMB2A" target="_blank" rel="noopener" class="yt-title">2026/7/7(二)道瓊再創高 散戶歸隊?大賣空貝瑞狙擊美光 修正來了嗎?【早晨財經速解讀】</a><span class="yt-at">07/07 09:07</span><div class="yt-cm"><span class="yt-like">45 讚</span><span class="yt-author">@周小玉-f4m</span>😂😂皓哥：他是不是沒看他的財報</div><div class="yt-cm"><span class="yt-like">18 讚</span><span class="yt-author">@楊大衛-e1j</span>不要不要的，推論皓哥實際用過很多次，感覺很熟練自然</div><div class="yt-cm"><span class="yt-like">18 讚</span><span class="yt-author">@馬交大塞</span>「謝謝美光」，本身就是一句獲利了結的陳詞😂</div><div class="yt-cm"><span class="yt-like">16 讚</span><span class="yt-author">@yutinghaofinance</span>00:00 市場總覽 02:10 軟硬切換 05:40 美股追蹤 08:00 BIS示警 10:30 貝瑞空美光 16:00 韓股波動 20:00 台股波動 22:00 台股市況 26:00 產業邏輯 27:30 日股波動 32:30 總結</div><div class="yt-cm"><span class="yt-like">5 讚</span><span class="yt-author">@dolasl5775</span>拒絕杞人-&gt;質疑杞人-&gt;接受杞人-&gt;研究杞人-成為杞人</div></div></div><div class="yt-ch"><div class="yt-ch-name">Nicolas 楊應超<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=C2aLMT30OoQ" target="_blank" rel="noopener" class="yt-title">跌了不要怕！Ai沒有泡沫！下半年繼續持有這些股票！</a><span class="yt-at">07/06 20:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">364 讚</span><span class="yt-author">@slan1220</span>老實講，上漲時說甚麼我都沒甚麼興趣聽，反正會投的就那些 這頻道最重要的用途是下跌時來聽一下可以加強信念扛過去</div><div class="yt-cm"><span class="yt-like">99 讚</span><span class="yt-author">@mercy9327</span>刷了一天 就等你</div><div class="yt-cm"><span class="yt-like">94 讚</span><span class="yt-author">@lyumiranda3457</span>看了那么多投资的视频，我真是觉得团长最靠谱，最主要是思维清晰，逻辑闭环。 ❤</div><div class="yt-cm"><span class="yt-like">42 讚</span><span class="yt-author">@gianfrancoferrelilac</span>不要讓眼前的數字成為牽掛說得真好，股票投資最難的地方就是這裡，得得失失是一回事，經常懷疑自己做錯決定，經常覺得自己怎樣做都錯，讓人十分心力交瘁，很希望可以鍛煉到一天在股票市場上遊刃有餘。 現在團長不光教人買股票，還從中啟發人生智慧，真的太好</div><div class="yt-cm"><span class="yt-like">19 讚</span><span class="yt-author">@jianjiang1277</span>团长视频从AI产业链到个股的分析布局，视野既开阔，又不乏深度，从招数到内功心法都有，非常钦佩，非常感谢🙏</div></div></div><div class="yt-ch"><div class="yt-ch-name">工商時報<span class="pill" style="margin-left:8px">24h 無上片 · 顯示最新一支</span></div><div class="yt-video"><a href="https://www.youtube.com/watch?v=hhKCQnps9XI" target="_blank" rel="noopener" class="yt-title">AI股價劇烈震盪是泡沫前奏？深度解析AI算力基礎建設Token成本下降與企業級AI Agent應用實況 ft.凱基銀行 廖亭亭【#市場觀測站Podcast EP180】CC字幕 @cteevideo​</a><span class="yt-at">07/04 19:00</span><span class="pill" style="margin-left:8px">最新影片 · 非 24h 內</span><div class="yt-cm"><span class="yt-like">3 讚</span><span class="yt-author">@marklin2574</span>廖協理漂亮專業有氣質，被稱讚顏值只是輕鬆說謝謝😊</div><div class="yt-cm"><span class="yt-like">3 讚</span><span class="yt-author">@徐姑娘</span>影片看完了！亭亭不只人美、氣質好，講起 AI 基礎建設和資產配置更是條理分明，專業度爆表！真的非常厲害👍</div></div></div>
         </div>
       </div>
 

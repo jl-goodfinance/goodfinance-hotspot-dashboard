@@ -34,7 +34,7 @@
   .orbs .o3{width:560px;height:560px;left:34%;bottom:-260px;background:radial-gradient(circle,rgba(124,111,240,.38),transparent 68%)}
   .orbs .o4{width:340px;height:340px;right:20%;top:-140px;background:radial-gradient(circle,rgba(47,212,196,.22),transparent 70%)}
   .shell{max-width:1240px;margin:0 auto;padding:28px 20px 64px;display:grid;grid-template-columns:60px 1fr;gap:20px;position:relative;z-index:1}
-  @media (max-width:760px){.shell{grid-template-columns:1fr}.side{display:none}}
+  @media (max-width:760px){.shell{grid-template-columns:1fr}}
 
   .side{background:rgba(15,21,31,.6);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);border:1px solid rgba(148,178,255,.13);border-radius:16px;height:fit-content;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:28px}
   .side .ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--sub);text-decoration:none;transition:background .15s,color .15s}
@@ -182,6 +182,7 @@
 
   /* ---- 行動版 ---- */
   @media (max-width:760px){
+    .side{display:none}
     header{align-items:flex-start}
     .stamp{margin-left:0;align-items:flex-start;width:100%}
     .stamp-sub{text-align:left}
