@@ -78,7 +78,9 @@
   .pill.orange{background:rgba(240,146,74,.15);color:#ffb073}
   .pill.green{background:rgba(61,220,132,.13);color:#5fe8a0}
 
-  .kicker{font-size:12.5px;color:var(--sub);margin:12px 0 0}
+  .kicker{font-size:12.5px;font-weight:700;letter-spacing:.02em;margin:12px 0 0;
+    background:linear-gradient(90deg,#7db4ff,#a89dff 60%,#ffb073);
+    -webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
   .big{font-size:42px;font-weight:700;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums}
   .big small{font-size:19px;font-weight:600;color:var(--sub)}
   .focus-title{font-weight:700;margin-top:2px;font-size:15px}
@@ -223,14 +225,14 @@
         </table>
       </div>
 
+<!--FOCUS_CARDS-->
+      <span id="categories" style="grid-column:1/-1;height:0"></span>
+<!--CAT_CARDS-->
+
       <div class="card" style="grid-column:span 12" id="watch">
         <div class="card-head"><h2>自訂關鍵字監測</h2><span class="pill violet">Google Trends 台灣 · 90 天趨勢</span></div>
 <!--WATCH_PANELS-->
       </div>
-
-<!--FOCUS_CARDS-->
-      <span id="categories" style="grid-column:1/-1;height:0"></span>
-<!--CAT_CARDS-->
 
       <div class="card" style="grid-column:span 12" id="yt">
         <div class="card-head"><h2>YT 頻道監測</h2><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
