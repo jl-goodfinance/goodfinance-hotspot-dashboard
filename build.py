@@ -238,7 +238,9 @@ def get_taiex():
         rt = {"z": float(a["z"]), "y": float(a["y"]), "t": a["t"], "d": a["d"]}
     except Exception as e:
         print("taiex realtime error:", e)
-    return {"days": days[-260:], "rt": rt}
+    # 只取今年（1/1 起）的交易日
+    ytd = [d for d in days if d["date"] >= f"{now.year}-01-01"]
+    return {"days": ytd or days[-260:], "rt": rt, "year": now.year}
 
 
 def get_twse_top():
@@ -771,6 +773,8 @@ def render_market_hero(taiex):
     hi = max(d["index"] for d in days)
     pos = (idx - lo) / (hi - lo) * 100 if hi > lo else 50
     nd = len(days)
+    year = taiex.get("year", "")
+    ytd_pct = (idx / days[0]["index"] - 1) * 100 if days[0]["index"] else 0
 
     # SVG：上方指數線、下方量柱
     W, H, VH = 1000, 210, 52   # VH = 量柱區高
@@ -804,7 +808,9 @@ def render_market_hero(taiex):
         f'<span class="mk-ylab" style="top:{round(LH*f/H*100,1)}%">'
         f'{ylo + (1-f)*(yhi-ylo):,.0f}{" 點" if f == 0.25 else ""}</span>'
         for f in (0.25, 0.5, 0.75))
-    vlines, mlabels = [], []
+    vlines = []
+    mlabels = [f'<span class="mk-mlab" style="left:0;transform:none">'
+               f'{int(days[0]["date"][5:7])}月</span>']
     for i in range(1, n):
         m_now = days[i]["date"][5:7]
         if m_now != days[i-1]["date"][5:7]:
@@ -825,8 +831,9 @@ def render_market_hero(taiex):
           <div class="mk-stats">
             <div class="mk-stat"><span>成交金額</span><b>{amt/10000:,.2f} 兆</b></div>
             <div class="mk-stat"><span>量能（vs 近{n_avg}日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
-            <div class="mk-stat"><span>52週區間位置</span><b>{pos:.0f}%</b></div>
-            <div class="mk-stat"><span>52週高／低</span><b>{hi:,.0f} / {lo:,.0f}</b></div>
+            <div class="mk-stat"><span>今年以來</span><b class="{'up' if ytd_pct>=0 else 'down'}">{ytd_pct:+.1f}%</b></div>
+            <div class="mk-stat"><span>年內區間位置</span><b>{pos:.0f}%</b></div>
+            <div class="mk-stat"><span>年內高／低</span><b>{hi:,.0f} / {lo:,.0f}</b></div>
           </div>
         </div>
         <div class="mk-wrap">
@@ -852,7 +859,7 @@ def render_market_hero(taiex):
           <span class="mk-vlab">成交金額（億）· 峰值 {amx:,}</span>
         </div>
         {xlabels}
-        <div class="focus-why">折線＝加權指數，單位：點（左側刻度）· 柱狀＝每日成交金額，單位：億元（今日 {amt:,} 億）· 近一年（{nd} 個交易日），虛線為月分隔 · 台股慣例紅漲綠跌</div>
+        <div class="focus-why">折線＝加權指數，單位：點（左側刻度）· 柱狀＝每日成交金額，單位：億元（今日 {amt:,} 億）· {year} 年初至今（{nd} 個交易日），虛線為月分隔 · 台股慣例紅漲綠跌</div>
       </div>'''
 
 
