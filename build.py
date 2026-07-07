@@ -58,20 +58,21 @@ STOP_TAGS = {"TOP", "趨勢分析", "市場預估", "美國", "中國", "台灣"
 CNYES_CATS = ["headline", "tw_stock", "tw_macro", "wd_stock", "forex",
               "future", "etf", "fund"]
 
-# KOL 名單池（Better Living 人物熱度）：名稱 -> (YouTube 頻道路徑, 主題標籤, 標籤色)
+# KOL 名單池（Better Living 人物熱度）：
+# 名稱 -> (YouTube 頻道路徑, 主題標籤, 標籤色, Google News 搜尋詞)
 KOL_POOL = {
-    "志祺七七": ("@shasha77", "泛知識 · 財經合作款", ""),
-    "Cheap": ("@cheapaoe", "歷史 · 時事評論", ""),
-    "柴鼠兄弟": ("channel/UC45i13dEfEVac2IEJT_Nr5Q", "ETF · 理財入門", "orange"),
-    "好葉": ("@betterleaf", "自我成長", ""),
-    "游庭皓的財經皓角": ("@yutinghaofinance", "每日盤勢 · 總經", "blue"),
-    "SHIN LI 李勛": ("@SHINLI", "小資理財 · 信用卡", "orange"),
-    "阿格力": ("@agreedr", "存股 · 生活選股", "blue"),
-    "Ms.Selena": ("@MsSelenaMrWayne", "被動收入 · 房產", "orange"),
-    "股癌 Gooaye": ("@Gooaye", "Podcast 台灣榜首", "green"),
-    "M觀點": ("@miulaviewpoint", "科技 · 商業", ""),
-    "財報狗": ("@statementdog_official", "基本面 · Podcast", "blue"),
-    "慢活夫妻": ("@GeorgeDewi", "理財生活", ""),
+    "志祺七七": ("@shasha77", "泛知識 · 財經合作款", "", "志祺七七"),
+    "Cheap": ("@cheapaoe", "歷史 · 時事評論", "", "YouTuber Cheap"),
+    "柴鼠兄弟": ("channel/UC45i13dEfEVac2IEJT_Nr5Q", "ETF · 理財入門", "orange", "柴鼠兄弟"),
+    "好葉": ("@betterleaf", "自我成長", "", "好葉 YouTuber"),
+    "游庭皓的財經皓角": ("@yutinghaofinance", "每日盤勢 · 總經", "blue", "游庭皓"),
+    "SHIN LI 李勛": ("@SHINLI", "小資理財 · 信用卡", "orange", "李勛 理財"),
+    "阿格力": ("@agreedr", "存股 · 生活選股", "blue", "阿格力"),
+    "Ms.Selena": ("@MsSelenaMrWayne", "被動收入 · 房產", "orange", "Ms.Selena"),
+    "股癌 Gooaye": ("@Gooaye", "Podcast 台灣榜首", "green", "股癌"),
+    "M觀點": ("@miulaviewpoint", "科技 · 商業", "", "M觀點 Miula"),
+    "財報狗": ("@statementdog_official", "基本面 · Podcast", "blue", "財報狗"),
+    "慢活夫妻": ("@GeorgeDewi", "理財生活", "", "慢活夫妻"),
 }
 GOOAYE_RSS = "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml"
 
@@ -87,8 +88,16 @@ PTT_ENT = re.compile(
 TREND_OFFTOPIC = {"體育": ["世界盃", "足球", "篮球", "籃球", "棒球", "NBA", "WNBA",
                         "lukaku", "球員", "中職"],
                   "娛樂": ["八點檔", "男星", "女星", "藝人", "演唱會", "專輯", "戲劇",
-                        "告別式", "電影"],
-                  "教育": ["入學", "放榜", "考試", "學測", "分科"]}
+                        "告別式", "電影", "直播主", "實況"],
+                  "教育": ["入學", "放榜", "考試", "學測", "分科"],
+                  "社會": ["賭博", "詐騙", "車禍", "地震", "颱風", "命案", "火警"]}
+
+
+def offtopic(text):
+    for label, kws in TREND_OFFTOPIC.items():
+        if any(k.lower() in text.lower() for k in kws):
+            return label
+    return None
 
 
 def fetch(url, timeout=15):
@@ -125,12 +134,15 @@ def get_google_trends():
             news = [n.findtext("ht:news_item_title", namespaces=ns) or ""
                     for n in it.findall("ht:news_item", namespaces=ns)]
             ctx_text = kw + " " + " ".join(news)
-            cat = classify(ctx_text)
+            # 純數字代號（1101、00929、00631L…）直接視為股票
+            if re.fullmatch(r"\d{4,6}[A-Za-z]?", kw.strip()):
+                cat = "股票交易"
+            else:
+                cat = classify(ctx_text) or offtopic(ctx_text)
             if not cat:
-                for label, kws in TREND_OFFTOPIC.items():
-                    if any(k.lower() in ctx_text.lower() for k in kws):
-                        cat = label
-                        break
+                # RSS 沒附新聞時，回查 Google News 取得上下文再分類
+                extra = " ".join(n["title"] for n in google_news(kw, 3))
+                cat = classify(extra) or offtopic(extra)
             items.append({"kw": kw, "traffic": traffic, "news": news, "cat": cat})
     except Exception as e:
         print("trends error:", e)
@@ -171,10 +183,11 @@ def get_twse_top():
         return "", []
 
 
-def get_kol_subs():
-    """KOL YouTube 訂閱數即時抓取"""
+def get_kols():
+    """KOL 人物熱度：以近 7 天 Google News 聲量排序（訂閱數僅做同分排序）"""
+    now = datetime.now(TZ)
     out = []
-    for name, (path, topic, color) in KOL_POOL.items():
+    for name, (path, topic, color, query) in KOL_POOL.items():
         subs = "—"
         try:
             page = fetch_text(f"https://www.youtube.com/{urllib.parse.quote(path)}")
@@ -185,7 +198,11 @@ def get_kol_subs():
                 subs = m.group(1).replace("位訂閱者", "").strip()
         except Exception as e:
             print(f"kol {name} error:", e)
-        out.append({"name": name, "subs": subs, "topic": topic, "color": color})
+        news = google_news(query, limit=20)
+        buzz = sum(1 for n in news
+                   if n.get("dt") and (now - n["dt"]).days < 7)
+        out.append({"name": name, "subs": subs, "topic": topic,
+                    "color": color, "buzz": buzz})
 
     def snum(s):
         m = re.match(r"([\d.,]+)(萬?)", s["subs"])
@@ -193,7 +210,7 @@ def get_kol_subs():
             return -1
         v = float(m.group(1).replace(",", ""))
         return v * 10000 if m.group(2) else v
-    out.sort(key=snum, reverse=True)
+    out.sort(key=lambda k: (k["buzz"], snum(k)), reverse=True)
     return out[:10]
 
 
@@ -309,14 +326,20 @@ def get_ptt_hot(days=7, limit=10):
 
 
 def google_news(query, limit=5):
+    from email.utils import parsedate_to_datetime
     try:
         url = ("https://news.google.com/rss/search?q=" + urllib.parse.quote(query)
                + "&hl=zh-TW&gl=TW&ceid=TW:zh-Hant")
         root = ET.fromstring(fetch(url))
         out = []
         for it in root.find("channel").findall("item")[:limit]:
+            pd = it.findtext("pubDate") or ""
+            try:
+                dt = parsedate_to_datetime(pd).astimezone(TZ)
+            except Exception:
+                dt = None
             out.append({"title": it.findtext("title") or "",
-                        "date": (it.findtext("pubDate") or "")[5:16]})
+                        "date": pd[5:16], "dt": dt})
         return out
     except Exception as e:
         print(f"gnews {query} error:", e)
@@ -329,7 +352,7 @@ def aggregate():
     trends = get_google_trends()
     news = get_cnyes_news()
     twse_date, twse = get_twse_top()
-    kols = get_kol_subs()
+    kols = get_kols()
     gooaye = get_gooaye()
     banini = google_news("巴逆逆", limit=3)
 
@@ -469,6 +492,7 @@ def render_kol_table(kols):
         pill = f'pill {k["color"]}'.strip()
         rows.append(f'<tr{hot}><td><span class="rankball">{i}</span></td>'
                     f'<td style="font-weight:600">{esc(k["name"])}</td>'
+                    f'<td class="num">{k["buzz"]} 則</td>'
                     f'<td><span class="{pill}">{esc(k["topic"])}</span></td></tr>')
     return "\n".join(rows)
 
@@ -501,7 +525,7 @@ def render_watch(watch):
             <polyline points="{pts}" fill="none" stroke="url(#wg)" stroke-width="2"
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
-          <div class="wk-val"><b>{latest}</b><span class="wk-delta {cls}">{arrow} {note}</span></div>
+          <div class="wk-val"><b>{latest}</b><span class="wk-avg">4週均 {round(avg4w, 1)}</span><span class="wk-delta {cls}">{arrow} {note}</span></div>
         </div>''')
     stale = '（快取資料，本次更新失敗）' if watch.get("stale") else ""
     return (f'<svg width="0" height="0" style="position:absolute"><defs>'
@@ -554,7 +578,7 @@ def render_twse(twse):
 def main():
     data = aggregate()
     DOCS.mkdir(exist_ok=True)
-    payload = json.dumps(data, ensure_ascii=False, indent=1)
+    payload = json.dumps(data, ensure_ascii=False, indent=1, default=str)
     (DOCS / "data.json").write_text(payload, encoding="utf-8")
     # 歷史快照：累積供之後計算「熱度變化率」「連續在榜」
     hist = DOCS / "history"

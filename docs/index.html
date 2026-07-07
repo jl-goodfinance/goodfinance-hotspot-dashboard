@@ -122,6 +122,7 @@
   .wk svg{display:block;width:100%;height:44px}
   .wk-val{display:flex;align-items:baseline;gap:8px;margin-top:6px}
   .wk-val b{font-size:22px;font-variant-numeric:tabular-nums}
+  .wk-avg{font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums}
   .wk-delta{font-size:11.5px;font-weight:600;color:var(--sub)}
   .wk-delta.up{color:var(--green)}
   .wk-delta.down{color:#ff8f85}
@@ -189,31 +190,31 @@
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/></linearGradient></defs></svg><div class="watch"><div class="wk">
           <div class="wk-name">開戶</div>
           <svg viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true">
-            <polyline points="0.0,17.3 2.3,17.7 4.6,19.2 6.9,20.0 9.2,29.1 11.5,27.2 13.8,16.5 16.2,15.0 18.5,13.9 20.8,16.5 23.1,15.4 25.4,28.7 27.7,25.7 30.0,13.5 32.3,12.7 34.6,14.3 36.9,16.2 39.2,12.4 41.5,27.2 43.8,23.0 46.2,11.2 48.5,11.6 50.8,13.1 53.1,19.6 55.4,28.3 57.7,29.8 60.0,25.3 62.3,10.8 64.6,11.6 66.9,7.8 69.2,11.2 71.5,15.4 73.8,26.4 76.2,21.9 78.5,8.2 80.8,8.9 83.1,15.4 85.4,10.5 87.7,17.3 90.0,29.5 92.3,29.5 94.6,13.9 96.9,16.5 99.2,16.9 101.5,16.9 103.8,17.7 106.2,31.0 108.5,25.7 110.8,11.6 113.1,10.5 115.4,8.6 117.7,9.3 120.0,11.2 122.3,20.7 124.6,18.4 126.9,6.7 129.2,4.8 131.5,5.1 133.8,11.2 136.2,14.6 138.5,22.6 140.8,21.1 143.1,6.7 145.4,12.0 147.7,12.4 150.0,11.2 152.3,13.9 154.6,26.0 156.9,25.7 159.2,9.3 161.5,13.1 163.8,10.5 166.2,16.5 168.5,25.7 170.8,29.5 173.1,19.6 175.4,4.0 177.7,6.3 180.0,8.6 182.3,17.3 184.6,18.8 186.9,28.3 189.2,23.0 191.5,9.3 193.8,9.3 196.2,10.1 198.5,10.8 200.8,14.3 203.1,27.6 205.4,23.0 207.7,13.1 210.0,9.7" fill="none" stroke="url(#wg)" stroke-width="2"
+            <polyline points="0.0,17.3 2.3,17.7 4.6,19.2 6.9,20.0 9.2,29.1 11.5,27.2 13.8,16.5 16.2,15.0 18.5,13.9 20.8,16.5 23.1,15.4 25.4,28.7 27.7,25.7 30.0,13.5 32.3,12.7 34.6,14.3 36.9,16.2 39.2,12.4 41.5,27.2 43.8,23.0 46.2,11.2 48.5,11.6 50.8,13.1 53.1,19.6 55.4,28.3 57.7,29.8 60.0,25.3 62.3,10.8 64.6,11.6 66.9,7.8 69.2,11.2 71.5,15.4 73.8,26.4 76.2,21.9 78.5,8.2 80.8,8.9 83.1,15.4 85.4,10.5 87.7,17.3 90.0,29.5 92.3,29.5 94.6,13.9 96.9,16.5 99.2,16.9 101.5,16.9 103.8,17.7 106.2,31.0 108.5,25.7 110.8,11.6 113.1,10.5 115.4,8.6 117.7,9.3 120.0,11.2 122.3,20.7 124.6,18.4 126.9,6.7 129.2,4.8 131.5,5.1 133.8,11.2 136.2,14.6 138.5,22.6 140.8,21.1 143.1,6.7 145.4,12.0 147.7,12.4 150.0,11.2 152.3,13.9 154.6,26.0 156.9,25.7 159.2,9.3 161.5,13.1 163.8,10.5 166.2,16.5 168.5,25.7 170.8,29.5 173.1,19.6 175.4,4.0 177.7,6.7 180.0,8.2 182.3,17.3 184.6,18.4 186.9,27.9 189.2,23.0 191.5,9.7 193.8,9.3 196.2,10.1 198.5,10.8 200.8,14.3 203.1,27.6 205.4,23.0 207.7,13.1 210.0,10.1" fill="none" stroke="url(#wg)" stroke-width="2"
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
-          <div class="wk-val"><b>85</b><span class="wk-delta ">→ 持平</span></div>
+          <div class="wk-val"><b>84</b><span class="wk-avg">4週均 68.5</span><span class="wk-delta ">→ 持平</span></div>
         </div><div class="wk">
           <div class="wk-name">定期定額</div>
           <svg viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true">
-            <polyline points="0.0,25.6 2.3,21.1 4.6,24.1 6.9,22.6 9.2,27.1 11.5,27.1 13.8,23.4 16.2,21.9 18.5,16.7 20.8,18.9 23.1,21.1 25.4,28.6 27.7,27.1 30.0,18.2 32.3,18.9 34.6,19.6 36.9,19.6 39.2,12.9 41.5,23.4 43.8,26.4 46.2,11.5 48.5,20.4 50.8,23.4 53.1,22.6 55.4,28.6 57.7,25.6 60.0,27.1 62.3,14.4 64.6,11.5 66.9,12.2 69.2,7.7 71.5,10.7 73.8,23.4 76.2,18.9 78.5,12.9 80.8,13.7 83.1,15.9 85.4,14.4 87.7,15.2 90.0,25.6 92.3,26.4 94.6,21.9 96.9,22.6 99.2,24.9 101.5,22.6 103.8,24.1 106.2,29.3 108.5,30.8 110.8,16.7 113.1,15.9 115.4,18.2 117.7,15.9 120.0,18.2 122.3,21.9 124.6,19.6 126.9,10.0 129.2,15.9 131.5,13.7 133.8,14.4 136.2,10.0 138.5,22.6 140.8,24.9 143.1,4.0 145.4,12.2 147.7,10.7 150.0,18.2 152.3,21.9 154.6,28.6 156.9,27.8 159.2,21.9 161.5,18.2 163.8,20.4 166.2,21.1 168.5,24.9 170.8,25.6 173.1,27.8 175.4,15.9 177.7,21.9 180.0,22.6 182.3,26.4 184.6,25.6 186.9,31.6 189.2,30.8 191.5,27.1 193.8,24.9 196.2,24.1 198.5,25.6 200.8,26.4 203.1,32.3 205.4,29.3 207.7,23.4 210.0,26.4" fill="none" stroke="url(#wg)" stroke-width="2"
+            <polyline points="0.0,25.6 2.3,21.1 4.6,24.1 6.9,22.6 9.2,27.1 11.5,27.1 13.8,23.4 16.2,21.9 18.5,16.7 20.8,18.9 23.1,21.1 25.4,28.6 27.7,27.1 30.0,18.2 32.3,18.9 34.6,19.6 36.9,19.6 39.2,12.9 41.5,23.4 43.8,26.4 46.2,11.5 48.5,20.4 50.8,23.4 53.1,22.6 55.4,28.6 57.7,25.6 60.0,27.1 62.3,14.4 64.6,11.5 66.9,12.2 69.2,7.7 71.5,10.7 73.8,23.4 76.2,18.9 78.5,12.9 80.8,13.7 83.1,15.9 85.4,14.4 87.7,15.2 90.0,25.6 92.3,26.4 94.6,21.9 96.9,22.6 99.2,24.9 101.5,22.6 103.8,24.1 106.2,29.3 108.5,30.8 110.8,16.7 113.1,15.9 115.4,18.2 117.7,15.9 120.0,18.2 122.3,21.9 124.6,19.6 126.9,10.0 129.2,15.9 131.5,13.7 133.8,14.4 136.2,10.0 138.5,22.6 140.8,24.9 143.1,4.0 145.4,12.2 147.7,10.7 150.0,18.2 152.3,21.9 154.6,28.6 156.9,27.8 159.2,21.9 161.5,18.2 163.8,20.4 166.2,21.1 168.5,24.9 170.8,25.6 173.1,27.8 175.4,15.9 177.7,21.9 180.0,22.6 182.3,26.4 184.6,24.9 186.9,31.6 189.2,30.8 191.5,27.1 193.8,24.9 196.2,24.1 198.5,25.6 200.8,26.4 203.1,32.3 205.4,29.3 207.7,23.4 210.0,26.4" fill="none" stroke="url(#wg)" stroke-width="2"
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
-          <div class="wk-val"><b>21</b><span class="wk-delta ">→ 持平</span></div>
+          <div class="wk-val"><b>21</b><span class="wk-avg">4週均 23.8</span><span class="wk-delta ">→ 持平</span></div>
         </div><div class="wk">
           <div class="wk-name">固定收益</div>
           <svg viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true">
             <polyline points="0.0,42.0 2.3,42.0 4.6,42.0 6.9,42.0 9.2,42.0 11.5,42.0 13.8,42.0 16.2,42.0 18.5,42.0 20.8,42.0 23.1,42.0 25.4,42.0 27.7,42.0 30.0,42.0 32.3,42.0 34.6,42.0 36.9,42.0 39.2,42.0 41.5,42.0 43.8,42.0 46.2,42.0 48.5,42.0 50.8,42.0 53.1,42.0 55.4,42.0 57.7,42.0 60.0,42.0 62.3,42.0 64.6,42.0 66.9,42.0 69.2,42.0 71.5,42.0 73.8,42.0 76.2,42.0 78.5,42.0 80.8,42.0 83.1,42.0 85.4,42.0 87.7,42.0 90.0,42.0 92.3,42.0 94.6,42.0 96.9,42.0 99.2,42.0 101.5,42.0 103.8,42.0 106.2,42.0 108.5,42.0 110.8,42.0 113.1,42.0 115.4,42.0 117.7,42.0 120.0,42.0 122.3,42.0 124.6,42.0 126.9,42.0 129.2,42.0 131.5,42.0 133.8,42.0 136.2,42.0 138.5,42.0 140.8,4.0 143.1,42.0 145.4,42.0 147.7,42.0 150.0,42.0 152.3,42.0 154.6,42.0 156.9,42.0 159.2,42.0 161.5,42.0 163.8,42.0 166.2,42.0 168.5,42.0 170.8,42.0 173.1,42.0 175.4,42.0 177.7,32.5 180.0,32.5 182.3,32.5 184.6,32.5 186.9,42.0 189.2,42.0 191.5,32.5 193.8,32.5 196.2,32.5 198.5,32.5 200.8,32.5 203.1,42.0 205.4,42.0 207.7,42.0 210.0,32.5" fill="none" stroke="url(#wg)" stroke-width="2"
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
-          <div class="wk-val"><b>1</b><span class="wk-delta up">↑ 竄升中</span></div>
+          <div class="wk-val"><b>1</b><span class="wk-avg">4週均 0.4</span><span class="wk-delta up">↑ 竄升中</span></div>
         </div><div class="wk">
           <div class="wk-name">保本保息</div>
           <svg viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true">
             <polyline points="0.0,42.0 2.3,42.0 4.6,42.0 6.9,42.0 9.2,42.0 11.5,42.0 13.8,42.0 16.2,42.0 18.5,42.0 20.8,42.0 23.1,42.0 25.4,42.0 27.7,42.0 30.0,42.0 32.3,42.0 34.6,42.0 36.9,42.0 39.2,42.0 41.5,42.0 43.8,42.0 46.2,42.0 48.5,42.0 50.8,42.0 53.1,42.0 55.4,42.0 57.7,42.0 60.0,42.0 62.3,42.0 64.6,42.0 66.9,42.0 69.2,42.0 71.5,42.0 73.8,42.0 76.2,42.0 78.5,42.0 80.8,42.0 83.1,42.0 85.4,42.0 87.7,42.0 90.0,42.0 92.3,42.0 94.6,42.0 96.9,42.0 99.2,42.0 101.5,42.0 103.8,42.0 106.2,42.0 108.5,42.0 110.8,42.0 113.1,42.0 115.4,42.0 117.7,42.0 120.0,42.0 122.3,42.0 124.6,42.0 126.9,42.0 129.2,42.0 131.5,42.0 133.8,42.0 136.2,42.0 138.5,42.0 140.8,42.0 143.1,42.0 145.4,42.0 147.7,42.0 150.0,42.0 152.3,42.0 154.6,42.0 156.9,42.0 159.2,42.0 161.5,42.0 163.8,42.0 166.2,42.0 168.5,42.0 170.8,42.0 173.1,42.0 175.4,42.0 177.7,42.0 180.0,42.0 182.3,42.0 184.6,42.0 186.9,42.0 189.2,42.0 191.5,42.0 193.8,42.0 196.2,42.0 198.5,42.0 200.8,42.0 203.1,42.0 205.4,42.0 207.7,42.0 210.0,42.0" fill="none" stroke="url(#wg)" stroke-width="2"
               style="filter:drop-shadow(0 0 4px rgba(61,139,253,.7))"/>
           </svg>
-          <div class="wk-val"><b>0</b><span class="wk-delta ">— 無搜尋量</span></div>
+          <div class="wk-val"><b>0</b><span class="wk-avg">4週均 0</span><span class="wk-delta ">— 無搜尋量</span></div>
         </div><div class="wk">
           <div class="wk-name">美好證券</div>
           <svg viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true">
@@ -247,7 +248,7 @@
       <div class="card span4">
         <span class="pill violet">財經熱搜題材</span>
         <div class="kicker">同時竄進全站熱搜的財經字</div>
-        <div class="focus-title" style="font-size:18px;margin-top:8px">美 伊</div>
+        <div class="focus-title" style="font-size:18px;margin-top:8px">2409、6257、劉揚偉、2449</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
       </div>
 
@@ -265,39 +266,40 @@
       <span id="categories" style="grid-column:1/-1;height:0"></span>
 
       <div class="card span6">
-        <div class="card-head"><h2>股票交易</h2><span class="pill">今日 53 則</span></div>
-        <div class="bar-row"><span class="name">台股</span><div class="track"><div class="fill " style="width:100%"></div></div><span class="val">34 則</span></div>
-<div class="bar-row"><span class="name">台股營收</span><div class="track"><div class="fill " style="width:53%"></div></div><span class="val">18 則</span></div>
-<div class="bar-row"><span class="name">營收速報</span><div class="track"><div class="fill " style="width:53%"></div></div><span class="val">18 則</span></div>
-<div class="bar-row"><span class="name">6月營收</span><div class="track"><div class="fill " style="width:53%"></div></div><span class="val">18 則</span></div>
-<div class="bar-row"><span class="name">半導體</span><div class="track"><div class="fill " style="width:41%"></div></div><span class="val">14 則</span></div>
-<div class="bar-row"><span class="name">美股</span><div class="track"><div class="fill " style="width:38%"></div></div><span class="val">13 則</span></div>
-<div class="bar-row"><span class="name">伊朗</span><div class="track"><div class="fill " style="width:21%"></div></div><span class="val">7 則</span></div>
+        <div class="card-head"><h2>股票交易</h2><span class="pill">今日 59 則</span></div>
+        <div class="bar-row"><span class="name">台股</span><div class="track"><div class="fill " style="width:100%"></div></div><span class="val">41 則</span></div>
+<div class="bar-row"><span class="name">AI</span><div class="track"><div class="fill " style="width:68%"></div></div><span class="val">28 則</span></div>
+<div class="bar-row"><span class="name">台股營收</span><div class="track"><div class="fill " style="width:61%"></div></div><span class="val">25 則</span></div>
+<div class="bar-row"><span class="name">營收速報</span><div class="track"><div class="fill " style="width:61%"></div></div><span class="val">25 則</span></div>
+<div class="bar-row"><span class="name">6月營收</span><div class="track"><div class="fill " style="width:61%"></div></div><span class="val">25 則</span></div>
+<div class="bar-row"><span class="name">半導體</span><div class="track"><div class="fill " style="width:34%"></div></div><span class="val">14 則</span></div>
+<div class="bar-row"><span class="name">美股</span><div class="track"><div class="fill " style="width:32%"></div></div><span class="val">13 則</span></div>
         <ul class="news">
-        <li><a href="https://news.cnyes.com/news/id/6525443" target="_blank" rel="noopener">營收速報  - 鑫龍騰(3188)6月營收2.40億元年增率高達228.97％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525442" target="_blank" rel="noopener">營收速報  - 益登(3048)6月營收125.73億元年增率高達60.1％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525441" target="_blank" rel="noopener">營收速報  - 華邦電(2344)6月營收205.97億元年增率高達189.88％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525440" target="_blank" rel="noopener">營收速報  - 六暉-KY(2115)6月營收2.97億元年增率高達32.81％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525357" target="_blank" rel="noopener">傳奇投資大師喊「我正在賣」 警告AI泡沫：別相信華爾街</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525407" target="_blank" rel="noopener">外資連四賣、自營商重砍487億 三大法人賣超946.91億元</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525225" target="_blank" rel="noopener">半導體供需失衡背景下 三星電子正考慮兩件事</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525392" target="_blank" rel="noopener">營收速報  - 今國光(6209)6月營收4.33億元年增率高達73.31％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525391" target="_blank" rel="noopener">營收速報  - 鉅祥(2476)6月營收9.15億元年增率高達53.76％</a></li>
-<li><a href="https://news.cnyes.com/news/id/6525390" target="_blank" rel="noopener">營收速報  - 廣達(2382)6月營收3,851.91億元年增率高達102.87％</a></li>
+        <li><a href="https://news.cnyes.com/news/id/6525355" target="_blank" rel="noopener">巨有科技Q2營收6.13億元 逾倍增創單季新高</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525394" target="_blank" rel="noopener">劉揚偉：未來3-5年AI需求只會越來越大 TEEMA科學園區最快7月招商</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525482" target="_blank" rel="noopener">營收速報  - 全福生技(6885)6月營收238萬元年增率高達491.54％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525481" target="_blank" rel="noopener">營收速報  - 智擎(4162)6月營收2.06億元年增率高達33.92％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525480" target="_blank" rel="noopener">營收速報  - 健喬(4114)6月營收7.51億元年增率高達30.68％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525479" target="_blank" rel="noopener">營收速報  - 臺慶科(3357)6月營收7.65億元年增率高達57.44％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525478" target="_blank" rel="noopener">營收速報  - 昇貿(3305)6月營收14.46億元年增率高達76％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525477" target="_blank" rel="noopener">營收速報  - 威強電(3022)6月營收9.63億元年增率高達79.97％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525476" target="_blank" rel="noopener">營收速報  - 超豐(2441)6月營收18.75億元年增率高達33.15％</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525443" target="_blank" rel="noopener">營收速報  - 鑫龍騰(3188)6月營收2.40億元年增率高達228.97％</a></li>
         </ul>
       </div>
 
       <div class="card span6">
         <div class="card-head"><h2>總經</h2><span class="pill">今日 64 則</span></div>
-        <div class="bar-row"><span class="name">AI</span><div class="track"><div class="fill t" style="width:100%"></div></div><span class="val">27 則</span></div>
-<div class="bar-row"><span class="name">通膨</span><div class="track"><div class="fill t" style="width:59%"></div></div><span class="val">16 則</span></div>
-<div class="bar-row"><span class="name">優分析</span><div class="track"><div class="fill t" style="width:52%"></div></div><span class="val">14 則</span></div>
-<div class="bar-row"><span class="name">美元</span><div class="track"><div class="fill t" style="width:48%"></div></div><span class="val">13 則</span></div>
-<div class="bar-row"><span class="name">川普</span><div class="track"><div class="fill t" style="width:41%"></div></div><span class="val">11 則</span></div>
-<div class="bar-row"><span class="name">匯率</span><div class="track"><div class="fill t" style="width:41%"></div></div><span class="val">11 則</span></div>
-<div class="bar-row"><span class="name">美國經濟</span><div class="track"><div class="fill t" style="width:41%"></div></div><span class="val">11 則</span></div>
+        <div class="bar-row"><span class="name">通膨</span><div class="track"><div class="fill t" style="width:100%"></div></div><span class="val">16 則</span></div>
+<div class="bar-row"><span class="name">美元</span><div class="track"><div class="fill t" style="width:88%"></div></div><span class="val">14 則</span></div>
+<div class="bar-row"><span class="name">優分析</span><div class="track"><div class="fill t" style="width:88%"></div></div><span class="val">14 則</span></div>
+<div class="bar-row"><span class="name">川普</span><div class="track"><div class="fill t" style="width:69%"></div></div><span class="val">11 則</span></div>
+<div class="bar-row"><span class="name">美國經濟</span><div class="track"><div class="fill t" style="width:69%"></div></div><span class="val">11 則</span></div>
+<div class="bar-row"><span class="name">就業市場</span><div class="track"><div class="fill t" style="width:69%"></div></div><span class="val">11 則</span></div>
+<div class="bar-row"><span class="name">匯率</span><div class="track"><div class="fill t" style="width:62%"></div></div><span class="val">10 則</span></div>
         <ul class="news">
-        <li><a href="https://news.cnyes.com/news/id/6525446" target="_blank" rel="noopener">AI晶片需求爆發 日本製造業景氣創8年新高 AI熱潮點燃半導體 日本製造業信心攀8年高點</a></li>
+        <li><a href="https://news.cnyes.com/news/id/6525306" target="_blank" rel="noopener">韓元24小時交易首日：成交量低於平均 匯率表現平穩</a></li>
+<li><a href="https://news.cnyes.com/news/id/6525446" target="_blank" rel="noopener">AI晶片需求爆發 日本製造業景氣創8年新高 AI熱潮點燃半導體 日本製造業信心攀8年高點</a></li>
 <li><a href="https://news.cnyes.com/news/id/6525281" target="_blank" rel="noopener">《經濟學人》揭美國實力真相！GDP、AI、軍事仍稱霸全球  但霸權正逐步流失</a></li>
 <li><a href="https://news.cnyes.com/news/id/6525330" target="_blank" rel="noopener">卡達LNG運輸船於荷姆茲海峽遭襲 美伊和平協議面臨嚴峻考驗</a></li>
 <li><a href="https://news.cnyes.com/news/id/6525308" target="_blank" rel="noopener">LG電子第二季獲利估年增逾1倍美國關稅退稅成最大助力，AI資料中心散熱與機器人布局加速</a></li>
@@ -306,19 +308,18 @@
 <li><a href="https://news.cnyes.com/news/id/6524517" target="_blank" rel="noopener">美銀依舊看漲AI、點名「這些」等受惠股！2027年雲端AI資本支出衝1.5兆美元</a></li>
 <li><a href="https://news.cnyes.com/news/id/6524469" target="_blank" rel="noopener">川普再度點名「喊買」戴爾一度飆近9%</a></li>
 <li><a href="https://news.cnyes.com/news/id/6524537" target="_blank" rel="noopener">沙國大砍亞洲原油售價 寫下本世紀最大降幅</a></li>
-<li><a href="https://news.cnyes.com/news/id/6524629" target="_blank" rel="noopener">【遠東商銀】未見干預跡象，日圓再度走貶</a></li>
         </ul>
       </div>
 
       <div class="card span4">
         <div class="card-head"><h2>財富管理</h2><span class="pill">今日 27 則</span></div>
         <div class="bar-row"><span class="name">Fed</span><div class="track"><div class="fill o" style="width:100%"></div></div><span class="val">22 則</span></div>
-<div class="bar-row"><span class="name">ETF</span><div class="track"><div class="fill o" style="width:77%"></div></div><span class="val">17 則</span></div>
 <div class="bar-row"><span class="name">高股息</span><div class="track"><div class="fill o" style="width:23%"></div></div><span class="val">5 則</span></div>
 <div class="bar-row"><span class="name">配息</span><div class="track"><div class="fill o" style="width:18%"></div></div><span class="val">4 則</span></div>
 <div class="bar-row"><span class="name">基金</span><div class="track"><div class="fill o" style="width:18%"></div></div><span class="val">4 則</span></div>
 <div class="bar-row"><span class="name">鉅亨買基金</span><div class="track"><div class="fill o" style="width:14%"></div></div><span class="val">3 則</span></div>
 <div class="bar-row"><span class="name">行政院</span><div class="track"><div class="fill o" style="width:14%"></div></div><span class="val">3 則</span></div>
+<div class="bar-row"><span class="name">00929</span><div class="track"><div class="fill o" style="width:14%"></div></div><span class="val">3 則</span></div>
         <ul class="news">
         <li><a href="https://news.cnyes.com/news/id/6525298" target="_blank" rel="noopener">40歲後，理財比賺錢更重要！中年必須避開的3大財務誤區</a></li>
 <li><a href="https://news.cnyes.com/news/id/6524897" target="_blank" rel="noopener">〈鉅亨買基金展望〉今年最會賺不只ETF 台股基金績效更勝一籌！鉅亨買基金揭關鍵原因</a></li>
@@ -336,6 +337,7 @@
       <div class="card span4">
         <div class="card-head"><h2>融資／衍生性</h2><span class="pill">今日 8 則</span></div>
         <div class="bar-row"><span class="name">聯準會</span><div class="track"><div class="fill " style="width:100%"></div></div><span class="val">21 則</span></div>
+<div class="bar-row"><span class="name">ETF</span><div class="track"><div class="fill " style="width:81%"></div></div><span class="val">17 則</span></div>
 <div class="bar-row"><span class="name">升息</span><div class="track"><div class="fill " style="width:76%"></div></div><span class="val">16 則</span></div>
 <div class="bar-row"><span class="name">台股ETF</span><div class="track"><div class="fill " style="width:29%"></div></div><span class="val">6 則</span></div>
 <div class="bar-row"><span class="name">期貨</span><div class="track"><div class="fill " style="width:14%"></div></div><span class="val">3 則</span></div>
@@ -384,23 +386,23 @@
       </div>
 
       <div class="card span6">
-        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考</span></div>
+        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考 · 近 7 天媒體聲量排序</span></div>
         <table>
-          <thead><tr><th style="width:36px">#</th><th>創作者</th><th>主題</th></tr></thead>
+          <thead><tr><th style="width:36px">#</th><th>創作者</th><th class="num">7天聲量</th><th>主題</th></tr></thead>
           <tbody>
-<tr class="hot"><td><span class="rankball">1</span></td><td style="font-weight:600">志祺七七</td><td><span class="pill">泛知識 · 財經合作款</span></td></tr>
-<tr class="hot"><td><span class="rankball">2</span></td><td style="font-weight:600">Cheap</td><td><span class="pill">歷史 · 時事評論</span></td></tr>
-<tr class="hot"><td><span class="rankball">3</span></td><td style="font-weight:600">柴鼠兄弟</td><td><span class="pill orange">ETF · 理財入門</span></td></tr>
-<tr><td><span class="rankball">4</span></td><td style="font-weight:600">好葉</td><td><span class="pill">自我成長</span></td></tr>
-<tr><td><span class="rankball">5</span></td><td style="font-weight:600">游庭皓的財經皓角</td><td><span class="pill blue">每日盤勢 · 總經</span></td></tr>
-<tr><td><span class="rankball">6</span></td><td style="font-weight:600">SHIN LI 李勛</td><td><span class="pill orange">小資理財 · 信用卡</span></td></tr>
-<tr><td><span class="rankball">7</span></td><td style="font-weight:600">阿格力</td><td><span class="pill blue">存股 · 生活選股</span></td></tr>
-<tr><td><span class="rankball">8</span></td><td style="font-weight:600">Ms.Selena</td><td><span class="pill orange">被動收入 · 房產</span></td></tr>
-<tr><td><span class="rankball">9</span></td><td style="font-weight:600">股癌 Gooaye</td><td><span class="pill green">Podcast 台灣榜首</span></td></tr>
-<tr><td><span class="rankball">10</span></td><td style="font-weight:600">M觀點</td><td><span class="pill">科技 · 商業</span></td></tr>
+<tr class="hot"><td><span class="rankball">1</span></td><td style="font-weight:600">游庭皓的財經皓角</td><td class="num">7 則</td><td><span class="pill blue">每日盤勢 · 總經</span></td></tr>
+<tr class="hot"><td><span class="rankball">2</span></td><td style="font-weight:600">股癌 Gooaye</td><td class="num">4 則</td><td><span class="pill green">Podcast 台灣榜首</span></td></tr>
+<tr class="hot"><td><span class="rankball">3</span></td><td style="font-weight:600">志祺七七</td><td class="num">3 則</td><td><span class="pill">泛知識 · 財經合作款</span></td></tr>
+<tr><td><span class="rankball">4</span></td><td style="font-weight:600">Cheap</td><td class="num">3 則</td><td><span class="pill">歷史 · 時事評論</span></td></tr>
+<tr><td><span class="rankball">5</span></td><td style="font-weight:600">阿格力</td><td class="num">3 則</td><td><span class="pill blue">存股 · 生活選股</span></td></tr>
+<tr><td><span class="rankball">6</span></td><td style="font-weight:600">慢活夫妻</td><td class="num">1 則</td><td><span class="pill">理財生活</span></td></tr>
+<tr><td><span class="rankball">7</span></td><td style="font-weight:600">柴鼠兄弟</td><td class="num">0 則</td><td><span class="pill orange">ETF · 理財入門</span></td></tr>
+<tr><td><span class="rankball">8</span></td><td style="font-weight:600">好葉</td><td class="num">0 則</td><td><span class="pill">自我成長</span></td></tr>
+<tr><td><span class="rankball">9</span></td><td style="font-weight:600">SHIN LI 李勛</td><td class="num">0 則</td><td><span class="pill orange">小資理財 · 信用卡</span></td></tr>
+<tr><td><span class="rankball">10</span></td><td style="font-weight:600">Ms.Selena</td><td class="num">0 則</td><td><span class="pill orange">被動收入 · 房產</span></td></tr>
           </tbody>
         </table>
-        <div class="focus-why" style="margin-top:10px">依社群規模即時排序；巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
+        <div class="focus-why" style="margin-top:10px">聲量＝近 7 天 Google News 被報導則數，每次更新重排，同分依社群規模。巴逆逆以 FB／新聞聲量為主（見 KOL 風向卡）。名單池可隨節目需求增減。</div>
       </div>
 
       <div class="card span6" style="grid-column:span 12">
