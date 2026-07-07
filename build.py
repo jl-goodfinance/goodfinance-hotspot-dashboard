@@ -455,29 +455,6 @@ def render_focus(data):
     top_why = esc((top.get("news") or [""])[0][:90])
     others = "、".join(esc(t["kw"]) for t in ft[1:5]) or "—"
     g = data["gooaye"]
-    social = data.get("social")
-
-    def post_lines(posts, n=3):
-        lis = []
-        for p in posts[:n]:
-            txt = esc(p["text"][:64])
-            if p.get("link"):
-                txt = f'<a href="{esc(p["link"])}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">{txt}</a>'
-            lis.append(f'<div class="kol-post"><span class="kol-t">{esc(p["t"])}</span>{txt}</div>')
-        return "".join(lis)
-
-    if social:
-        g_body = post_lines(social.get("gooaye", []))
-        b_body = post_lines(social.get("banini", []))
-        social_note = f'<div class="focus-why">FB 貼文擷取於 {esc(social.get("updated", ""))}</div>'
-    else:
-        g_body = ('<div class="kol-what">'
-                  + "；".join(esc(x["title"].split(" - ")[0][:52]) for x in g["news"][:2])
-                  + "</div>") if g["news"] else ""
-        b_body = ('<div class="kol-what">'
-                  + " · ".join(esc(x["title"].split(" - ")[0][:38]) for x in data["banini"][:3])
-                  + "</div>") if data["banini"] else ""
-        social_note = ""
     return f'''
       <div class="card span4">
         <span class="pill blue">今日最熱 · Google 搜尋 {esc(top["traffic"])}</span>
@@ -498,24 +475,60 @@ def render_focus(data):
         <div class="focus-why">{top_why}</div>
       </div>
 
-      <div class="card span4">
+      <div class="card span4" style="grid-column:span 8">
         <span class="pill violet">財經熱搜題材</span>
         <div class="kicker">同時竄進全站熱搜的財經字</div>
         <div class="focus-title" style="font-size:18px;margin-top:8px">{others}</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
       </div>
 
-      <div class="card span4">
-        <span class="pill orange">KOL 風向</span>
-        <div class="kol">
-          <div class="kol-name">股癌 <span class="kol-meta">{esc(g["ep"])} · {esc(g["ep_date"])}</span></div>
-          {g_body}
+{render_kol_card(data)}'''
+
+
+def render_kol_card(data):
+    """KOL 風向大卡：兩人各 5 則 FB 貼文 + 內容鋪陳觀察"""
+    g = data["gooaye"]
+    social = data.get("social")
+
+    def post_lines(posts, n=5):
+        lis = []
+        for p in posts[:n]:
+            txt = esc(p["text"][:110])
+            if p.get("link"):
+                txt = (f'<a href="{esc(p["link"])}" target="_blank" rel="noopener" '
+                       f'style="color:inherit;text-decoration:none">{txt}</a>')
+            lis.append(f'<div class="kol-post"><span class="kol-t">{esc(p["t"])}</span>{txt}</div>')
+        return "".join(lis)
+
+    if social:
+        g_body = post_lines(social.get("gooaye", []))
+        b_body = post_lines(social.get("banini", []))
+        note = f'FB 貼文擷取於 {esc(social.get("updated", ""))}（半自動更新）'
+        insight = social.get("insight", "")
+    else:
+        g_body = ('<div class="kol-what">'
+                  + "；".join(esc(x["title"].split(" - ")[0][:52]) for x in g["news"][:2])
+                  + "</div>") if g["news"] else ""
+        b_body = ('<div class="kol-what">'
+                  + " · ".join(esc(x["title"].split(" - ")[0][:38]) for x in data["banini"][:3])
+                  + "</div>") if data["banini"] else ""
+        note, insight = "以媒體報導代理（無貼文擷取資料）", ""
+    insight_html = (f'<div class="insight"><div class="insight-label">內容鋪陳觀察</div>'
+                    f'{esc(insight)}</div>') if insight else ""
+    return f'''
+      <div class="card" style="grid-column:span 12">
+        <div class="card-head"><h2>KOL 風向</h2><span class="pill orange">{note}</span></div>
+        <div class="kol-grid">
+          <div class="kol">
+            <div class="kol-name">股癌 <span class="kol-meta">{esc(g["ep"])} · {esc(g["ep_date"])} · FB Gooaye</span></div>
+            {g_body}
+          </div>
+          <div class="kol">
+            <div class="kol-name">巴逆逆 <span class="kol-meta">FB 吃土鋁繩巴逆逆 · 反指標女神</span></div>
+            {b_body}
+          </div>
         </div>
-        <div class="kol">
-          <div class="kol-name">巴逆逆 <span class="kol-meta">FB 吃土鋁繩巴逆逆 · 反指標女神</span></div>
-          {b_body}
-        </div>
-        {social_note}
+        {insight_html}
       </div>'''
 
 

@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-07 18:26",
+ "updated": "2026-07-07 18:25",
  "trends": [
   {
    "kw": "0050 配 息",
@@ -1198,60 +1198,9 @@
    "dt": "2026-07-07 13:45:00+08:00"
   }
  ],
- "ptt": [
-  {
-   "title": "[情報] 115年07月07日 三大法人買賣金額統計表",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783409993.A.484.html",
-   "date": "7/07"
-  },
-  {
-   "title": "[情報] 0707 上市外資買賣超排行",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783412685.A.02D.html",
-   "date": "7/07"
-  },
-  {
-   "title": "[新聞] AI算力成本腰斬！AMD MI355X跑GLM 5.2",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783384228.A.19A.html",
-   "date": "7/07"
-  },
-  {
-   "title": "[新聞] 超驚人！三星迎史上最賺一年，2026 年獲",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783336056.A.AC3.html",
-   "date": "7/06"
-  },
-  {
-   "title": "[創作] 台股大盤彈幕小工具",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783306535.A.FC6.html",
-   "date": "7/06"
-  },
-  {
-   "title": "[情報] 2317 鴻海 115年6月營收",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783236661.A.3BE.html",
-   "date": "7/05"
-  },
-  {
-   "title": "[請益] 質押信貸 四代同堂 斷頭疑慮",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783242062.A.581.html",
-   "date": "7/05"
-  },
-  {
-   "title": "[新聞]  問題油最新進度！食藥署公布257家業者名",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783249642.A.F34.html",
-   "date": "7/05"
-  },
-  {
-   "title": "[新聞] 美光有設、SK 海力士不跟 傳取消長約價",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783098364.A.523.html",
-   "date": "7/04"
-  },
-  {
-   "title": "[新聞] 《大賣空》貝瑞放空美光！稱股價恐迎30%",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1783149646.A.21A.html",
-   "date": "7/04"
-  }
- ],
+ "ptt": [],
  "watch": {
-  "fetched": "2026-07-07 18:27",
+  "fetched": "2026-07-07 18:26",
   "series": {
    "開戶": [
     65,
