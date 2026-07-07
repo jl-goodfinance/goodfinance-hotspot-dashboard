@@ -184,30 +184,52 @@ def get_cnyes_news():
 
 
 def get_taiex():
-    """大盤：近 3 個月每日指數與成交金額（FMTQIK）＋盤中即時指數（mis）"""
-    days = []
+    """大盤：指數線用 Yahoo ^TWII（3 個月），成交金額用證交所 FMTQIK。
+    FMTQIK 僅當月可靠，故以 docs/taiex_amounts.json 逐日累積快取。"""
     now = datetime.now(TZ)
-    months = []
-    y, m = now.year, now.month
-    for _ in range(3):
-        months.append(f"{y}{m:02d}01")
-        m -= 1
-        if m == 0:
-            y, m = y - 1, 12
-    for stamp in reversed(months):
+
+    # 1) 指數日線（Yahoo）
+    days = []
+    try:
+        d = json.loads(fetch_text(
+            "https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII?range=3mo&interval=1d"))
+        r = d["chart"]["result"][0]
+        closes = r["indicators"]["quote"][0]["close"]
+        for ts, c in zip(r["timestamp"], closes):
+            if c is None:
+                continue
+            dt = datetime.fromtimestamp(ts, TZ)
+            days.append({"date": dt.strftime("%Y-%m-%d"), "index": round(c, 2)})
+    except Exception as e:
+        print("taiex yahoo error:", e)
+
+    # 2) 成交金額（億）：當月 FMTQIK 併入累積快取
+    cache_p = DOCS / "taiex_amounts.json"
+    amounts = {}
+    if cache_p.exists():
         try:
-            d = json.loads(fetch_text(
-                f"https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date={stamp}&response=json"))
-            for r in d.get("data", []):
-                days.append({
-                    "date": r[0],
-                    "amount": round(float(r[2].replace(",", "")) / 1e8),  # 億元
-                    "index": float(r[4].replace(",", "")),
-                    "change": float(r[5].replace(",", "")),
-                })
-        except Exception as e:
-            print(f"taiex {stamp} error:", e)
-    days = days[-60:]
+            amounts = json.loads(cache_p.read_text(encoding="utf-8"))
+        except Exception:
+            amounts = {}
+    try:
+        d = json.loads(fetch_text(
+            f"https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date={now:%Y%m}01&response=json"))
+        for r in d.get("data", []):
+            p = r[0].split("/")
+            dt = datetime(int(p[0]) + 1911, int(p[1]), int(p[2]), tzinfo=TZ)
+            # 防範端點偶發回傳預設月份的舊資料
+            if (now - dt).days <= 40:
+                amounts[dt.strftime("%Y-%m-%d")] = round(
+                    float(r[2].replace(",", "")) / 1e8)
+    except Exception as e:
+        print("taiex fmtqik error:", e)
+    if amounts:
+        DOCS.mkdir(exist_ok=True)
+        cache_p.write_text(json.dumps(amounts, ensure_ascii=False), encoding="utf-8")
+    for day in days:
+        day["amount"] = amounts.get(day["date"])
+
+    # 3) 盤中即時指數（mis）
     rt = None
     try:
         q = json.loads(fetch_text(
@@ -216,7 +238,7 @@ def get_taiex():
         rt = {"z": float(a["z"]), "y": float(a["y"]), "t": a["t"], "d": a["d"]}
     except Exception as e:
         print("taiex realtime error:", e)
-    return {"days": days, "rt": rt}
+    return {"days": days[-64:], "rt": rt}
 
 
 def get_twse_top():
@@ -713,9 +735,12 @@ def render_market_hero(taiex):
     pct = chg / prev * 100 if prev else 0
     up = chg >= 0
     ccls, sign = ("up", "▲") if up else ("down", "▼")
-    amt = last["amount"]
-    avg20 = statistics.mean(d["amount"] for d in days[-20:])
+    known_amts = [d["amount"] for d in days if d.get("amount")]
+    amt = known_amts[-1] if known_amts else 0
+    avg_base = known_amts[-21:-1] or known_amts
+    avg20 = statistics.mean(avg_base) if avg_base else 0
     vol_ratio = amt / avg20 if avg20 else 1
+    n_avg = len(avg_base)
     lo = min(d["index"] for d in days)
     hi = max(d["index"] for d in days)
     pos = (idx - lo) / (hi - lo) * 100 if hi > lo else 50
@@ -733,49 +758,66 @@ def render_market_hero(taiex):
         return round(LH - (v - ylo) / (yhi - ylo) * LH, 1)
     line = " ".join(f"{round(x,1)},{yv(d['index'])}" for x, d in zip(xs, days))
     area = f"0,{LH} " + line + f" {W},{LH}"
-    amx = max(d["amount"] for d in days)
+    amx = max(known_amts) if known_amts else 1
     bw = max(2, round(W / n * 0.55, 1))
     bars = "".join(
         f'<rect x="{round(x - bw/2,1)}" y="{round(H - d["amount"]/amx*VH,1)}" '
         f'width="{bw}" height="{round(d["amount"]/amx*VH,1)}" rx="1" '
         f'fill="rgba(61,139,253,{0.55 if i == n-1 else 0.28})"/>'
-        for i, (x, d) in enumerate(zip(xs, days)))
+        for i, (x, d) in enumerate(zip(xs, days)) if d.get("amount"))
     grid = "".join(
         f'<line x1="0" y1="{round(LH*f,1)}" x2="{W}" y2="{round(LH*f,1)}" '
         f'stroke="rgba(148,178,255,.08)"/>' for f in (0.25, 0.5, 0.75))
     t_label = f'{rt["t"][:5]} 更新' if rt else "收盤"
+
+    # 軸標籤：Y 軸為指數（點），X 軸為日期（月/日）
+    def dfmt(s):
+        p = s.split("-")
+        return f"{int(p[1])}/{int(p[2])}" if len(p) == 3 else s
+    ylabels = "".join(
+        f'<span class="mk-ylab" style="top:{round(LH*f/H*100,1)}%">'
+        f'{ylo + (1-f)*(yhi-ylo):,.0f}{" 點" if f == 0.25 else ""}</span>'
+        for f in (0.25, 0.5, 0.75))
+    xlabels = (f'<div class="mk-x"><span>{dfmt(days[0]["date"])}</span>'
+               f'<span>{dfmt(days[nd//2]["date"])}</span>'
+               f'<span>{dfmt(days[-1]["date"])}</span></div>')
     return f'''
       <div class="card" style="grid-column:span 12">
         <div class="mk-top">
           <div>
-            <div class="kicker" style="margin:0">台股加權指數 <span class="pill">{esc(last["date"])} · {esc(t_label)}</span></div>
+            <div class="kicker" style="margin:0">台股加權指數 <span class="pill">{esc(dfmt(last["date"]))} · {esc(t_label)}</span></div>
             <div class="mk-idx">{idx:,.2f}<span class="mk-chg {ccls}">{sign} {abs(chg):,.2f}（{pct:+.2f}%）</span></div>
           </div>
           <div class="mk-stats">
             <div class="mk-stat"><span>成交金額</span><b>{amt/10000:,.2f} 兆</b></div>
-            <div class="mk-stat"><span>量能（vs 20日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
+            <div class="mk-stat"><span>量能（vs 近{n_avg}日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
             <div class="mk-stat"><span>{nd}日區間位置</span><b>{pos:.0f}%</b></div>
             <div class="mk-stat"><span>{nd}日高／低</span><b>{hi:,.0f} / {lo:,.0f}</b></div>
           </div>
         </div>
-        <svg class="mk-chart" viewBox="0 0 {W} {H}" preserveAspectRatio="none" aria-label="加權指數近 {nd} 個交易日走勢與成交量">
-          <defs>
-            <linearGradient id="mkl" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/>
-            </linearGradient>
-            <linearGradient id="mka" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="rgba(61,139,253,.28)"/><stop offset="1" stop-color="rgba(61,139,253,0)"/>
-            </linearGradient>
-          </defs>
-          {grid}
-          {bars}
-          <polygon points="{area}" fill="url(#mka)"/>
-          <polyline points="{line}" fill="none" stroke="url(#mkl)" stroke-width="2.2"
-            style="filter:drop-shadow(0 0 6px rgba(61,139,253,.7))"/>
-          <circle cx="{W}" cy="{yv(days[-1]['index'])}" r="4" fill="#7c6ff0"
-            style="filter:drop-shadow(0 0 7px #7c6ff0)"/>
-        </svg>
-        <div class="focus-why">折線＝加權指數（近 {nd} 個交易日）· 柱狀＝每日成交金額（今日 {amt:,} 億）· 台股慣例紅漲綠跌</div>
+        <div class="mk-wrap">
+          <svg class="mk-chart" viewBox="0 0 {W} {H}" preserveAspectRatio="none" aria-label="加權指數近 {nd} 個交易日走勢與成交量">
+            <defs>
+              <linearGradient id="mkl" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#3d8bfd"/><stop offset="1" stop-color="#7c6ff0"/>
+              </linearGradient>
+              <linearGradient id="mka" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="rgba(61,139,253,.28)"/><stop offset="1" stop-color="rgba(61,139,253,0)"/>
+              </linearGradient>
+            </defs>
+            {grid}
+            {bars}
+            <polygon points="{area}" fill="url(#mka)"/>
+            <polyline points="{line}" fill="none" stroke="url(#mkl)" stroke-width="2.2"
+              style="filter:drop-shadow(0 0 6px rgba(61,139,253,.7))"/>
+            <circle cx="{W}" cy="{yv(days[-1]['index'])}" r="4" fill="#7c6ff0"
+              style="filter:drop-shadow(0 0 7px #7c6ff0)"/>
+          </svg>
+          {ylabels}
+          <span class="mk-vlab">成交金額（億）· 峰值 {amx:,}</span>
+        </div>
+        {xlabels}
+        <div class="focus-why">折線＝加權指數，單位：點（左側刻度）· 柱狀＝每日成交金額，單位：億元（今日 {amt:,} 億）· 近 {nd} 個交易日 · 台股慣例紅漲綠跌</div>
       </div>'''
 
 
