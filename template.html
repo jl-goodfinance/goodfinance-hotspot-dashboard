@@ -44,8 +44,10 @@
   .side svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
   header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:20px}
-  .hi{font-size:13px;color:var(--sub)}
-  h1{font-size:clamp(20px,3vw,26px);margin:0;font-weight:700;letter-spacing:-.01em}
+  .hi{font-size:14px;font-weight:700;letter-spacing:.03em;
+    background:linear-gradient(90deg,#7db4ff,#a89dff 55%,#ffb073);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-size:clamp(28px,4.5vw,40px);margin:2px 0 0;font-weight:800;letter-spacing:-.015em}
   .timepill{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(19,27,40,.7);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(148,178,255,.16);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;box-shadow:0 0 22px rgba(61,139,253,.14)}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
