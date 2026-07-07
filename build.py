@@ -81,7 +81,7 @@ WATCH_KEYWORDS = ["開戶", "定期定額", "固定收益", "保本保息", "美
 
 # 每日監測的 YouTube 頻道：名稱 -> channelId
 YT_CHANNELS = {
-    "小Lin说": "UClq1oF_XReK0VrtzDr-2udA",
+    "小Lin说": "UCilwQlk62k1z7aUEZPOB6yw",
     "游庭皓的財經皓角": "UC0lbAQVpenvfA2QqzsRtL_g",
     "Nicolas 楊應超": "UCXUP_aBLQBNFgLjvnrMTHtw",
     "工商時報": "UC9Ksf9o5OjzZWs2Jo8DC0Aw",
