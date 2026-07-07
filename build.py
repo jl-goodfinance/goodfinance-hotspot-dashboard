@@ -79,6 +79,18 @@ GOOAYE_RSS = "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219
 # 自訂監測關鍵字（Google Trends 相對熱度，彼此比較、峰值=100）
 WATCH_KEYWORDS = ["開戶", "定期定額", "固定收益", "保本保息", "美好證券"]
 
+# 每日監測的 YouTube 頻道：名稱 -> channelId
+YT_CHANNELS = {
+    "小Lin说": "UClq1oF_XReK0VrtzDr-2udA",
+    "游庭皓的財經皓角": "UC0lbAQVpenvfA2QqzsRtL_g",
+    "Nicolas 楊應超": "UCXUP_aBLQBNFgLjvnrMTHtw",
+    "工商時報": "UC9Ksf9o5OjzZWs2Jo8DC0Aw",
+}
+YT_INNERTUBE_KEY = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"  # YouTube 網頁版公開金鑰
+YT_MAX_VIDEOS = 4       # 每頻道最多列幾支 24h 內影片
+YT_MAX_COMMENTS = 5     # 每支影片最多列幾則讚數達標留言
+YT_MIN_LIKES = 3
+
 PTT_SKIP = re.compile(r"^\[公告\]|盤[中後]閒聊")
 PTT_ENT = re.compile(
     r'<div class="r-ent">.*?<div class="nrec">(?:<span class="hl f\d+">)?([^<]*)'
@@ -265,6 +277,101 @@ def get_gooaye():
     return {"ep": ep, "ep_date": ep_date, "news": news}
 
 
+def _yt_post(endpoint, body):
+    req = urllib.request.Request(
+        f"https://www.youtube.com/youtubei/v1/{endpoint}?key={YT_INNERTUBE_KEY}&prettyPrint=false",
+        data=json.dumps(body).encode(),
+        headers={**UA, "Content-Type": "application/json"}, method="POST")
+    return json.loads(urllib.request.urlopen(req, timeout=20, context=CTX).read().decode())
+
+
+def _yt_comment_token(o):
+    if isinstance(o, dict):
+        if o.get("sectionIdentifier") == "comment-item-section":
+            m = re.search(r'"token":\s*"([^"]+)"', json.dumps(o))
+            if m:
+                return m.group(1)
+        for v in o.values():
+            r = _yt_comment_token(v)
+            if r:
+                return r
+    elif isinstance(o, list):
+        for v in o:
+            r = _yt_comment_token(v)
+            if r:
+                return r
+    return None
+
+
+def _likes_num(s):
+    s = (s or "0").replace(",", "").strip()
+    if "萬" in s:
+        return float(s.replace("萬", "")) * 10000
+    try:
+        return int(s)
+    except ValueError:
+        return 0
+
+
+def get_yt_comments(video_id):
+    """單支影片的熱門留言（讚數 >= YT_MIN_LIKES），走網頁版 innertube，無需 API key"""
+    ctxb = {"context": {"client": {"clientName": "WEB",
+                                   "clientVersion": "2.20250701.01.00",
+                                   "hl": "zh-TW", "gl": "TW"}}}
+    r1 = _yt_post("next", {**ctxb, "videoId": video_id})
+    tok = _yt_comment_token(r1)
+    if not tok:
+        return []
+    r2 = _yt_post("next", {**ctxb, "continuation": tok})
+    muts = r2.get("frameworkUpdates", {}).get("entityBatchUpdate", {}).get("mutations", [])
+    out = []
+    for mu in muts:
+        p = (mu.get("payload") or {}).get("commentEntityPayload")
+        if not p:
+            continue
+        txt = (p.get("properties") or {}).get("content", {}).get("content", "")
+        author = (p.get("author") or {}).get("displayName", "")
+        likes = ((p.get("toolbar") or {}).get("likeCountNotliked") or "0").strip()
+        if _likes_num(likes) >= YT_MIN_LIKES:
+            out.append({"likes": likes, "author": author,
+                        "text": txt.replace("\n", " ")[:120]})
+    out.sort(key=lambda c: -_likes_num(c["likes"]))
+    return out[:YT_MAX_COMMENTS]
+
+
+def get_yt_monitor(hours=24):
+    """指定頻道近 N 小時上片清單 + 高讚留言"""
+    ns = {"a": "http://www.w3.org/2005/Atom",
+          "yt": "http://www.youtube.com/xml/schemas/2015"}
+    now = datetime.now(TZ)
+    result = []
+    for name, cid in YT_CHANNELS.items():
+        videos = []
+        try:
+            root = ET.fromstring(fetch(
+                f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}"))
+            for e in root.findall("a:entry", ns):
+                pub = datetime.fromisoformat(e.findtext("a:published", namespaces=ns))
+                if (now - pub.astimezone(TZ)).total_seconds() > hours * 3600:
+                    continue
+                vid = e.findtext("yt:videoId", namespaces=ns)
+                v = {"id": vid,
+                     "title": e.findtext("a:title", namespaces=ns) or "",
+                     "at": pub.astimezone(TZ).strftime("%m/%d %H:%M"),
+                     "comments": []}
+                try:
+                    v["comments"] = get_yt_comments(vid)
+                except Exception as e2:
+                    print(f"yt comments {vid} error:", e2)
+                videos.append(v)
+                if len(videos) >= YT_MAX_VIDEOS:
+                    break
+        except Exception as e:
+            print(f"yt channel {name} error:", e)
+        result.append({"channel": name, "videos": videos})
+    return result
+
+
 def get_watch_trends():
     """自訂關鍵字的 Google Trends 90 天日序列（非官方端點，含重試）。
 
@@ -324,11 +431,21 @@ def get_watch_trends():
         return None
 
 
+def fetch_text_retry(url, tries=3, wait=3):
+    for i in range(tries):
+        try:
+            return fetch_text(url)
+        except Exception:
+            if i == tries - 1:
+                raise
+            time.sleep(wait)
+
+
 def get_ptt_hot(days=7, limit=10):
     """PTT Stock 板近一週爆文（推文數破百），排除公告與每日閒聊串"""
     out = []
     try:
-        first = fetch_text("https://www.ptt.cc/bbs/Stock/index.html")
+        first = fetch_text_retry("https://www.ptt.cc/bbs/Stock/index.html")
         m = re.search(r'href="/bbs/Stock/index(\d+)\.html">&lsaquo;', first)
         if not m:
             return out
@@ -336,7 +453,7 @@ def get_ptt_hot(days=7, limit=10):
         now = datetime.now(TZ)
         cutoff = now.timetuple().tm_yday - days
         for i in range(latest, latest - 12, -1):
-            page = first if i == latest else fetch_text(
+            page = first if i == latest else fetch_text_retry(
                 f"https://www.ptt.cc/bbs/Stock/index{i}.html")
             stop = False
             for ent in PTT_ENT.finditer(page):
@@ -428,6 +545,7 @@ def aggregate():
         "watch": get_watch_trends(),
         "social": load_social(),
         "taiex": get_taiex(),
+        "yt": get_yt_monitor(),
     }
 
 
@@ -701,6 +819,26 @@ def render_watch(watch):
             f'（90 天內峰值＝100），資料至 {esc(watch.get("last_date", ""))}{stale}。</div>')
 
 
+def render_yt(channels):
+    blocks = []
+    for ch in channels:
+        vids = []
+        for v in ch["videos"]:
+            cms = "".join(
+                f'<div class="yt-cm"><span class="yt-like">{esc(c["likes"])} 讚</span>'
+                f'<span class="yt-author">{esc(c["author"])}</span>{esc(c["text"])}</div>'
+                for c in v["comments"]) or '<div class="yt-cm none">尚無讚數 ≥ 3 的留言</div>'
+            vids.append(
+                f'<div class="yt-video">'
+                f'<a href="https://www.youtube.com/watch?v={esc(v["id"])}" target="_blank" '
+                f'rel="noopener" class="yt-title">{esc(v["title"])}</a>'
+                f'<span class="yt-at">{esc(v["at"])}</span>{cms}</div>')
+        body = "".join(vids) or '<div class="yt-cm none">近 24 小時無上片</div>'
+        blocks.append(f'<div class="yt-ch"><div class="yt-ch-name">{esc(ch["channel"])}'
+                      f'<span class="pill" style="margin-left:8px">{len(ch["videos"])} 支</span></div>{body}</div>')
+    return "".join(blocks)
+
+
 def render_ptt(posts):
     rows = []
     for i, p in enumerate(posts, 1):
@@ -760,7 +898,8 @@ def main():
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
             .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
-            .replace("<!--WATCH_PANELS-->", render_watch(data["watch"])))
+            .replace("<!--WATCH_PANELS-->", render_watch(data["watch"]))
+            .replace("<!--YT_BLOCKS-->", render_yt(data["yt"])))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 

@@ -148,6 +148,19 @@
   .wk-delta.up{color:var(--green)}
   .wk-delta.down{color:#ff8f85}
 
+  .yt-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+  @media (max-width:900px){.yt-grid{grid-template-columns:1fr}}
+  .yt-ch{padding:8px 0}
+  .yt-ch-name{font-weight:700;font-size:14.5px;margin-bottom:6px}
+  .yt-video{margin:8px 0 14px;padding-left:10px;border-left:2px solid rgba(61,139,253,.35)}
+  .yt-title{display:block;font-size:13px;font-weight:600;color:#dbe4f2;text-decoration:none}
+  .yt-title:hover{color:#7db4ff}
+  .yt-at{font-size:11px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .yt-cm{font-size:12px;color:#aab4c6;margin-top:5px;line-height:1.6}
+  .yt-cm.none{color:var(--sub);font-style:normal}
+  .yt-like{display:inline-block;font-size:10.5px;font-weight:700;color:#ffb073;background:rgba(240,146,74,.13);border-radius:999px;padding:1px 8px;margin-right:7px;font-variant-numeric:tabular-nums}
+  .yt-author{color:#8a94a8;margin-right:6px}
+
   .methodology{font-size:12.5px;color:var(--sub);line-height:1.7}
   .methodology b{color:#c6cede}
 
@@ -207,6 +220,13 @@
       <span id="categories" style="grid-column:1/-1;height:0"></span>
 <!--CAT_CARDS-->
 
+      <div class="card" style="grid-column:span 12">
+        <div class="card-head"><h2>YT 頻道監測</h2><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
+        <div class="yt-grid">
+<!--YT_BLOCKS-->
+        </div>
+      </div>
+
       <div class="card span6" id="community">
         <div class="card-head"><h2>PTT Stock 本週爆文</h2><span class="pill blue">推文數破百 · 近 7 天</span></div>
         <table>
@@ -236,7 +256,8 @@
           <b>② 五大分類歸類</b>：關鍵字字典自動歸類（固定收益 → 融資 → 財富管理 → 總經 → 股票交易優先序），字典可持續調整。<br>
           <b>③ Google 即時熱搜</b>：Google Trends 台灣每日熱搜榜（全站主題），財經字進榜＝「破圈」訊號。<br>
           <b>④ KOL 監測</b>：YouTube 社群規模即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。<br>
-          <b>⑤ PTT Stock 爆文</b>：近 7 天推文數破百（爆）的文章，排除公告與每日閒聊串 — 散戶情緒與話題濃度指標。
+          <b>⑤ PTT Stock 爆文</b>：近 7 天推文數破百（爆）的文章，排除公告與每日閒聊串 — 散戶情緒與話題濃度指標。<br>
+          <b>⑥ YT 頻道監測</b>：指定頻道官方 RSS 抓近 24 小時上片，留言經 YouTube 網頁介面取熱門排序、只列讚數 ≥ 3 者 — 看同行選題與觀眾反應。
         </div>
       </div>
 
