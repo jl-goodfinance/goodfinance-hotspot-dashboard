@@ -135,15 +135,21 @@ def main():
     data["updated"] = datetime.now(TZ).strftime("%Y-%m-%d %H:%M")
     data["insight_stale"] = True  # 觀察由排程中的 Claude 任務重寫
     SOCIAL.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    subprocess.run(["git", "-C", str(REPO), "pull", "--rebase", "-X", "ours",
-                    "origin", "main"], capture_output=True)
+    # 先 commit 再 rebase 再 push（帶著未提交變更 rebase 會失敗）
     subprocess.run(["git", "-C", str(REPO), "add", "social.json"], check=True)
     r = subprocess.run(["git", "-C", str(REPO), "commit", "-m",
                         "auto-update KOL FB posts"], capture_output=True, text=True)
     if r.returncode != 0:
         log("無變更可提交")
         return
-    subprocess.run(["git", "-C", str(REPO), "push"], check=True, capture_output=True)
+    subprocess.run(["git", "-C", str(REPO), "pull", "--rebase", "-X", "ours",
+                    "origin", "main"], capture_output=True)
+    p = subprocess.run(["git", "-C", str(REPO), "push"], capture_output=True)
+    if p.returncode != 0:
+        subprocess.run(["git", "-C", str(REPO), "pull", "--rebase", "-X", "ours",
+                        "origin", "main"], capture_output=True)
+        subprocess.run(["git", "-C", str(REPO), "push"], check=True,
+                       capture_output=True)
     subprocess.run(["gh", "workflow", "run", "update.yml",
                     "-R", "jl-goodfinance/goodfinance-hotspot-dashboard"],
                    capture_output=True)

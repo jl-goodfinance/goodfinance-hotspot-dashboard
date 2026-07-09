@@ -244,14 +244,27 @@ def get_taiex():
 
 
 def get_twse_top():
-    """證交所成交量前 20（取前 10）"""
+    """證交所成交量前 20（取前 10），失敗或空資料時退回上次成功的快取"""
+    cache_p = DOCS / "twse_top.json"
     try:
-        d = json.loads(fetch_text(
+        d = json.loads(fetch_text_retry(
             "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX20?response=json"))
         date = d.get("date", "")
-        return date, [{"code": r[1], "name": r[2]} for r in d.get("data", [])[:10]]
+        rows = [{"code": r[1], "name": r[2]} for r in d.get("data", [])[:10]]
+        if rows:
+            DOCS.mkdir(exist_ok=True)
+            cache_p.write_text(json.dumps({"date": date, "rows": rows},
+                                          ensure_ascii=False), encoding="utf-8")
+            return date, rows
+        raise ValueError("empty data")
     except Exception as e:
         print("twse error:", e)
+        if cache_p.exists():
+            try:
+                c = json.loads(cache_p.read_text(encoding="utf-8"))
+                return c["date"], c["rows"]
+            except Exception:
+                pass
         return "", []
 
 
@@ -583,10 +596,9 @@ def compute_streaks(keys_by_kind, now):
                 except Exception:
                     pass
             new_ledger[kind][key] = {"first": first, "last": now_s}
-            hours = (now - datetime.strptime(first, fmt).replace(tzinfo=TZ)
-                     ).total_seconds() / 3600
-            if hours >= 20:
-                labels[kind][key] = f"第{int(hours // 24) + 1}天"
+            days = (now.date() - datetime.strptime(first, fmt).date()).days + 1
+            if days >= 2:
+                labels[kind][key] = f"第{days}天"
     DOCS.mkdir(exist_ok=True)
     path.write_text(json.dumps(new_ledger, ensure_ascii=False), encoding="utf-8")
     return labels
@@ -1038,7 +1050,9 @@ def main():
             .replace("<!--TRENDS_ROWS-->", render_trends_table(
                 data["trends"], data.get("stay", {}).get("trend")))
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
-            .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
+            .replace("<!--TWSE_DATE-->", esc(
+                f"{int(data['twse_date'][4:6])}/{int(data['twse_date'][6:8])}"
+                if re.fullmatch(r"\d{8}", data["twse_date"]) else data["twse_date"]))
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
             .replace("<!--WATCH_PANELS-->", render_watch(data["watch"]))
             .replace("<!--YT_BLOCKS-->", render_yt(data["yt"]))
