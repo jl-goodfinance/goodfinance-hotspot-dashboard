@@ -549,6 +549,49 @@ def google_news(query, limit=5):
         return []
 
 
+# ---------------------------------------------------------------- 停留時間
+STREAK_P = None  # 於 main 期間指向 DOCS/streak.json
+CONTINUITY_HOURS = 36  # 距上次出現在此時數內視為連續在榜
+
+
+def compute_streaks(keys_by_kind, now):
+    """回傳 {kind: {key: 停留標籤}}，並更新 docs/streak.json 帳本。
+
+    帳本格式：{kind: {key: {"first": "...", "last": "..."}}}
+    連續在榜（上次出現距今 < CONTINUITY_HOURS）沿用 first，否則重新起算。
+    """
+    path = DOCS / "streak.json"
+    try:
+        ledger = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        ledger = {}
+    fmt = "%Y-%m-%d %H:%M"
+    now_s = now.strftime(fmt)
+    labels, new_ledger = {}, {}
+    for kind, keys in keys_by_kind.items():
+        labels[kind] = {}
+        new_ledger[kind] = {}
+        old = ledger.get(kind, {})
+        for key in keys:
+            rec = old.get(key)
+            first = now_s
+            if rec:
+                try:
+                    last = datetime.strptime(rec["last"], fmt).replace(tzinfo=TZ)
+                    if (now - last).total_seconds() < CONTINUITY_HOURS * 3600:
+                        first = rec["first"]
+                except Exception:
+                    pass
+            new_ledger[kind][key] = {"first": first, "last": now_s}
+            hours = (now - datetime.strptime(first, fmt).replace(tzinfo=TZ)
+                     ).total_seconds() / 3600
+            if hours >= 20:
+                labels[kind][key] = f"第{int(hours // 24) + 1}天"
+    DOCS.mkdir(exist_ok=True)
+    path.write_text(json.dumps(new_ledger, ensure_ascii=False), encoding="utf-8")
+    return labels
+
+
 # ---------------------------------------------------------------- 彙整
 def aggregate():
     now = datetime.now(TZ)
@@ -583,7 +626,16 @@ def aggregate():
     cat_counts = {c: len(v) for c, v in news_by_cat.items()}
 
     fin_trends = [t for t in trends if t["cat"] in PRIORITY]
+
+    # 停留時間：分類關鍵字、各分類新聞、熱搜關鍵字
+    kw_keys = [f"{c}|{k['kw']}" for c in PRIORITY for k in kw_by_cat.get(c, [])[:7]]
+    news_keys = [str(n["id"]) for c in PRIORITY for n in news_by_cat.get(c, [])[:10]]
+    trend_keys = [t["kw"] for t in trends]
+    stay = compute_streaks(
+        {"kw": kw_keys, "news": news_keys, "trend": trend_keys}, now)
+
     return {
+        "stay": stay,
         "updated": now.strftime("%Y-%m-%d %H:%M"),
         "trends": trends, "fin_trends": fin_trends,
         "kw_by_cat": {c: kw_by_cat[c][:7] for c in PRIORITY},
@@ -611,26 +663,34 @@ def load_social():
 
 
 # ---------------------------------------------------------------- 渲染
-def render_bars(kws, color_cls):
+def stay_badge(label):
+    return f'<span class="stay">{esc(label)}</span>' if label else ""
+
+
+def render_bars(kws, color_cls, stays=None, cat=""):
     if not kws:
         return '<div class="focus-why">今日尚無足量標籤，累積中。</div>'
+    stays = stays or {}
     mx = max(k["n"] for k in kws)
     rows = []
     for k in kws:
         w = max(12, round(k["n"] / mx * 100))
+        badge = stay_badge(stays.get(f'{cat}|{k["kw"]}'))
         rows.append(
-            f'<div class="bar-row"><span class="name">{esc(k["kw"])}</span>'
+            f'<div class="bar-row"><span class="name">{esc(k["kw"])}{badge}</span>'
             f'<div class="track"><div class="fill {color_cls}" style="width:{w}%"></div></div>'
             f'<span class="val">{k["n"]} 則</span></div>')
     return "\n".join(rows)
 
 
-def render_news(items):
+def render_news(items, stays=None):
+    stays = stays or {}
     lis = []
     for n in items:
         t = esc(n["title"])
-        lis.append(f'<li><a href="https://news.cnyes.com/news/id/{n["id"]}" '
-                   f'target="_blank" rel="noopener">{t}</a></li>')
+        badge = stay_badge(stays.get(str(n["id"])))
+        lis.append(f'<li><span><a href="https://news.cnyes.com/news/id/{n["id"]}" '
+                   f'target="_blank" rel="noopener">{t}</a>{badge}</span></li>')
     return "\n".join(lis) or "<li>今日暫無相關新聞</li>"
 
 
@@ -639,15 +699,16 @@ def render_cat_cards(data):
     spans = {"股票交易": "span6", "總經": "span6",
              "財富管理": "span4", "融資": "span4", "固定收益": "span4"}
     titles = {"融資": "融資／衍生性"}
+    stay = data.get("stay", {})
     for cat in ["股票交易", "總經", "財富管理", "融資", "固定收益"]:
         n = data["cat_counts"].get(cat, 0)
         note = CAT_NOTE.get(cat, "")
         cards.append(f'''
       <div class="card {spans[cat]}">
         <div class="card-head"><h2>{titles.get(cat, cat)}</h2><span class="pill">今日 {n} 則{note}</span></div>
-        {render_bars(data["kw_by_cat"].get(cat, []), CAT_STYLE[cat])}
+        {render_bars(data["kw_by_cat"].get(cat, []), CAT_STYLE[cat], stay.get("kw"), cat)}
         <ul class="news">
-        {render_news(data["news_by_cat"].get(cat, []))}
+        {render_news(data["news_by_cat"].get(cat, []), stay.get("news"))}
         </ul>
       </div>''')
     return "\n".join(cards)
@@ -931,7 +992,8 @@ def render_ptt(posts):
     return "\n".join(rows) or '<tr><td colspan="4">本週暫無爆文</td></tr>'
 
 
-def render_trends_table(trends):
+def render_trends_table(trends, stays=None):
+    stays = stays or {}
     pill_for = {"股票交易": "pill blue", "總經": "pill blue", "財富管理": "pill orange",
                 "融資": "pill blue", "固定收益": "pill blue"}
     rows = []
@@ -939,7 +1001,8 @@ def render_trends_table(trends):
         cat = t["cat"] or "其他"
         cls = pill_for.get(cat, "pill")
         hot = ' class="hot"' if i < 3 and t["cat"] in PRIORITY else ""
-        rows.append(f'<tr{hot}><td style="font-weight:600">{esc(t["kw"])}</td>'
+        badge = stay_badge(stays.get(t["kw"]))
+        rows.append(f'<tr{hot}><td style="font-weight:600">{esc(t["kw"])}{badge}</td>'
                     f'<td><span class="{cls}">{esc(cat)}</span></td>'
                     f'<td class="num">{esc(t["traffic"])}</td></tr>')
     return "\n".join(rows)
@@ -972,7 +1035,8 @@ def main():
             .replace("<!--FOCUS_CARDS-->", render_focus(data))
             .replace("<!--CAT_CARDS-->", render_cat_cards(data))
             .replace("<!--KOL_ROWS-->", render_kol_table(data["kols"]))
-            .replace("<!--TRENDS_ROWS-->", render_trends_table(data["trends"]))
+            .replace("<!--TRENDS_ROWS-->", render_trends_table(
+                data["trends"], data.get("stay", {}).get("trend")))
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
             .replace("<!--TWSE_DATE-->", esc(data["twse_date"]))
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
