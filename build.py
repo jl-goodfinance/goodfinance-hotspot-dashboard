@@ -598,7 +598,7 @@ def compute_streaks(keys_by_kind, now):
             new_ledger[kind][key] = {"first": first, "last": now_s}
             days = (now.date() - datetime.strptime(first, fmt).date()).days + 1
             if days >= 2:
-                labels[kind][key] = f"第{days}天"
+                labels[kind][key] = f"{days}天"
     DOCS.mkdir(exist_ok=True)
     path.write_text(json.dumps(new_ledger, ensure_ascii=False), encoding="utf-8")
     return labels
