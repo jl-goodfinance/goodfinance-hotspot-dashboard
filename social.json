@@ -1,43 +1,43 @@
 {
-  "updated": "2026-07-10 11:38",
+  "updated": "2026-07-10 23:39",
   "insight": "股癌從一週前開始連三篇鋪陳「元件缺貨漲價」：先談元件供應資料源（futureelectronics）、再評 META 算力出售，7/5 直指國巨場次的元件替代圖 — 典型的「資料 → 題材 → 個股」鋪陳節奏，媒體 7/6 跟進點名他關注 MOSFET 缺貨。巴逆逆同步演出散戶版本：國巨停損認賠、追台半漲停買不到、公開喊「孟恭大大都這樣說了只好跟了」「目前股癌勝利」— 反指標女神公開跟單，是散戶情緒接近高點的訊號。7/7 強茂、台半、德微亮燈漲停、大盤資金急轉功率半導體，KOL 風向、散戶行為、盤面三方印證。節目切入建議：巴逆逆的梗開場（輕）→ 股癌的供需邏輯做骨幹（重）→ 收在「追漲停與槓桿的風險」，順勢帶到融資／衍生性單元。",
   "gooaye": [
     {
-      "t": "4d",
-      "text": "SA 最近拿下很多版面阿... 先是發佈光和 power 的遞延，現在又丟出 kyber 的遞延 雖然嚴格來說 kyber 不會在 rubin 出，而是在 feynman 登場已經算相當有共識了（這些 trade RD projects 的投資人消息都很快，甚至到有點過敏的程度） 大概就是擠一擠水，接著等幾天又會有平衡",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0UVB7Cd4N18m1PMXXLK7Ge12Y1uAnRJVWzRLZZZri9TgMFHd82bhkkaPLiuzLq38nl"
+      "t": "2h",
+      "text": "U 考古，看到 x 上面提到了解看看 三個主要驅力，a) vector ai 廣告為核心、b) runtime 數據把玩家即時行為丟進廣告模型去拉高 roas、c) unity ai 26h2 系列新品，用量計費模式去打創作型消費者市場 營收主要壓在 vector 上，若 runtime 能夠點火+接下來幾 Q 轉正，",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0H2JagnES62XopL2LywuyQhTB3FquJuMM6osKzuciw1YpgUxAVD67KTszh149nfMMl"
     },
     {
-      "t": "4d",
-      "text": "所以 AI 到底增加還是減少 headcount？看狀況。ramp 和一些機構的研究文最近引起更多的辯論 過往模型方敘事是 AI 超恐怖會搶工作 >這對模型方有利 ramp 發的報告說 AI 讓工作變多 >這也對他們業務有利 一個 AI 各自表述，大家都往自己有利的風向去講，不管是政治還是經濟層面 ramp 的研究說採",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02BYPgSMfELDBKAXaQ2U7ss21ECafrVdTp9cW7GZaoQUSPbEx7uqmsehTFFGPUbh87l"
+      "t": "1d",
+      "text": "在研究為啥每天韓國股市可以這麼開心，除了大家都知道的賭性，找到報導說他們融資餘額新高，且三星+sk 融資餘額佔 kospi 36% 轉頭讓 ai 跑一下台股三大，加起來 21%，集中度低了不少，沒這麼 yolo 再查一下融資佔市值比，才網路泡沫高點的 4% 的一成。兩個市場都是融資金額新高 (指數也新高)，但相對市值沒",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02bZNFYcwhXXNWTLiq911gVMwhfbNJWktxpn4U4CCjjyHVQBRa3STNSELYBo9haA5ol"
     },
     {
-      "t": "最新",
-      "text": "EP676 |  他有很多有錢的客人 股市投報率持續上漲  但你有幫你的健康狀態做投資配置嗎？每天穿梭在工作和家庭之間，你的精神狀態還能撐得住嗎？想要活力充沛、擁有完勝別人的好氣色，記得平常就要靠 #善存綜合維他命！幫你抗氧化   就像切開的蘋果變黃變老，呼吸、熬夜、壓力等等都會讓身體持續氧化 除了投資要做資產配置，想",
-      "link": null
+      "t": "2d",
+      "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0aTNUh5Zvw8aKRJu6QwcX8JiAHVjts3XBjLwsHvzXpTCtuQ5PALs6WHZ2u5nSpr4tl"
     },
     {
-      "t": "5d",
-      "text": "這張滿類似國巨場次放出來的圖，各個元件的生產商喜歡說自己要取代別人，但最終還是回歸到應用場域和可靠度 Si 主導傳統中低頻，SiC 攻高功率、低損耗（電動車、電網），GaN 攻高頻、小型化、高效率（快充、伺服器電源） 共通點是什麼？lead time 拉長是否可以順利交貨、產能為王 https://hao.cnyes.",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02MMGTU45GDAUcxhiVhsnwnP6gwjBDGLW283RK6VMf5bbfFfHxhDQFDkZ1f3JBKforl"
+      "t": "3d",
+      "text": "1. Xbox 部門的利潤率比其他競爭對手低了 3 到 10 倍。 ​ 2. Xbox 就是個賠錢生意，每投入 1 美元，就會虧損 64 美分。 ​ 3. 因為主機賣不好，所以押注 Game Pass、多平台策略以及更多內容，但成長不符預期。 ​ 4. 本業已經不好，過去幾年還盲目（原文用字）投入更多團隊、更多錢、更多",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0VSmD3nDeYJtBGyXXqZ1K496MgmBZF9QfikzBQZuSvyjiANFgijBAfGsjdxMVwUael"
     }
   ],
   "banini": [
+    {
+      "t": "4h",
+      "text": "星期一會是哪一個呢？  哎呀～  好難選喔～～～  綠的不錯",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0pZuCp5Jm4bz44epwxUF7ptZWew25kmN7QedBzMjxT3rmTbmZr5U3Mz49spBZBYvLl"
+    },
     {
       "t": "最新",
       "text": "祝我福壽與天齊～恭賀我生辰快樂 年年都有⋯⋯ 恩， 還是不要今日好了_(:_」∠)_",
       "link": null
     },
     {
-      "t": "13h",
+      "t": "1d",
       "text": "你不能每次我買反一你就漲 我買put你也漲  你是不是存心跟我過不去 不過，我是覺得，就只是開高走低 這一波至少看回檔20%啦",
       "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02UFrFbSSbUEEe5hpuPi7xPDerw2pm5CZy41rActzHVjWPj7VS9w27yirJ34zqkxUnl"
-    },
-    {
-      "t": "最新",
-      "text": "反一買了就真的止跌了（笑）",
-      "link": null
     }
   ],
   "insight_stale": true
