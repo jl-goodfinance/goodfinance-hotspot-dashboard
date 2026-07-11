@@ -12,7 +12,6 @@
 | YouTube 頻道頁 | KOL 訂閱數 | 人物熱度 Top 10 |
 | SoundOn Podcast RSS | 股癌最新集數 | KOL 風向 |
 | Google News RSS | 股癌／巴逆逆 人物監測 | KOL 風向 |
-| Apify Facebook Public Scraper | 股癌／巴逆逆各 5 則公開貼文 | KOL 風向（設定 token 後啟用） |
 
 ## 分類規則
 
@@ -25,15 +24,6 @@ python3 build.py   # 產出 docs/index.html 與 docs/data.json
 ```
 
 僅使用 Python 標準函式庫（3.9+，需 zoneinfo），無需安裝套件。
-
-## Facebook 貼文雲端更新
-
-若 GitHub repository secret `APIFY_TOKEN` 已設定，三次例行更新會先透過
-`lanky_quantifier/facebook-public-scraper` 抓取股癌與巴逆逆各 5 則公開貼文。
-沒有 token、Actor 失敗或回傳空資料時，系統會保留最後一次成功資料，不影響其他區塊。
-
-設定路徑：Repository → Settings → Secrets and variables → Actions →
-New repository secret。名稱填 `APIFY_TOKEN`，值使用 Apify Console 的 API token。
 
 ## 調整
 
