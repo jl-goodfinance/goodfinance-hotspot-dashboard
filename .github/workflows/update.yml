@@ -21,6 +21,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Refresh KOL Facebook posts via Apify
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          APIFY_FB_ACTOR_ID: lanky_quantifier~facebook-public-scraper
+        run: python scripts/update_kol_apify.py
+
       - name: Build dashboard
         run: python build.py
 
@@ -28,7 +34,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add docs/ social.json
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "update dashboard $(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M')"
           git push
