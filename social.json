@@ -1,43 +1,43 @@
 {
-  "updated": "2026-07-10 23:39",
-  "insight": "股癌從一週前開始連三篇鋪陳「元件缺貨漲價」：先談元件供應資料源（futureelectronics）、再評 META 算力出售，7/5 直指國巨場次的元件替代圖 — 典型的「資料 → 題材 → 個股」鋪陳節奏，媒體 7/6 跟進點名他關注 MOSFET 缺貨。巴逆逆同步演出散戶版本：國巨停損認賠、追台半漲停買不到、公開喊「孟恭大大都這樣說了只好跟了」「目前股癌勝利」— 反指標女神公開跟單，是散戶情緒接近高點的訊號。7/7 強茂、台半、德微亮燈漲停、大盤資金急轉功率半導體，KOL 風向、散戶行為、盤面三方印證。節目切入建議：巴逆逆的梗開場（輕）→ 股癌的供需邏輯做骨幹（重）→ 收在「追漲停與槓桿的風險」，順勢帶到融資／衍生性單元。",
+  "updated": "2026-07-11 12:06",
+  "insight": "股癌近一週把重心從「元件缺貨」移到宏觀槓桿：以韓股融資餘額新高、三星＋SK 佔 KOSPI 三成六，對照台股三大融資僅二成一、佔市值比不到網路泡沫高點的一成，暗示台股槓桿相對健康、仍有空間，並穿插 Unity 廣告轉型、微軟 Xbox 虧損等海外個股。巴逆逆則演出散戶恐慌版：買反一、買 put 做空全被軋，看盤只敢選綠，嗆「這波至少回檔 20%」。兩人交集落在「槓桿與方向」，正對上本週大盤自四萬七殺到四萬五、颱風假休市的觀望情緒，以及楊金龍示警年輕人槓桿風險——反指標女神越喊回檔，短線越可能在築底。節目切入建議：用巴逆逆「做空全被軋、喊回檔」的梗輕鬆開場，以股癌台韓融資餘額比做骨幹談槓桿健康度，收在楊金龍示警，順勢帶進融資／衍生性商品單元。",
   "gooaye": [
     {
-      "t": "2h",
+      "t": "14h",
       "text": "U 考古，看到 x 上面提到了解看看 三個主要驅力，a) vector ai 廣告為核心、b) runtime 數據把玩家即時行為丟進廣告模型去拉高 roas、c) unity ai 26h2 系列新品，用量計費模式去打創作型消費者市場 營收主要壓在 vector 上，若 runtime 能夠點火+接下來幾 Q 轉正，",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0H2JagnES62XopL2LywuyQhTB3FquJuMM6osKzuciw1YpgUxAVD67KTszh149nfMMl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02LskHsTAFwRu1DLvsytyo6XCzZswMCJzNJfuPKbbHRQZdn1Zj3Y6jZJdPbYmSiMiVl"
     },
     {
       "t": "1d",
       "text": "在研究為啥每天韓國股市可以這麼開心，除了大家都知道的賭性，找到報導說他們融資餘額新高，且三星+sk 融資餘額佔 kospi 36% 轉頭讓 ai 跑一下台股三大，加起來 21%，集中度低了不少，沒這麼 yolo 再查一下融資佔市值比，才網路泡沫高點的 4% 的一成。兩個市場都是融資金額新高 (指數也新高)，但相對市值沒",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02bZNFYcwhXXNWTLiq911gVMwhfbNJWktxpn4U4CCjjyHVQBRa3STNSELYBo9haA5ol"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0Y1j4dTKLgBGLvckHwekmoc9SWRBcn9qM7dsuAmx8SQw4SXYnwHRFLogcAihZiRoRl"
     },
     {
       "t": "2d",
       "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0aTNUh5Zvw8aKRJu6QwcX8JiAHVjts3XBjLwsHvzXpTCtuQ5PALs6WHZ2u5nSpr4tl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02eJpBskVknYXGCNG45Fa7w7ddFHoE7cZgigVYySRqhR5PdMLGtjjp78XnCXHmsmizl"
     },
     {
       "t": "3d",
       "text": "1. Xbox 部門的利潤率比其他競爭對手低了 3 到 10 倍。 ​ 2. Xbox 就是個賠錢生意，每投入 1 美元，就會虧損 64 美分。 ​ 3. 因為主機賣不好，所以押注 Game Pass、多平台策略以及更多內容，但成長不符預期。 ​ 4. 本業已經不好，過去幾年還盲目（原文用字）投入更多團隊、更多錢、更多",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0VSmD3nDeYJtBGyXXqZ1K496MgmBZF9QfikzBQZuSvyjiANFgijBAfGsjdxMVwUael"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02ZJCvET9UPiNZWRedSGwZUKcsj8Tx2UKE4du6SHHcbPJdjEcvpC9Q7xV7MR6ct23Tl"
     }
   ],
   "banini": [
     {
-      "t": "4h",
-      "text": "星期一會是哪一個呢？  哎呀～  好難選喔～～～  綠的不錯",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0pZuCp5Jm4bz44epwxUF7ptZWew25kmN7QedBzMjxT3rmTbmZr5U3Mz49spBZBYvLl"
+      "t": "1d",
+      "text": "你不能每次我買反一你就漲 我買put你也漲  你是不是存心跟我過不去 不過，我是覺得，就只是開高走低 這一波至少看回檔20%啦",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0QEFY7dF2oAoJBDEcXg9KSZ8YKe3qoMJqwKmSC2deWFUJxqmcFGK7NZVedheeM4SAl"
     },
     {
       "t": "最新",
-      "text": "祝我福壽與天齊～恭賀我生辰快樂 年年都有⋯⋯ 恩， 還是不要今日好了_(:_」∠)_",
+      "text": "反一買了就真的止跌了（笑）",
       "link": null
     },
     {
-      "t": "1d",
-      "text": "你不能每次我買反一你就漲 我買put你也漲  你是不是存心跟我過不去 不過，我是覺得，就只是開高走低 這一波至少看回檔20%啦",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02UFrFbSSbUEEe5hpuPi7xPDerw2pm5CZy41rActzHVjWPj7VS9w27yirJ34zqkxUnl"
+      "t": "最新",
+      "text": "大家先來看看～朵莉絲乾爹又來啦！！ 身為一個投資相關的搞笑網紅，�我跟大家說~行李箱超級重要的！！ 畢竟賺錢出國壓馬路，�賠錢出國跑路，�怎麼樣都需要一個好的行李箱跟你一起奮鬥！！！ 這次朵莉絲行李箱【極○能裝 PRO 款】，�除了跟原本一樣非常耐操好用的箱體以外， 三層設計搭配 1：3：6 的黃金比例，�讓我更好分類",
+      "link": null
     }
   ],
   "insight_stale": true
