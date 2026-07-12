@@ -1,42 +1,37 @@
 {
-  "updated": "2026-07-12 00:06",
+  "updated": "2026-07-12 13:01",
   "insight": "股癌近一週把重心從「元件缺貨」移到宏觀槓桿：以韓股融資餘額新高、三星＋SK 佔 KOSPI 三成六，對照台股三大融資僅二成一、佔市值比不到網路泡沫高點的一成，暗示台股槓桿相對健康、仍有空間，並穿插 Unity 廣告轉型、微軟 Xbox 虧損等海外個股。巴逆逆則演出散戶恐慌版：買反一、買 put 做空全被軋，看盤只敢選綠，嗆「這波至少回檔 20%」。兩人交集落在「槓桿與方向」，正對上本週大盤自四萬七殺到四萬五、颱風假休市的觀望情緒，以及楊金龍示警年輕人槓桿風險——反指標女神越喊回檔，短線越可能在築底。節目切入建議：用巴逆逆「做空全被軋、喊回檔」的梗輕鬆開場，以股癌台韓融資餘額比做骨幹談槓桿健康度，收在楊金龍示警，順勢帶進融資／衍生性商品單元。",
   "gooaye": [
     {
-      "t": "14h",
-      "text": "U 考古，看到 x 上面提到了解看看 三個主要驅力，a) vector ai 廣告為核心、b) runtime 數據把玩家即時行為丟進廣告模型去拉高 roas、c) unity ai 26h2 系列新品，用量計費模式去打創作型消費者市場 營收主要壓在 vector 上，若 runtime 能夠點火+接下來幾 Q 轉正，",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02LskHsTAFwRu1DLvsytyo6XCzZswMCJzNJfuPKbbHRQZdn1Zj3Y6jZJdPbYmSiMiVl"
-    },
-    {
-      "t": "1d",
-      "text": "在研究為啥每天韓國股市可以這麼開心，除了大家都知道的賭性，找到報導說他們融資餘額新高，且三星+sk 融資餘額佔 kospi 36% 轉頭讓 ai 跑一下台股三大，加起來 21%，集中度低了不少，沒這麼 yolo 再查一下融資佔市值比，才網路泡沫高點的 4% 的一成。兩個市場都是融資金額新高 (指數也新高)，但相對市值沒",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0Y1j4dTKLgBGLvckHwekmoc9SWRBcn9qM7dsuAmx8SQw4SXYnwHRFLogcAihZiRoRl"
-    },
-    {
-      "t": "2d",
-      "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02eJpBskVknYXGCNG45Fa7w7ddFHoE7cZgigVYySRqhR5PdMLGtjjp78XnCXHmsmizl"
-    },
-    {
       "t": "3d",
+      "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0aHDUPwJC7Z1VB73NceoW1C8MJqXZAdC4ZFVTEovWG7LtartqPNguaXS56YwPVxP4l"
+    },
+    {
+      "t": "4d",
       "text": "1. Xbox 部門的利潤率比其他競爭對手低了 3 到 10 倍。 ​ 2. Xbox 就是個賠錢生意，每投入 1 美元，就會虧損 64 美分。 ​ 3. 因為主機賣不好，所以押注 Game Pass、多平台策略以及更多內容，但成長不符預期。 ​ 4. 本業已經不好，過去幾年還盲目（原文用字）投入更多團隊、更多錢、更多",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02ZJCvET9UPiNZWRedSGwZUKcsj8Tx2UKE4du6SHHcbPJdjEcvpC9Q7xV7MR6ct23Tl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0VkZjKHX7Ycu8hbGuj5sRBUQYScSC2NmmTaYWqotiK3vrLB6dnphXYKiY6ekxXJhNl"
+    },
+    {
+      "t": "6d",
+      "text": "SA 最近拿下很多版面阿... 先是發佈光和 power 的遞延，現在又丟出 kyber 的遞延 雖然嚴格來說 kyber 不會在 rubin 出，而是在 feynman 登場已經算相當有共識了（這些 trade RD projects 的投資人消息都很快，甚至到有點過敏的程度） 大概就是擠一擠水，接著等幾天又會有平衡",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0UnydU8Mq1F9X8zPGQyXihGeF2zrreddXdu8dq3vGaMap7SBJof8PKJcxvHZj9obAl"
     }
   ],
   "banini": [
     {
+      "t": "12h",
+      "text": "台股逆逆_(:_」∠)_ 本逆就像那片雲",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0w8HDzSKzFi3LVYiRdE2m8K4mkEdsP4BrgRNije8m2bAEPmCUVePqeSnC4zXF7CT1l"
+    },
+    {
+      "t": "16h",
+      "text": "颱風天就是清冰箱 在冰箱底層挖到一塊牛腱(⊙ω⊙)/ 放冷凍庫的東西應該都不會壞⋯⋯吧？ 吧？？？？？",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0cBxLZSbfUqaXx6HZTnNCDrWLJKbZHMjvFUYkguUzfSywJJVRbn8rJgw1LFhpRwJ6l"
+    },
+    {
       "t": "最新",
       "text": "小卡的魔術！ Magic !   颱風天好無聊喔⋯（看著成堆要業配的企劃） 好無聊喔_(:_」∠)_",
-      "link": null
-    },
-    {
-      "t": "1d",
-      "text": "星期一會是哪一個呢？  哎呀～  好難選喔～～～  綠的不錯",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02tRLuzkEav1ATkwnV2vCiaNTAGS1GngoVU1HRd9r1RDn97T3Jm7PLpQ1Mqp1fk27ol"
-    },
-    {
-      "t": "最新",
-      "text": "祝我福壽與天齊～恭賀我生辰快樂 年年都有⋯⋯ 恩， 還是不要今日好了_(:_」∠)_",
       "link": null
     }
   ],
