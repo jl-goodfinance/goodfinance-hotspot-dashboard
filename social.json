@@ -1,21 +1,26 @@
 {
-  "updated": "2026-07-13 01:11",
+  "updated": "2026-07-13 16:39",
   "insight": "股癌近一週把重心從「元件缺貨」移到宏觀槓桿：以韓股融資餘額新高、三星＋SK 佔 KOSPI 三成六，對照台股三大融資僅二成一、佔市值比不到網路泡沫高點的一成，暗示台股槓桿相對健康、仍有空間，並穿插 Unity 廣告轉型、微軟 Xbox 虧損等海外個股。巴逆逆則演出散戶恐慌版：買反一、買 put 做空全被軋，看盤只敢選綠，嗆「這波至少回檔 20%」。兩人交集落在「槓桿與方向」，正對上本週大盤自四萬七殺到四萬五、颱風假休市的觀望情緒，以及楊金龍示警年輕人槓桿風險——反指標女神越喊回檔，短線越可能在築底。節目切入建議：用巴逆逆「做空全被軋、喊回檔」的梗輕鬆開場，以股癌台韓融資餘額比做骨幹談槓桿健康度，收在楊金龍示警，順勢帶進融資／衍生性商品單元。",
   "gooaye": [
     {
-      "t": "5d",
+      "t": "2d",
+      "text": "U 考古，看到 x 上面提到了解看看 三個主要驅力，a) vector ai 廣告為核心、b) runtime 數據把玩家即時行為丟進廣告模型去拉高 roas、c) unity ai 26h2 系列新品，用量計費模式去打創作型消費者市場 營收主要壓在 vector 上，若 runtime 能夠點火+接下來幾 Q 轉正，",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02LhbHaJtX7qJpdPL6Wg6ddoG79iCYBAE1SyZzKmFWUPc964RVTDncwesJioAwgdnsl"
+    },
+    {
+      "t": "3d",
+      "text": "在研究為啥每天韓國股市可以這麼開心，除了大家都知道的賭性，找到報導說他們融資餘額新高，且三星+sk 融資餘額佔 kospi 36% 轉頭讓 ai 跑一下台股三大，加起來 21%，集中度低了不少，沒這麼 yolo 再查一下融資佔市值比，才網路泡沫高點的 4% 的一成。兩個市場都是融資金額新高 (指數也新高)，但相對市值沒",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0YKXatxcogTsrdvwiF4wofBjwh2nuQqP2dnEFvWpYTrsKG1eUygEsGARdgV6hqTxql"
+    },
+    {
+      "t": "4d",
+      "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02e8fBacE1y3LqdCBxp9SN3KjbYKPK5iT8X135552iFnJSytZUqKVR1ttGMB5qgoABl"
+    },
+    {
+      "t": "6d",
       "text": "1. Xbox 部門的利潤率比其他競爭對手低了 3 到 10 倍。 ​ 2. Xbox 就是個賠錢生意，每投入 1 美元，就會虧損 64 美分。 ​ 3. 因為主機賣不好，所以押注 Game Pass、多平台策略以及更多內容，但成長不符預期。 ​ 4. 本業已經不好，過去幾年還盲目（原文用字）投入更多團隊、更多錢、更多",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0VkZjKHX7Ycu8hbGuj5sRBUQYScSC2NmmTaYWqotiK3vrLB6dnphXYKiY6ekxXJhNl"
-    },
-    {
-      "t": "6d",
-      "text": "SA 最近拿下很多版面阿... 先是發佈光和 power 的遞延，現在又丟出 kyber 的遞延 雖然嚴格來說 kyber 不會在 rubin 出，而是在 feynman 登場已經算相當有共識了（這些 trade RD projects 的投資人消息都很快，甚至到有點過敏的程度） 大概就是擠一擠水，接著等幾天又會有平衡",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0UnydU8Mq1F9X8zPGQyXihGeF2zrreddXdu8dq3vGaMap7SBJof8PKJcxvHZj9obAl"
-    },
-    {
-      "t": "6d",
-      "text": "所以 AI 到底增加還是減少 headcount？看狀況。ramp 和一些機構的研究文最近引起更多的辯論 過往模型方敘事是 AI 超恐怖會搶工作 >這對模型方有利 ramp 發的報告說 AI 讓工作變多 >這也對他們業務有利 一個 AI 各自表述，大家都往自己有利的風向去講，不管是政治還是經濟層面 ramp 的研究說採",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid07pbVE3m8fZrUk1hrkeUsjgGY99QHwCadVWVom6rQvEbhMsPB1WWVrkZXbGGmBDgpl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02Zc1SVxSwPv87wQZbdUUUB15fAHQgZBoFbUQWYQfAdjNBHYqaCDaj6oDAqATTH9rnl"
     }
   ],
   "banini": [
@@ -25,9 +30,9 @@
       "link": null
     },
     {
-      "t": "3h",
+      "t": "18h",
       "text": "今天的我是快樂蹭水仔～  大家人都好好喔！ 每支都好心動 是不是要來一句： 與其亂買不如全買？",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0ng9Pxs5TjS6UHRTrp7NeneLhK35fFGXXemCg8Cx9hFAt4LKRkZYcHeM2ThNssiUPl"
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02r3daatS5m9ZowbiviqafZVWM42pMG2YSnZfKpPSGjtRFBScHZZ7mpn69DjuZwN3Tl"
     },
     {
       "t": "最新",
