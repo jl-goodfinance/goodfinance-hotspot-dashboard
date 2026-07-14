@@ -388,41 +388,110 @@ def yt_is_short(video_id):
         return False  # 判斷失敗時保留影片，寧可多列不漏列
 
 
+def _yt_reltime_hours(text):
+    """把 YouTube 相對時間文字（'5 小時前'、'2 天前'、'2 days ago'…）轉為距今小時數；無法解析回 None"""
+    if not text:
+        return None
+    m = re.search(r"(\d+)", text)
+    n = int(m.group(1)) if m else 1
+    if any(u in text for u in ("分鐘", "minute")):
+        return n / 60
+    if any(u in text for u in ("小時", "hour")):
+        return n
+    if any(u in text for u in ("天", "day")):
+        return n * 24
+    if any(u in text for u in ("週", "周", "week")):
+        return n * 24 * 7
+    if any(u in text for u in ("個月", "月", "month")):
+        return n * 24 * 30
+    if any(u in text for u in ("年", "year")):
+        return n * 24 * 365
+    return None
+
+
+def _yt_tab_videos(cid, tab):
+    """解析頻道某分頁（videos / streams）的 ytInitialData，回傳該分頁影片清單。"""
+    page = fetch_text(f"https://www.youtube.com/channel/{cid}/{tab}?hl=zh-TW&gl=TW")
+    m = (re.search(r'ytInitialData(?:"\])?\s*=\s*(\{.+?\})\s*;\s*</script>', page, re.S)
+         or re.search(r'ytInitialData(?:"\])?\s*=\s*(\{.+?\});', page, re.S))
+    if not m:
+        raise ValueError("ytInitialData not found")
+    data = json.loads(m.group(1))
+    tabs = (data.get("contents", {})
+                .get("twoColumnBrowseResultsRenderer", {})
+                .get("tabs", []))
+    rows = []
+    for tab in tabs:
+        rg = ((tab.get("tabRenderer") or {}).get("content") or {}).get("richGridRenderer")
+        if not rg:
+            continue
+        cand = [(it.get("richItemRenderer") or {}).get("content", {}).get("lockupViewModel")
+                for it in rg.get("contents", [])]
+        cand = [v for v in cand if v and v.get("contentId")
+                and v.get("contentType") == "LOCKUP_CONTENT_TYPE_VIDEO"]
+        if cand:
+            rows = cand
+            break
+    out = []
+    for lvm in rows:
+        mdvm = (lvm.get("metadata") or {}).get("lockupMetadataViewModel") or {}
+        title = (mdvm.get("title") or {}).get("content", "")
+        # 從 metadataParts 找相對發布時間（含「前」/「ago」），避開「觀看次數」那格
+        pub = ""
+        for mrow in (((mdvm.get("metadata") or {})
+                      .get("contentMetadataViewModel") or {}).get("metadataRows", [])):
+            for part in mrow.get("metadataParts", []):
+                txt = (part.get("text") or {}).get("content", "")
+                if "前" in txt or "ago" in txt.lower():
+                    pub = txt
+                    break
+            if pub:
+                break
+        out.append({"id": lvm["contentId"], "title": title,
+                    "at": pub, "age_h": _yt_reltime_hours(pub)})
+    return out
+
+
+def _yt_channel_videos(cid):
+    """合併頻道『影片』與『直播』分頁的最新上片（RSS feed 在 CI 會 404，故改解析頁面）。
+    每日直播型頻道（如游庭皓）的內容在 streams 分頁，一般 VOD 在 videos 分頁。
+    回傳最新在前、去重後的 [{id, title, at, age_h}]。"""
+    merged = {}
+    for tab in ("videos", "streams"):
+        try:
+            for v in _yt_tab_videos(cid, tab):
+                if v["id"] not in merged:
+                    merged[v["id"]] = v
+        except Exception as e:
+            print(f"yt tab {tab} {cid} error:", e)
+    return sorted(merged.values(),
+                  key=lambda v: v["age_h"] if v["age_h"] is not None else float("inf"))
+
+
 def get_yt_monitor(hours=24):
-    """指定頻道近 N 小時上片清單 + 高讚留言"""
-    ns = {"a": "http://www.w3.org/2005/Atom",
-          "yt": "http://www.youtube.com/xml/schemas/2015"}
-    now = datetime.now(TZ)
+    """指定頻道近 N 小時上片清單 + 高讚留言（影片清單由頻道分頁解析，見 _yt_channel_videos）"""
     result = []
     for name, cid in YT_CHANNELS.items():
         videos = []
         entries = []
         try:
-            root = ET.fromstring(fetch(
-                f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}"))
-            for e in root.findall("a:entry", ns):
-                pub = datetime.fromisoformat(
-                    e.findtext("a:published", namespaces=ns)).astimezone(TZ)
-                entries.append({"id": e.findtext("yt:videoId", namespaces=ns),
-                                "title": e.findtext("a:title", namespaces=ns) or "",
-                                "pub": pub})
+            entries = _yt_channel_videos(cid)  # 已依最新在前排序
             for ent in entries:
-                if (now - ent["pub"]).total_seconds() > hours * 3600:
+                age = ent.get("age_h")
+                if age is None or age > hours:  # 無法確認在 N 小時內就不列入即時區
                     continue
                 if yt_is_short(ent["id"]):
                     continue
                 videos.append({"id": ent["id"], "title": ent["title"],
-                               "at": ent["pub"].strftime("%m/%d %H:%M"),
-                               "fallback": False, "comments": []})
+                               "at": ent["at"], "fallback": False, "comments": []})
                 if len(videos) >= YT_MAX_VIDEOS:
                     break
-            # 24 小時內無上片 → 退回最新一支非 Shorts 影片（標註非 24h 內）
+            # N 小時內無上片 → 退回最新一支非 Shorts 影片（標註非 24h 內）
             if not videos and entries:
-                for ent in sorted(entries, key=lambda x: -x["pub"].timestamp()):
+                for ent in entries:
                     if not yt_is_short(ent["id"]):
                         videos.append({"id": ent["id"], "title": ent["title"],
-                                       "at": ent["pub"].strftime("%m/%d %H:%M"),
-                                       "fallback": True, "comments": []})
+                                       "at": ent["at"], "fallback": True, "comments": []})
                         break
             for v in videos:
                 try:
