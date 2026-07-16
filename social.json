@@ -1,43 +1,43 @@
 {
-  "updated": "2026-07-16 03:37",
+  "updated": "2026-07-16 16:33",
   "insight": "股癌本週把焦點收斂到「記憶體的形狀」：韓股記憶體大廠佔市值近半，三星＋SK 融資佔比從年底 36% 衝到六月 55%、回檔後又下修回約一半，還反諷式預設「這次真的不一樣」，並帶到 Satya 與 NVIDIA 的開源之爭，暗示記憶體才是這波科技行情的槓桿命脈。巴逆逆則演散戶心碎版：被合晶套牢喊「你不能這樣對我」、嘲諷永豐 00410A 自稱台灣版 QQQ，最後轉軟喊撐下去、談風控，自嘲剪完頭髮上升趨勢就消失。兩人交集落在記憶體回檔下的槓桿與情緒，正對上大盤自四萬七殺到四萬五、韓股熔斷、SK 海力士 ADR 暴跌的觀望盤——反指標女神越喊撐，短線越可能在築底。節目切入建議：用巴逆逆「剪頭髮就崩、合晶針對我」的梗輕鬆開場，以股癌記憶體佔比與「這次真的不一樣」做骨幹談這波回檔是不是槓桿修正，收尾順勢連結記憶體／半導體單元。",
   "gooaye": [
     {
+      "t": "3d",
+      "text": "歐爸整天熔斷摔成狗 ytd 還是有 60%... 由於 memory makers 佔 cap 的 50%，可以看成是記憶體的形狀。根據韓國銀行的資料，2025 年底三星+skhynix 佔比 36.4%，到 2026 六月底的時候是 55.3%，最近的回檔使其佔比下修至約整體市值的一半 先預設前提 \"這次真的不一樣\"",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0BbfxsYKSL882yDUwXiKDimPs6tXcw6vZkiFQcMqMiDD3BqN93o66gQquYPTiDmD9l"
+    },
+    {
+      "t": "3d",
+      "text": "看了 satya 的文 (https://x.com/satyanadella/status/2076323181154230284) 和矽谷 x 幾位在討論 nvidia 在 opensource 的投入和未來的機會 satya 的意思是付錢買智慧不該把自己的知識付出去，但微妙的是身為微軟 CEO 卻在批評從客戶資料",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02gA4WQBV3UwYe6X4kSWar3W6W4WfDyYRmXiyTziBf7b5VTd6mR2uxLAVwSPzfF8RFl"
+    },
+    {
+      "t": "4d",
+      "text": "EP678 |  好像是很難得的躲噴  現在只要下載 Saily APP， 在結帳時輸入優惠代碼 [gooaye]， 或透過資訊欄專屬連結：https://saily.com/gooaye 購買方案即享有 85 折的專屬優惠。 #SailyeSIM 股癌傳送門：https://linktr.ee/gooaye",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02yGzxJ5B44L9gcyfJ4uJUcahgAPEQ69RcGnoqBSh3Sc9Df2rwigHJPU5R8WeQWxvpl"
+    },
+    {
       "t": "5d",
       "text": "U 考古，看到 x 上面提到了解看看 三個主要驅力，a) vector ai 廣告為核心、b) runtime 數據把玩家即時行為丟進廣告模型去拉高 roas、c) unity ai 26h2 系列新品，用量計費模式去打創作型消費者市場 營收主要壓在 vector 上，若 runtime 能夠點火+接下來幾 Q 轉正，",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02M1PoqpBz8E4JaKZLobrGYayaB27nkS9bdEwL5pwQ5RWqXGWJdKrKdzqitZt7VaUXl"
-    },
-    {
-      "t": "6d",
-      "text": "在研究為啥每天韓國股市可以這麼開心，除了大家都知道的賭性，找到報導說他們融資餘額新高，且三星+sk 融資餘額佔 kospi 36% 轉頭讓 ai 跑一下台股三大，加起來 21%，集中度低了不少，沒這麼 yolo 再查一下融資佔市值比，才網路泡沫高點的 4% 的一成。兩個市場都是融資金額新高 (指數也新高)，但相對市值沒",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0Y9NabpM4rrNqhpzgJNJTuzCirNbCkSSvqSCg8qxSmT1RMq6UthN2ZM7RY7YwkY8dl"
-    },
-    {
-      "t": "1w",
-      "text": "EP677 |  那個要我放雲霄飛車的是不是未來人 隨著盛夏熱氣升起，冰箱裡除了紅白酒，你值得更有趣的選擇。身為資深癌寶的「曾的茶」，特別為 Chica 們獻上「可以喝的天然茶香水」。 我們選用苗栗銅鑼一級產區的東方美人茶，打造出兩款顛覆傳統的精品茶飲：LISS 氣泡茶以多段式萃取保留細緻白花香與熱帶果韻，氣泡綿密如珠",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02eSThr7XUy9EjCCnbH2BPPuzvf6co98gVirDZEvXtBabtKvHmeeBA1rZibHVYQoi5l"
-    },
-    {
-      "t": "1w",
-      "text": "1. Xbox 部門的利潤率比其他競爭對手低了 3 到 10 倍。 ​ 2. Xbox 就是個賠錢生意，每投入 1 美元，就會虧損 64 美分。 ​ 3. 因為主機賣不好，所以押注 Game Pass、多平台策略以及更多內容，但成長不符預期。 ​ 4. 本業已經不好，過去幾年還盲目（原文用字）投入更多團隊、更多錢、更多",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02ZRrSCpBCaPhXncBCharfsrqZYuJBRQZBE7gjb8Rgejqe5ZrodKw8m6Zh1dvmii9nl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0Gyo6MzzRTHPcqfnwqoVxt7wpYBCE1fnDzWkqSPZZsdNxkWTxYG7uuyyR9RPE5mDcl"
     }
   ],
   "banini": [
     {
       "t": "最新",
-      "text": "走頭無路的人才會玩股票_(:_」∠)_",
+      "text": "你這樣讓我好混亂啊_(:_」∠)_  死貓吧！ 是死貓跳吧！ 明天應該繼續跌吧？！",
       "link": null
     },
     {
-      "t": "14h",
-      "text": "這兩天玩股票有一點耗螢幕_(:_」∠)_",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0dn28ZzkycgkYeRUDs831WZTHrZPsrjv8CASuWiFH8Bghx1zvfShvqwwL5kVKWLM2l"
+      "t": "6h",
+      "text": "就說熊市了 看什麼股票， 好好工作啦(⊙ω⊙)",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0uK1C9ExkWDdxydCxaQH2MmsVc9tPpR1tgVpNNCyzaSfkN4YD6Wujte4RziSYBC39l"
     },
     {
-      "t": "20h",
-      "text": "停損了啦 隨便了啦 股票就是騙人的爛東西 今天應該繼續探底",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0UC986RA8DFSSZvBDvmP159GjbQv7ys2cU9fbZo97k5VvdFuMGvrTtPaXFLuD1X7xl"
+      "t": "7h",
+      "text": "無限失眠大法 晚上要去醫美評估了 要是變漂亮就會有人愛我了：）",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02R8EhUHSCJk5hqsrh8RUWhaont3YZdsZh77tAaXbxWPYjGd9hd21SKUY4YifrDouEl"
     }
   ],
   "insight_stale": true
