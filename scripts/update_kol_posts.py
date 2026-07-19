@@ -106,14 +106,37 @@ def scrape(url):
               ".slice(0,10).forEach(b => b.click()); 'ok'")
     js = EXTRACT_JS.strip().replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
     url_key = url.rstrip("/").split("facebook.com/")[-1]
-    osa(f'tell application "Google Chrome" to make new tab at end of tabs of '
-        f'window 1 with properties {{URL:"{url}"}}')
-    time.sleep(9)
+    # 獨立小視窗 + 立即縮到 Dock：不佔用使用者目前的視窗與焦點
+    osa(f'''tell application "Google Chrome"
+	make new window with properties {{bounds:{{60, 60, 620, 620}}}}
+	set URL of active tab of front window to "{url}"
+	set minimized of front window to true
+end tell''')
+    time.sleep(10)
     _osa_on_tab(url_key, 'execute t javascript "window.scrollTo(0, 4000)"')
     time.sleep(4)
     _osa_on_tab(url_key, f'execute t javascript "{expand}"')
     time.sleep(3)
     raw = _osa_on_tab(url_key, f'return execute t javascript "{js}"')
+    if raw in ("notfound", "", "[]"):
+        # 縮小狀態偶爾不載入內容：短暫展開該視窗重試一次
+        try:
+            osa(f'''tell application "Google Chrome"
+	repeat with w in every window
+		repeat with t in every tab of w
+			if URL of t contains "{url_key}" then
+				set minimized of w to false
+				return "restored"
+			end if
+		end repeat
+	end repeat
+end tell''')
+        except Exception:
+            pass
+        time.sleep(6)
+        _osa_on_tab(url_key, 'execute t javascript "window.scrollTo(0, 4000)"')
+        time.sleep(4)
+        raw = _osa_on_tab(url_key, f'return execute t javascript "{js}"')
     try:
         # 刪除分頁會使 AppleScript 迭代索引失效，屬非致命錯誤
         _osa_on_tab(url_key, 'delete t\n\t\t\t\treturn "closed"')
