@@ -1,6 +1,9 @@
 name: Update dashboard
 
 on:
+  push:
+    paths:
+      - "social.json"
   schedule:
     # 台北 06:30 盤前（UTC 22:30 前一日）、12:00 盤中（UTC 04:00）、15:00 收盤後（UTC 07:00）
     - cron: "30 22 * * *"

@@ -840,7 +840,8 @@ def render_kol_card(data):
     if social:
         g_body = post_lines(social.get("gooaye", []))
         b_body = post_lines(social.get("banini", []))
-        note = f'FB 貼文擷取於 {esc(social.get("updated", ""))}（自動更新）'
+        fetched = esc(social.get("updated", ""))
+        note = f'FB 貼文擷取於 {fetched}（自動更新）'
         insight = social.get("insight", "")
     else:
         g_body = ('<div class="kol-what">'
@@ -849,7 +850,7 @@ def render_kol_card(data):
         b_body = ('<div class="kol-what">'
                   + " · ".join(esc(x["title"].split(" - ")[0][:38]) for x in data["banini"][:3])
                   + "</div>") if data["banini"] else ""
-        note, insight = "以媒體報導代理（無貼文擷取資料）", ""
+        note, insight, fetched = "以媒體報導代理（無貼文擷取資料）", "", ""
     insight_html = (f'<div class="insight"><div class="insight-label">觀察</div>'
                     f'{esc(insight)}</div>') if insight else ""
     return f'''
@@ -857,11 +858,11 @@ def render_kol_card(data):
         <div class="card-head"><h2>KOL 風向</h2><span class="pill orange">{note}</span></div>
         <div class="kol-grid">
           <div class="kol">
-            <div class="kol-name">股癌 <span class="kol-meta">{esc(g["ep"])} · {esc(g["ep_date"])} · FB Gooaye</span></div>
+            <div class="kol-name">股癌 <span class="kol-meta">{esc(g["ep"])} · {esc(g["ep_date"])} · FB 擷取 {fetched}</span></div>
             {g_body}
           </div>
           <div class="kol">
-            <div class="kol-name">巴逆逆 <span class="kol-meta">FB 吃土鋁繩巴逆逆 · 反指標女神</span></div>
+            <div class="kol-name">巴逆逆 <span class="kol-meta">FB 吃土鋁繩巴逆逆 · 反指標女神 · FB 擷取 {fetched}</span></div>
             {b_body}
           </div>
         </div>

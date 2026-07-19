@@ -30,12 +30,21 @@ PAGES = {
 
 EXTRACT_JS = r"""
 JSON.stringify([...document.querySelectorAll('[data-ad-comet-preview=\"message\"]')].map(m => {
-  const root = m.closest('[aria-posinset]') || m.closest('[role=\"article\"]') || (() => {
-    let r = m; for (let i = 0; i < 14 && r; i++) { r = r.parentElement;
-      if (r && r.querySelector('a[href*=\"posts/\"]')) return r; } return null; })();
-  const link = root ? (root.querySelector('a[href*=\"posts/\"], a[href*=\"/videos/\"]') || {}).href : null;
-  const time = root ? [...root.querySelectorAll('a')].map(a => a.innerText.trim())
-    .find(x => /^(\d+\s*(分鐘|小時|天|週)|\d+[mhdw]|[0-9]+月[0-9]+日)/.test(x)) : null;
+  const timeRe = /^(\d+\s*(分鐘|小時|天|週|個月)|\d+[mhdwy]|昨天|[0-9]+月[0-9]+日)/;
+  let time = null, link = null, r = m;
+  for (let i = 0; i < 20 && r; i++) {
+    r = r.parentElement;
+    if (!r) break;
+    if (!time) {
+      const t = [...r.querySelectorAll('a')].map(a => a.innerText.trim()).find(x => timeRe.test(x));
+      if (t) time = t;
+    }
+    if (!link) {
+      const l = r.querySelector('a[href*=\"posts/\"], a[href*=\"/videos/\"], a[href*=\"/reel\"]');
+      if (l) link = l.href;
+    }
+    if (time && link) break;
+  }
   return {time, link: link ? link.split('?')[0] : null,
           text: m.innerText.replace(/\n+/g, ' ').trim()};
 }))
@@ -76,30 +85,50 @@ def due():
         return True
 
 
+def _osa_on_tab(url_key, action):
+    """對所有視窗中網址含 url_key 的分頁執行動作（每步重新定位，
+    避免使用者切換視窗或分頁休眠擴充改變分頁參照）"""
+    return osa(f'''tell application "Google Chrome"
+	repeat with w in every window
+		repeat with t in every tab of w
+			if URL of t contains "{url_key}" then
+				{action}
+			end if
+		end repeat
+	end repeat
+	return "notfound"
+end tell''')
+
+
 def scrape(url):
-    osa(f'tell application "Google Chrome" to make new tab at end of tabs of '
-        f'front window with properties {{URL:"{url}"}}')
-    time.sleep(8)
-    js_scroll = 'execute last tab of front window javascript "window.scrollTo(0, 4000)"'
-    osa(f'tell application "Google Chrome" to {js_scroll}')
-    time.sleep(4)
     expand = ("[...document.querySelectorAll('div[role=\\\"button\\\"]')]"
               ".filter(b => /^(See more|顯示更多)$/.test(b.innerText.trim()))"
               ".slice(0,10).forEach(b => b.click()); 'ok'")
-    osa(f'tell application "Google Chrome" to execute last tab of front window '
-        f'javascript "{expand}"')
-    time.sleep(3)
     js = EXTRACT_JS.strip().replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
-    raw = osa(f'tell application "Google Chrome" to execute last tab of front window '
-              f'javascript "{js}"')
-    osa('tell application "Google Chrome" to close last tab of front window')
+    url_key = url.rstrip("/").split("facebook.com/")[-1]
+    osa(f'tell application "Google Chrome" to make new tab at end of tabs of '
+        f'window 1 with properties {{URL:"{url}"}}')
+    time.sleep(9)
+    _osa_on_tab(url_key, 'execute t javascript "window.scrollTo(0, 4000)"')
+    time.sleep(4)
+    _osa_on_tab(url_key, f'execute t javascript "{expand}"')
+    time.sleep(3)
+    raw = _osa_on_tab(url_key, f'return execute t javascript "{js}"')
+    try:
+        # 刪除分頁會使 AppleScript 迭代索引失效，屬非致命錯誤
+        _osa_on_tab(url_key, 'delete t\n\t\t\t\treturn "closed"')
+    except Exception:
+        pass
+    if raw == "notfound":
+        raise RuntimeError("找不到目標分頁（可能被休眠擴充回收）")
     posts = json.loads(raw)
     out = []
+    fallback_t = f"{datetime.now(TZ).month}/{datetime.now(TZ).day} 擷取"
     for p in posts:
         text = (p.get("text") or "").strip()
         if not text or "置頂" in text or "斂財連結" in text:
             continue
-        out.append({"t": p.get("time") or "最新",
+        out.append({"t": p.get("time") or fallback_t,
                     "text": re.sub(r"\s*See (more|less)$", "", text)[:160],
                     "link": p.get("link")})
         if len(out) >= 5:
