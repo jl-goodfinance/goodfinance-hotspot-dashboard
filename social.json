@@ -1,23 +1,23 @@
 {
-  "updated": "2026-07-20 19:46",
+  "updated": "2026-07-21 14:06",
   "insight": "大盤自高點回檔、上週五單日重挫逾 6%，兩人的內容重心同步轉向「下跌敘事」：股癌 EP679 以「金融恐怖份子」談波動來源，又點出歐股整天熔斷但年初至今仍有六成漲幅——把恐慌拉回長期報酬的框架；最新一則談蘋果以輕資產、專注整合的路線重回市值第一，暗示資金正從重資本的 AI 軍備競賽轉向獲利確定性。巴逆逆則進入自嘲耍廢模式（「想到星期一還要繼續跌就好煩」），並在登上彭博後開始接業配——反指標女神從曬對帳單轉向流量變現，散戶情緒從 FOMO 退到疲乏，是市場築底階段常見的訊號。節目切入建議：用巴逆逆的「星期一好煩」開場接住散戶情緒，股癌的兩個框架（單日波動 vs 年線報酬、重資產 vs 輕資產 AI）做骨幹，收在「跌市中的定期定額與資產配置」帶回財富管理單元。",
   "gooaye": [
     {
-      "t": "32m",
+      "t": "18h",
       "text": "kimi：暫停新訂閱，並把算力優先提供給老客人 - MoE 可能省一些運算但省不了記憶體，2.8T 參數光原生權重就 1.4TB - kv cache 刻意疏散到 server dram and ssd，理論用量都會提升 - k3 主打 agentic，雲端沙盒裡跑各種工具和程式碼很熱鬧，CPU 增量也沒改變 - 公司",
       "link": "https://www.facebook.com/Gooaye/posts/pfbid0LeRsrmf8BjgpbfX4MSNxjhUoSpYxcaQjWeSMkEhYfpUXcjtUGY4k7Q8Rh5TLVhgcl"
     }
   ],
   "banini": [
     {
-      "t": "13m",
-      "text": "繞完一圈脆 一堆聽完孟恭podcast 就要買啥⋯ 孟恭大概把整個台股都推薦了一遍吧 今天有人生日要去慶生了⋯ 一出門就想回家了_(:_」∠)_",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid07jghMHCHHQCuaZ8rG48t3xbj8Cuq66dgHE5k9VDXncJ6ZH7LyxACHLK1np9NQqQVl"
+      "t": "1h",
+      "text": "這世界好殘酷 但是我相信我停損是對的⋯是對的吧？ 一定是對的吧⋯ 不就是今天漲停而已嗎？ 明天搞不好繼續跌吧？ 不需要追吧⋯⋯",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0vtxkWXvh4qhkcLYwf2yCeTRnSTumW77K1biMuYtCaanChKPvB391CdnFpfQjv3xNl"
     },
     {
-      "t": "13m",
-      "text": "繞完一圈脆一堆聽完孟恭podcast 就要買啥⋯…",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid07jghMHCHHQCuaZ8rG48t3xbj8Cuq66dgHE5k9VDXncJ6ZH7LyxACHLK1np9NQqQVl"
+      "t": "1h",
+      "text": "這世界好殘酷但是我相信我停損是對的⋯是對的吧？…",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0vtxkWXvh4qhkcLYwf2yCeTRnSTumW77K1biMuYtCaanChKPvB391CdnFpfQjv3xNl"
     }
   ],
   "insight_stale": true
