@@ -1,38 +1,23 @@
 {
-  "updated": "2026-07-22 03:04",
+  "updated": "2026-07-22 15:51",
   "insight": "大盤自高點回檔、上週五單日重挫逾 6%，兩人的內容重心同步轉向「下跌敘事」：股癌 EP679 以「金融恐怖份子」談波動來源，又點出歐股整天熔斷但年初至今仍有六成漲幅——把恐慌拉回長期報酬的框架；最新一則談蘋果以輕資產、專注整合的路線重回市值第一，暗示資金正從重資本的 AI 軍備競賽轉向獲利確定性。巴逆逆則進入自嘲耍廢模式（「想到星期一還要繼續跌就好煩」），並在登上彭博後開始接業配——反指標女神從曬對帳單轉向流量變現，散戶情緒從 FOMO 退到疲乏，是市場築底階段常見的訊號。節目切入建議：用巴逆逆的「星期一好煩」開場接住散戶情緒，股癌的兩個框架（單日波動 vs 年線報酬、重資產 vs 輕資產 AI）做骨幹，收在「跌市中的定期定額與資產配置」帶回財富管理單元。",
   "gooaye": [
     {
-      "t": "1d",
-      "text": "kimi：暫停新訂閱，並把算力優先提供給老客人 - MoE 可能省一些運算但省不了記憶體，2.8T 參數光原生權重就 1.4TB - kv cache 刻意疏散到 server dram and ssd，理論用量都會提升 - k3 主打 agentic，雲端沙盒裡跑各種工具和程式碼很熱鬧，CPU 增量也沒改變 - 公司",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02Q1v4Uo1kDPJULnSDpcuRK5iwdiUd9MBrDpN8E6qmbg7ocMmRWNoR2gSVnKFgXbAgl"
-    },
-    {
-      "t": "1d",
-      "text": "us sectors mtd performance 錢跑去 healthcare and energy，年初雄到現在的 tech 一直被賣 但由於 spx 的族群分佈夠廣，mtd 還是持平，痛苦只有我輩科技股持有者獨自承擔",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02Q1v4Uo1kDPJULnSDpcuRK5iwdiUd9MBrDpN8E6qmbg7ocMmRWNoR2gSVnKFgXbAgl"
-    },
-    {
-      "t": "2d",
-      "text": "【SKYDIVING】人們想起被DeepSeek 打爆的恐懼： Kimi K3 x Token Efficiency  ​ ​ ▍Dense vs MOE ​ Dense 模型中，每個 token 都會通過每一層的全部參數。當模型被切分至多顆 GPU 時，同一個 token 仍可能需要透過 Tensor Paralle",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0PvTQotBBE9FfBJFdRtxF6ActkLf51BSbF942WQ9goh1rgV1P1rtZbqMHCqtd5b9yl"
+      "t": "9m",
+      "text": "EP681 |  再一次相信真愛存在的機會 本集節目由尼古清贊助 戒菸就如同投資，需要放棄短線刺激與快感，以追求長期的健康複利。 過去我很常抽煙，一天兩包、聚會、工作、休息時間一根接一根，直到後來為 了自己與家人健康，才下定決心要戒菸。 當初我主要是靠戒菸貼片成功戒掉菸癮，身為過來人，我蠻鼓勵大家可以嘗試 戒菸輔助品。",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0Mgc4euo9PxpY4n9J8smpdRs82X2De4n77Kg64hiards6xTurbWECX3Kuqo26K5T4l"
     }
   ],
   "banini": [
     {
-      "t": "5h",
-      "text": "現在的我呈現一個 因為部分停損，所以大漲不爽 因為還沒損完，所以續跌痛苦 的狀態矛盾狀態_(:_」∠)_ Little sunday 果乾團購： 今日update 因為群創回到50， 獎金變成5萬了 團購連結： 鳳梨真的好吃 https://littlesunday-fruits.my1shop.com/banini",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0378dMQFQW6Nu2kxzRaYuJsnXgNVVo9AV5NZYHiEGhRvn5uJcvNJVZKFKjXh95wMxdl"
+      "t": "1h",
+      "text": "唉不是⋯⋯⋯ 你不能我早上才買⋯你⋯ 唉不是啊啊啊啊",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02j1dLDJnBcBB1S8iyQQN7phQjn2g3cavJqpABYJzXfsdqkxd9jQ3WCgfG2TdS24bAl"
     },
     {
-      "t": "6h",
-      "text": "這世界好殘酷 但是我相信我停損是對的⋯是對的吧？ 一定是對的吧⋯ 不就是今天漲停而已嗎？ 明天搞不好繼續跌吧？ 不需要追吧⋯⋯",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0vtxkWXvh4qhkcLYwf2yCeTRnSTumW77K1biMuYtCaanChKPvB391CdnFpfQjv3xNl"
-    },
-    {
-      "t": "5h",
-      "text": "又是反彈而已 我這次才不會被騙 等你漲個兩天再說",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0378dMQFQW6Nu2kxzRaYuJsnXgNVVo9AV5NZYHiEGhRvn5uJcvNJVZKFKjXh95wMxdl"
+      "t": "1h",
+      "text": "唉不是⋯⋯⋯你不能我早上才買⋯你⋯…",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02j1dLDJnBcBB1S8iyQQN7phQjn2g3cavJqpABYJzXfsdqkxd9jQ3WCgfG2TdS24bAl"
     }
   ],
   "insight_stale": true
