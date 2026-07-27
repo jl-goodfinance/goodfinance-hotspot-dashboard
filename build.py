@@ -235,7 +235,11 @@ def get_taiex():
         q = json.loads(fetch_text(
             "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw&json=1&delay=0"))
         a = q["msgArray"][0]
-        rt = {"z": float(a["z"]), "y": float(a["y"]), "t": a["t"], "d": a["d"]}
+        # 非交易時段 z 可能缺漏或為 "-"，改用最近成交價 o/h/l 或當日收盤
+        z = next((a[k] for k in ("z", "o", "h") if a.get(k) not in (None, "", "-")), None)
+        if z is not None:
+            rt = {"z": float(z), "y": float(a["y"]), "t": a.get("t", ""),
+                  "d": a.get("d", "")}
     except Exception as e:
         print("taiex realtime error:", e)
     # 只取今年（1/1 起）的交易日

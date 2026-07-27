@@ -23,6 +23,7 @@ TZ = ZoneInfo("Asia/Taipei")
 REPO = Path(__file__).resolve().parent.parent
 SOCIAL = REPO / "social.json"
 MIN_INTERVAL_HOURS = 12
+YT_TARGET_POSTS = 5  # 每位 KOL 目標貼文數
 PAGES = {
     "gooaye": "https://www.facebook.com/Gooaye",
     "banini": "https://www.facebook.com/DieWithoutBang/",
@@ -100,62 +101,82 @@ def _osa_on_tab(url_key, action):
 end tell''')
 
 
+def _is_pinned(text):
+    return "置頂" in text or "斂財連結" in text
+
+
 def scrape(url):
     expand = ("[...document.querySelectorAll('div[role=\\\"button\\\"]')]"
               ".filter(b => /^(See more|顯示更多)$/.test(b.innerText.trim()))"
               ".slice(0,10).forEach(b => b.click()); 'ok'")
     js = EXTRACT_JS.strip().replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
     url_key = url.rstrip("/").split("facebook.com/")[-1]
-    # 獨立小視窗 + 立即縮到 Dock：不佔用使用者目前的視窗與焦點
+    # 角落小視窗，開好立刻把焦點還給使用者原本的 App。
+    # （不可縮到 Dock：Chrome 不渲染最小化視窗的貼文 feed，會抓到 0 則）
+    prev_app = ""
+    try:
+        prev_app = osa('tell application "System Events" to get name of '
+                       'first application process whose frontmost is true')
+    except Exception:
+        pass
     osa(f'''tell application "Google Chrome"
-	make new window with properties {{bounds:{{60, 60, 620, 620}}}}
+	make new window with properties {{bounds:{{40, 640, 560, 1180}}}}
 	set URL of active tab of front window to "{url}"
-	set minimized of front window to true
 end tell''')
-    time.sleep(10)
-    _osa_on_tab(url_key, 'execute t javascript "window.scrollTo(0, 4000)"')
-    time.sleep(4)
-    _osa_on_tab(url_key, f'execute t javascript "{expand}"')
-    time.sleep(3)
-    raw = _osa_on_tab(url_key, f'return execute t javascript "{js}"')
-    if raw in ("notfound", "", "[]"):
-        # 縮小狀態偶爾不載入內容：短暫展開該視窗重試一次
+    if prev_app and prev_app != "Google Chrome":
         try:
-            osa(f'''tell application "Google Chrome"
-	repeat with w in every window
-		repeat with t in every tab of w
-			if URL of t contains "{url_key}" then
-				set minimized of w to false
-				return "restored"
-			end if
-		end repeat
-	end repeat
-end tell''')
+            osa(f'tell application "{prev_app}" to activate')
         except Exception:
             pass
-        time.sleep(6)
-        _osa_on_tab(url_key, 'execute t javascript "window.scrollTo(0, 4000)"')
-        time.sleep(4)
-        raw = _osa_on_tab(url_key, f'return execute t javascript "{js}"')
+    # 各粉專載入速度不一，且 FB 會把捲過的貼文從 DOM 卸載，
+    # 因此逐次捲動、每次都抓一份並累積合併（以連結／內文前綴去重）
+    time.sleep(9)
+    collected, seen = [], set()
+    def try_tab(action):
+        # 使用者開關分頁會讓 AppleScript 的索引失效，屬暫時性錯誤
+        try:
+            return _osa_on_tab(url_key, action)
+        except Exception:
+            return None
+
+    for attempt in range(6):
+        try_tab(f'execute t javascript "window.scrollTo(0, {1200 * attempt})"')
+        time.sleep(3)
+        try_tab(f'execute t javascript "{expand}"')
+        time.sleep(2)
+        got = try_tab(f'return execute t javascript "{js}"')
+        if not got or got in ("notfound", "[]"):
+            continue
+        try:
+            batch = json.loads(got)
+        except Exception:
+            continue
+        for p in batch:
+            text = (p.get("text") or "").strip()
+            if not text or _is_pinned(text):
+                continue
+            key = p.get("link") or text[:24]
+            if key in seen:
+                continue
+            seen.add(key)
+            collected.append(p)
+        if len(collected) >= YT_TARGET_POSTS:
+            break
+    posts = collected
     try:
         # 刪除分頁會使 AppleScript 迭代索引失效，屬非致命錯誤
         _osa_on_tab(url_key, 'delete t\n\t\t\t\treturn "closed"')
     except Exception:
         pass
-    if raw == "notfound":
-        raise RuntimeError("找不到目標分頁（可能被休眠擴充回收）")
-    posts = json.loads(raw)
+    if not posts:
+        raise RuntimeError("頁面未載入貼文（FB 版面或載入速度異常）")
     out = []
     fallback_t = f"{datetime.now(TZ).month}/{datetime.now(TZ).day} 擷取"
-    for p in posts:
-        text = (p.get("text") or "").strip()
-        if not text or "置頂" in text or "斂財連結" in text:
-            continue
+    for p in posts[:YT_TARGET_POSTS]:
         out.append({"t": p.get("time") or fallback_t,
-                    "text": re.sub(r"\s*See (more|less)$", "", text)[:160],
+                    "text": re.sub(r"\s*See (more|less)$", "",
+                                   p["text"].strip())[:160],
                     "link": p.get("link")})
-        if len(out) >= 5:
-            break
     return out
 
 

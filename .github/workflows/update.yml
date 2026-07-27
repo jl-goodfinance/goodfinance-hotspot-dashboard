@@ -14,6 +14,11 @@ on:
 permissions:
   contents: write
 
+# 同時觸發時排隊執行，避免兩個 run 互相搶推送
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,4 +39,10 @@ jobs:
           git add docs/
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "update dashboard $(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M')"
+          # 遠端若已被其他 run 推進，rebase 後重試
+          for i in 1 2 3; do
+            git push && exit 0
+            echo "push rejected, rebasing (attempt $i)"
+            git pull --rebase -X ours origin main
+          done
           git push
