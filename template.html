@@ -174,6 +174,10 @@
   .yt-like{display:inline-block;font-size:10.5px;font-weight:700;color:#ffb073;background:rgba(240,146,74,.13);border-radius:999px;padding:1px 8px;margin-right:7px;font-variant-numeric:tabular-nums}
   .yt-author{color:#8a94a8;margin-right:6px}
 
+  .ts{display:inline-block;font-size:10.5px;font-weight:600;color:var(--sub);background:rgba(148,178,255,.07);border-radius:999px;padding:1px 8px;margin-left:8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ts::before{content:"⟳ ";opacity:.7}
+  .ts.old{color:#ffb073;background:rgba(240,146,74,.12)}
+
   .stay{display:inline-block;font-size:10px;font-weight:700;color:#ff8fd4;background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.3);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:1px;white-space:nowrap;font-variant-numeric:tabular-nums}
 
   .methodology{font-size:12.5px;color:var(--sub);line-height:1.7}
@@ -240,7 +244,7 @@
 <!--MARKET_HERO-->
 
       <div class="card span6" id="market">
-        <div class="card-head"><h2>證交所成交量前 10</h2><span class="pill"><!--TWSE_DATE--> 收盤</span></div>
+        <div class="card-head"><h2>證交所成交量前 10</h2><!--TS_TWSE--><span class="pill"><!--TWSE_DATE--> 收盤</span></div>
         <table>
           <thead><tr><th style="width:40px">#</th><th>代號</th><th>名稱</th></tr></thead>
           <tbody>
@@ -250,7 +254,7 @@
       </div>
 
       <div class="card span6">
-        <div class="card-head"><h2>Google 台灣即時熱搜</h2><span class="pill green">財經自動標記</span></div>
+        <div class="card-head"><h2>Google 台灣即時熱搜</h2><!--TS_TRENDS--><span class="pill green">財經自動標記</span></div>
         <table>
           <thead><tr><th>關鍵字</th><th>分類</th><th class="num">搜尋量</th></tr></thead>
           <tbody>
@@ -264,12 +268,12 @@
 <!--CAT_CARDS-->
 
       <div class="card" style="grid-column:span 12" id="watch">
-        <div class="card-head"><h2>自訂關鍵字監測</h2><span class="pill violet">Google Trends 台灣 · 90 天趨勢</span></div>
+        <div class="card-head"><h2>自訂關鍵字監測</h2><!--TS_WATCH--><span class="pill violet">Google Trends 台灣 · 90 天趨勢</span></div>
 <!--WATCH_PANELS-->
       </div>
 
       <div class="card" style="grid-column:span 12" id="yt">
-        <div class="card-head"><h2>YT 頻道監測</h2><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
+        <div class="card-head"><h2>YT 頻道監測</h2><!--TS_YT--><span class="pill blue">近 24 小時上片 · 留言讚數 ≥ 3</span></div>
         <div class="yt-grid">
 <!--YT_BLOCKS-->
         </div>
@@ -278,7 +282,7 @@
 <!--KOL_CARD-->
 
       <div class="card span6" id="community">
-        <div class="card-head"><h2>PTT Stock 本週爆文</h2><span class="pill blue">推文數破百 · 近 7 天</span></div>
+        <div class="card-head"><h2>PTT Stock 本週爆文</h2><!--TS_PTT--><span class="pill blue">推文數破百 · 近 7 天</span></div>
         <table>
           <thead><tr><th style="width:36px">#</th><th>標題</th><th>分類</th><th class="num">日期</th></tr></thead>
           <tbody>
@@ -289,7 +293,7 @@
       </div>
 
       <div class="card span6">
-        <div class="card-head"><h2>人物熱度 Top 10</h2><span class="pill orange">Better Living 選題參考 · 近 7 天媒體聲量排序</span></div>
+        <div class="card-head"><h2>人物熱度 Top 10</h2><!--TS_KOLS--><span class="pill orange">Better Living 選題參考 · 近 7 天媒體聲量排序</span></div>
         <table>
           <thead><tr><th style="width:36px">#</th><th>創作者</th><th class="num">7天聲量</th><th>主題</th></tr></thead>
           <tbody>
@@ -308,7 +312,8 @@
           <b>④ KOL 監測</b>：YouTube 社群規模即時抓取；股癌用 Podcast RSS＋媒體報導；巴逆逆用 Google News 人物監測。<br>
           <b>⑤ PTT Stock 爆文</b>：近 7 天推文數破百（爆）的文章，排除公告與每日閒聊串 — 散戶情緒與話題濃度指標。<br>
           <b>⑥ YT 頻道監測</b>：指定頻道官方 RSS 抓近 24 小時上片，留言經 YouTube 網頁介面取熱門排序、只列讚數 ≥ 3 者 — 看同行選題與觀眾反應。<br>
-          <b>⑦ 停留時間</b>：關鍵字或新聞連續出現在榜上超過一天，會標「N 天」粉色標籤 — 持續發酵的題材比一日煙火更值得做完整企劃。
+          <b>⑦ 停留時間</b>：關鍵字或新聞連續出現在榜上超過一天，會標「N 天」粉色標籤 — 持續發酵的題材比一日煙火更值得做完整企劃。<br>
+          <b>⑧ 各卡時間戳</b>：每張卡標題旁的 ⟳ 時間＝該區塊資料實際抓取的時刻。變成<span style="color:#ffb073">琥珀色</span>代表比本次更新舊 2 小時以上（來源暫時無法取得、沿用快取）。
         </div>
       </div>
 

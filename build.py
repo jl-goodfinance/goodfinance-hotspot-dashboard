@@ -257,19 +257,21 @@ def get_twse_top():
         rows = [{"code": r[1], "name": r[2]} for r in d.get("data", [])[:10]]
         if rows:
             DOCS.mkdir(exist_ok=True)
-            cache_p.write_text(json.dumps({"date": date, "rows": rows},
+            stamp = datetime.now(TZ).strftime("%Y-%m-%d %H:%M")
+            cache_p.write_text(json.dumps({"date": date, "rows": rows,
+                                           "fetched": stamp},
                                           ensure_ascii=False), encoding="utf-8")
-            return date, rows
+            return date, rows, stamp
         raise ValueError("empty data")
     except Exception as e:
         print("twse error:", e)
         if cache_p.exists():
             try:
                 c = json.loads(cache_p.read_text(encoding="utf-8"))
-                return c["date"], c["rows"]
+                return c["date"], c["rows"], c.get("fetched", "")
             except Exception:
                 pass
-        return "", []
+        return "", [], ""
 
 
 def get_kols():
@@ -680,10 +682,20 @@ def compute_streaks(keys_by_kind, now):
 # ---------------------------------------------------------------- 彙整
 def aggregate():
     now = datetime.now(TZ)
+    fetched = {}
+
+    def stamp(key):
+        """記錄該資料源實際完成抓取的時間（供各卡片顯示）"""
+        fetched[key] = datetime.now(TZ).strftime("%Y-%m-%d %H:%M")
+
     trends = get_google_trends()
+    stamp("trends")
     news = get_cnyes_news()
-    twse_date, twse = get_twse_top()
+    stamp("news")
+    twse_date, twse, twse_fetched = get_twse_top()
+    fetched["twse"] = twse_fetched or now.strftime("%Y-%m-%d %H:%M")
     kols = get_kols()
+    stamp("kols")
     gooaye = get_gooaye()
     banini = google_news("巴逆逆", limit=3)
 
@@ -719,20 +731,32 @@ def aggregate():
     stay = compute_streaks(
         {"kw": kw_keys, "news": news_keys, "trend": trend_keys}, now)
 
+    ptt = get_ptt_hot()
+    stamp("ptt")
+    watch = get_watch_trends()
+    fetched["watch"] = (watch or {}).get("fetched", "")
+    social = load_social()
+    fetched["social"] = (social or {}).get("updated", "")
+    taiex = get_taiex()
+    stamp("taiex")
+    yt = get_yt_monitor()
+    stamp("yt")
+
     return {
         "stay": stay,
         "updated": now.strftime("%Y-%m-%d %H:%M"),
+        "fetched": fetched,
         "trends": trends, "fin_trends": fin_trends,
         "kw_by_cat": {c: kw_by_cat[c][:7] for c in PRIORITY},
         "news_by_cat": {c: news_by_cat[c][:10] for c in PRIORITY},
         "cat_counts": cat_counts,
         "twse": twse, "twse_date": twse_date,
         "kols": kols, "gooaye": gooaye, "banini": banini,
-        "ptt": get_ptt_hot(),
-        "watch": get_watch_trends(),
-        "social": load_social(),
-        "taiex": get_taiex(),
-        "yt": get_yt_monitor(),
+        "ptt": ptt,
+        "watch": watch,
+        "social": social,
+        "taiex": taiex,
+        "yt": yt,
     }
 
 
@@ -748,6 +772,25 @@ def load_social():
 
 
 # ---------------------------------------------------------------- 渲染
+def ts_chip(data, key):
+    """各卡片的資料時間；比頁面更新時間舊 2 小時以上會標為過期色"""
+    t = (data.get("fetched") or {}).get(key) or ""
+    if not t:
+        return ""
+    label, cls = t[11:16], ""
+    try:
+        built = datetime.strptime(data["updated"], "%Y-%m-%d %H:%M")
+        got = datetime.strptime(t, "%Y-%m-%d %H:%M")
+        gap = (built - got).total_seconds() / 3600
+        if got.date() != built.date():
+            label = f"{got.month}/{got.day} {label}"
+        if gap >= 2:
+            cls = " old"
+    except Exception:
+        pass
+    return f'<span class="ts{cls}">{esc(label)}</span>'
+
+
 def stay_badge(label):
     return f'<span class="stay">{esc(label)}</span>' if label else ""
 
@@ -790,7 +833,7 @@ def render_cat_cards(data):
         note = CAT_NOTE.get(cat, "")
         cards.append(f'''
       <div class="card {spans[cat]}">
-        <div class="card-head"><h2>{titles.get(cat, cat)}</h2><span class="pill">今日 {n} 則{note}</span></div>
+        <div class="card-head"><h2>{titles.get(cat, cat)}</h2>{ts_chip(data, "news")}<span class="pill">今日 {n} 則{note}</span></div>
         {render_bars(data["kw_by_cat"].get(cat, []), CAT_STYLE[cat], stay.get("kw"), cat)}
         <ul class="news">
         {render_news(data["news_by_cat"].get(cat, []), stay.get("news"))}
@@ -811,7 +854,7 @@ def render_focus(data):
     g = data["gooaye"]
     return f'''
       <div class="card span4">
-        <span class="pill blue">今日最熱財經熱搜</span>
+        <span class="pill blue">今日最熱財經熱搜</span>{ts_chip(data, "trends")}
         <div class="kicker">Google 搜尋量</div>
         <div class="big">{esc(top["traffic"])}</div>
         <div class="focus-title" style="font-size:19px">{esc(top["kw"])}</div>
@@ -819,7 +862,7 @@ def render_focus(data):
       </div>
 
       <div class="card span8">
-        <span class="pill violet">財經熱搜題材</span>
+        <span class="pill violet">財經熱搜題材</span>{ts_chip(data, "trends")}
         <div class="kicker violet">同時竄進全站熱搜的財經字</div>
         <div class="focus-title" style="font-size:18px;margin-top:8px">{others}</div>
         <div class="focus-why">財經關鍵字擠進 Google 全站熱搜榜＝散戶都在查的「破圈」題材，適合當開場 hook。</div>
@@ -859,7 +902,7 @@ def render_kol_card(data):
                     f'{esc(insight)}</div>') if insight else ""
     return f'''
       <div class="card" style="grid-column:span 12" id="kol">
-        <div class="card-head"><h2>KOL 風向</h2><span class="pill orange">{note}</span></div>
+        <div class="card-head"><h2>KOL 風向</h2>{ts_chip(data, "social")}<span class="pill orange">{note}</span></div>
         <div class="kol-grid">
           <div class="kol">
             <div class="kol-name">股癌 <span class="kol-meta">{esc(g["ep"])} · {esc(g["ep_date"])} · FB 擷取 {fetched}</span></div>
@@ -886,7 +929,7 @@ def render_kol_table(kols):
     return "\n".join(rows)
 
 
-def render_market_hero(taiex):
+def render_market_hero(taiex, data=None):
     """大盤全寬卡：指數折線 + 成交量柱 + 量能指標（台股慣例紅漲綠跌）"""
     days = taiex.get("days") or []
     if not days:
@@ -962,7 +1005,7 @@ def render_market_hero(taiex):
       <div class="card" style="grid-column:span 12">
         <div class="mk-top">
           <div>
-            <div class="kicker" style="margin:0">台股加權指數 <span class="pill">{esc(dfmt(last["date"]))} · {esc(t_label)}</span></div>
+            <div class="kicker" style="margin:0">台股加權指數 <span class="pill">{esc(dfmt(last["date"]))} · {esc(t_label)}</span>{ts_chip(data or {}, "taiex")}</div>
             <div class="mk-idx">{idx:,.2f}<span class="mk-chg {ccls}">{sign} {abs(chg):,.2f}（{pct:+.2f}%）</span></div>
           </div>
           <div class="mk-stats">
@@ -1117,7 +1160,7 @@ def main():
     template = (ROOT / "template.html").read_text(encoding="utf-8")
     page = (template
             .replace("<!--UPDATED-->", esc(data["updated"]))
-            .replace("<!--MARKET_HERO-->", render_market_hero(data["taiex"]))
+            .replace("<!--MARKET_HERO-->", render_market_hero(data["taiex"], data))
             .replace("<!--FOCUS_CARDS-->", render_focus(data))
             .replace("<!--CAT_CARDS-->", render_cat_cards(data))
             .replace("<!--KOL_ROWS-->", render_kol_table(data["kols"]))
@@ -1130,7 +1173,13 @@ def main():
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
             .replace("<!--WATCH_PANELS-->", render_watch(data["watch"]))
             .replace("<!--YT_BLOCKS-->", render_yt(data["yt"]))
-            .replace("<!--KOL_CARD-->", render_kol_card(data)))
+            .replace("<!--KOL_CARD-->", render_kol_card(data))
+            .replace("<!--TS_TWSE-->", ts_chip(data, "twse"))
+            .replace("<!--TS_TRENDS-->", ts_chip(data, "trends"))
+            .replace("<!--TS_WATCH-->", ts_chip(data, "watch"))
+            .replace("<!--TS_YT-->", ts_chip(data, "yt"))
+            .replace("<!--TS_PTT-->", ts_chip(data, "ptt"))
+            .replace("<!--TS_KOLS-->", ts_chip(data, "kols")))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 
