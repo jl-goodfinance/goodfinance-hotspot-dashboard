@@ -40,7 +40,7 @@
   },
   "trend": {}
  },
- "updated": "2026-07-28 09:02",
+ "updated": "2026-07-28 09:03",
  "trends": [
   {
    "kw": "韓國股市",
@@ -127,7 +127,7 @@
    "traffic": "200+",
    "news": [
     "iOS 26.6, macOS 26.6 And The Rest Are Out, Addressing Security Fixes",
-    "Apple fixes over 75 security issues with your iPhone and 150+ for Mac, update now",
+    "Claude, Codex, and other AI tools credited in today’s Apple security releases",
     "Apple’s 26.6 Software Updates Are Now Available"
    ],
    "cat": "股票交易"
@@ -215,7 +215,7 @@
    "traffic": "200+",
    "news": [
     "iOS 26.6, macOS 26.6 And The Rest Are Out, Addressing Security Fixes",
-    "Apple fixes over 75 security issues with your iPhone and 150+ for Mac, update now",
+    "Claude, Codex, and other AI tools credited in today’s Apple security releases",
     "Apple’s 26.6 Software Updates Are Now Available"
    ],
    "cat": "股票交易"
@@ -2525,9 +2525,9 @@
    }
   ],
   "rt": {
-   "z": 42148.6,
+   "z": 42193.17,
    "y": 43634.19,
-   "t": "09:03:25",
+   "t": "09:04:55",
    "d": "20260728"
   },
   "year": 2026
@@ -2619,6 +2619,11 @@
      "fallback": false,
      "comments": [
       {
+       "likes": "115",
+       "author": "@emmahsu-HappyForEver",
+       "text": "酸民變多 ，就代表多頭的春天近了😊"
+      },
+      {
        "likes": "93",
        "author": "@mercy9327",
        "text": "又是暴跌的一天"
@@ -2629,19 +2634,14 @@
        "text": "这哥们看到盘前涨了点立马跳出来，现在又sb了，估计又要躲两天"
       },
       {
-       "likes": "18",
-       "author": "@Doris-w5t",
-       "text": "感謝尼哥 一起加油🎉❤"
+       "likes": "31",
+       "author": "@cinderellas",
+       "text": "毫无技术分析，纯粹鸡汤喂养:face-blue-smiling:"
       },
       {
-       "likes": "14",
-       "author": "@Chenyuan0925",
-       "text": "有道理，但是YouTube 上的人大多還是以短期內的成敗論英雄，因為現代人短影音看多了都沒什麼耐心，快速致富才是現在年輕人追捧的"
-      },
-      {
-       "likes": "12",
-       "author": "@patrickjen29",
-       "text": "獲益良多，我身為長期投資者，自然閱讀及了解有關趨勢的資料，但信念或信仰真的得時時強化和鞏固，謝謝你"
+       "likes": "27",
+       "author": "@leoliu182",
+       "text": "說得好~白嫖仔就算大賺錢也是算他自己的~稍微賠錢一定就算在你頭上~😉🤷‍♂"
       }
      ]
     }
