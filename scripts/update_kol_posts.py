@@ -22,7 +22,7 @@ from zoneinfo import ZoneInfo
 TZ = ZoneInfo("Asia/Taipei")
 REPO = Path(__file__).resolve().parent.parent
 SOCIAL = REPO / "social.json"
-MIN_INTERVAL_HOURS = 12
+MIN_INTERVAL_HOURS = 20  # 一天一次；多個排程時段只是「Chrome 沒開就換下個時段」的重試
 YT_TARGET_POSTS = 5  # 每位 KOL 目標貼文數
 PAGES = {
     "gooaye": "https://www.facebook.com/Gooaye",
