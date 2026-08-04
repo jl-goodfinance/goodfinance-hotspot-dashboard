@@ -1,49 +1,19 @@
 {
-  "updated": "2026-08-03 16:38",
+  "updated": "2026-08-04 16:36",
   "insight": "台股今日反彈收 43,386（+266 點），但兩人談的都是「槓桿的代價」，主題撞得極準。股癌本週兩條主線：一是用實際財報駁泡沫論——VRT、台達、光寶 Q2 說法化解 800VDC 利空，客戶資本支出沒降溫、共識落在 400VDC 節點，台達還提到 MOSFET 缺料；二是 Situational Awareness 基金爆倉，7/24 才寄信告訴投資人是好買點、自己先扛不住，AUM 從 450 億美元清算到剩約 100 億，可能是史上最大基金虧損——上半年報酬 439% 的明星基金一個月內崩掉，是最現成的槓桿警世故事。巴逆逆則是同一劇本的散戶版現場直播：15 小時前立誓「星期一又要跌千點，這次我一定認錯買回」，7 小時前追聯電被嚇到，2 小時前抱怨「愛普開低走漲停、我的正二開高走低」——持有槓桿 ETF 又追個股，反覆被雙巴。節目切入建議：巴逆逆的「愛普是什麼家暴渣男」開場（散戶追高殺低的共鳴），中段用 SA 爆倉講槓桿與流動性風險，再接股癌的資本支出數據說明「基本面沒壞、壞的是槓桿」，收在融資／衍生性單元的正二與信貸操作風險。",
   "gooaye": [
     {
-      "t": "5h",
-      "text": "vrt 26Q2 vrt, delta, liteon 出來的說法都算化解掉前波 800vdc 的利空，可以想成市場把預期 trade 去很高，但產業這邊本來就是慢慢開過去，也很有共識 400vdc 會是重點節點 需求端沒有降溫，三家都用客戶實際資本支出駁回泡沫論。共同訊號是執行面，台達提到 mosfet 缺料、光寶靠",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0NTc9LAyuKH2FNCARvmKxQT9Dw8vKaX6phk5Ys1AXHkkxprXNQ1ineuHnT4t8XFe7l"
-    },
-    {
-      "t": "2d",
-      "text": "EP684 |  終於可以喘一下 本集節目由【AWSON 八電極家用體脂計】贊助播出 https://s.add.one/8qch7r 投資虧損會看對帳單，身體的虧損也別再選擇不認列，體重只是股價，身體組成才是基本面；與其繼續對體脂凹單，不如用科學數據替身體真正去槓桿。 ．八電極測量：分析四肢與軀幹，提供多達 58 項",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0vzktCGoTYQm8BngsdHeTRN9kHyz6kEv3r4QGtdaH2NWpeb8kecPU3BPxzG1PHa1sl"
-    },
-    {
-      "t": "3d",
-      "text": "situational awareness 爆倉？ 7/24 寄信給投資人說是好買點，但扛不住先爆了，CNBC 說整包賣給 Ken Griffen - 2024 成立至今超過十倍報酬，2026 上半年報酬 439% - 7 月初資產最高時 aum 450 億美元，清算後估計剩約 100 億，若屬實是史上最大基金虧損，超",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02v2WiagDN17Maxodu2n1tP24qdt1vceMJ2vkysqihfNH1F4GysmXUceFSrT2AFxNHl"
-    },
-    {
-      "t": "4d",
-      "text": "msft 目前盤後看起來是少數沒因為開好成績而被市場重懲的公司，相較於其他大玩家（alphabet $180-190B 上修到 $195-205B，meta $125-145B），資本支出較為持平沒上修。但對 AI 和供需都還是非常樂觀 --- copilot (source satya x) - 用戶對話次數較去年同",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0PM9t1qDXWRZ4YBSp12x6pqjxxFMATKewSzENTbqcrhNjU9RPL2pvJc1CBYAgxE3Pl"
+      "t": "1h",
+      "text": "pltr q2 \"we do not get paid for clicks or tokens or chats. The gamification of the most significant development in modern economic history seems to us misplaced",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02kEHzifcBNYZSLwnqVDQrVK8GrP33nqA1vRtxxH9M6D9xKBwLppLUX3miMZbEkauYl"
     }
   ],
   "banini": [
     {
-      "t": "2h",
-      "text": "⋯⋯⋯ 一早開盤衝進場的我 不是 唉 你不能愛普今天開低走漲停 我的正二開高走低啊 是逼我把愛普接回來嗎？ 愛普是什麼家暴渣男嗎_(:_」∠)_",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02ZUhk2xnrhibRWtrXjrvYXCJKsvUP44Skb1NuM2vx47SQeVjBvxwgntR12DPzdBJUl"
-    },
-    {
-      "t": "7h",
-      "text": "原本要衝聯電， 誰知道開個車就往下噴 感到害怕",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid037QuYQD6XrUCTwJumPTPjWCFk1e7n1VWmB1jvDSE9YEiAWSSUPJss4JmLNLPPWWGXl"
-    },
-    {
-      "t": "15h",
-      "text": "早點睡，起來輸錢 星期一又要跌千點⋯這次我一定認錯買回！",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02DnoVRsHMfu5DNDGDcLb1jpPiWiGXrGKwA9opSnCWn8piuAWYGbRg4wyZ8iPToYm7l"
-    },
-    {
-      "t": "1d",
-      "text": "海的對面是敵人？ 唉，等等，對面是日本？  海的對面是購物天堂！  是說為啥蘇花上面有賣咖啡",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0mqERX89T1MUijRrGoW9KXwwtEWGAHVErW4Eq3FYdC9ibFJzcK7D5RaVZadfWP97nl"
+      "t": "8/4 擷取",
+      "text": "巨巨  Ikimashu~~",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0T3CwBXmznqPr3KtUe1QZErBS5TvMezuvwoUsX4V1n2qDrALNbh4vdvkZYJA5k7Fdl"
     }
   ],
-  "insight_stale": false
+  "insight_stale": true
 }
