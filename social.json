@@ -1,18 +1,53 @@
 {
-  "updated": "2026-08-04 16:36",
+  "updated": "2026-08-05 16:45",
   "insight": "台股今日反彈收 43,386（+266 點），但兩人談的都是「槓桿的代價」，主題撞得極準。股癌本週兩條主線：一是用實際財報駁泡沫論——VRT、台達、光寶 Q2 說法化解 800VDC 利空，客戶資本支出沒降溫、共識落在 400VDC 節點，台達還提到 MOSFET 缺料；二是 Situational Awareness 基金爆倉，7/24 才寄信告訴投資人是好買點、自己先扛不住，AUM 從 450 億美元清算到剩約 100 億，可能是史上最大基金虧損——上半年報酬 439% 的明星基金一個月內崩掉，是最現成的槓桿警世故事。巴逆逆則是同一劇本的散戶版現場直播：15 小時前立誓「星期一又要跌千點，這次我一定認錯買回」，7 小時前追聯電被嚇到，2 小時前抱怨「愛普開低走漲停、我的正二開高走低」——持有槓桿 ETF 又追個股，反覆被雙巴。節目切入建議：巴逆逆的「愛普是什麼家暴渣男」開場（散戶追高殺低的共鳴），中段用 SA 爆倉講槓桿與流動性風險，再接股癌的資本支出數據說明「基本面沒壞、壞的是槓桿」，收在融資／衍生性單元的正二與信貸操作風險。",
   "gooaye": [
     {
-      "t": "1h",
+      "t": "1d",
       "text": "pltr q2 \"we do not get paid for clicks or tokens or chats. The gamification of the most significant development in modern economic history seems to us misplaced",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02kEHzifcBNYZSLwnqVDQrVK8GrP33nqA1vRtxxH9M6D9xKBwLppLUX3miMZbEkauYl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0ggeooVypXW53LHiLWLnuB7hx7jMjU87J1PtH7gmGVsJAovENYRQ4aehfeFNMCynUl"
+    },
+    {
+      "t": "2d",
+      "text": "vrt 26Q2 vrt, delta, liteon 出來的說法都算化解掉前波 800vdc 的利空，可以想成市場把預期 trade 去很高，但產業這邊本來就是慢慢開過去，也很有共識 400vdc 會是重點節點 需求端沒有降溫，三家都用客戶實際資本支出駁回泡沫論。共同訊號是執行面，台達提到 mosfet 缺料、光寶靠",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0NHT932iAVttjGh1kWAsTM7CBhhqG7KHWnAbSwN6A9AdqBNrcU8uFBtD4VKPQFkd8l"
+    },
+    {
+      "t": "4d",
+      "text": "EP684 |  終於可以喘一下 本集節目由【AWSON 八電極家用體脂計】贊助播出 https://s.add.one/8qch7r 投資虧損會看對帳單，身體的虧損也別再選擇不認列，體重只是股價，身體組成才是基本面；與其繼續對體脂凹單，不如用科學數據替身體真正去槓桿。 ．八電極測量：分析四肢與軀幹，提供多達 58 項",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0wJZQTn6vYfB2fmy5BG5AUqDdThg8d4z95cTVZ6AwaYkrHcHG9otRCiqfdeZwZp4El"
+    },
+    {
+      "t": "5d",
+      "text": "situational awareness 爆倉？ 7/24 寄信給投資人說是好買點，但扛不住先爆了，CNBC 說整包賣給 Ken Griffen - 2024 成立至今超過十倍報酬，2026 上半年報酬 439% - 7 月初資產最高時 aum 450 億美元，清算後估計剩約 100 億，若屬實是史上最大基金虧損，超",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02vLKErBWq1DQwyCQ6WejPWSNuvq5nh76v6hNcXrz8Y4V8KiK49FzXHjkTyoWrTNBJl"
+    },
+    {
+      "t": "6d",
+      "text": "msft 目前盤後看起來是少數沒因為開好成績而被市場重懲的公司，相較於其他大玩家（alphabet $180-190B 上修到 $195-205B，meta $125-145B），資本支出較為持平沒上修。但對 AI 和供需都還是非常樂觀 --- copilot (source satya x) - 用戶對話次數較去年同",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0PexQHLWzWhRy555j4cFk9ahBHAUiihYiXayDjPeKu8yGf4zFUE6aibVoz1MaeAWvl"
     }
   ],
   "banini": [
     {
-      "t": "8/4 擷取",
-      "text": "巨巨  Ikimashu~~",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0T3CwBXmznqPr3KtUe1QZErBS5TvMezuvwoUsX4V1n2qDrALNbh4vdvkZYJA5k7Fdl"
+      "t": "8/5 擷取",
+      "text": "各位觀眾，所謂的好乾爹 就是在你需要的時候 給你一台好用又有口碑掃地機器人 沒錯！這次的乾爹就是石頭掃地機器人 這次的商品是滾筒掃地機器人的頂點！ Qrevo Edge 2 Flow 搖滾天王 有著滾筒掃拖機器人界最薄機身8.98cm 不管是沙發底還是床底，都幫你清潔的乾乾淨淨 而且！滾輪拖布的增壓自清潔系統，邊洗邊拖",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02WteeNChpeB9qFDLLpdthcYnNcScRPzHHouimVaywyz9QCM2S7VGFxZxtLvo9FYuql"
+    },
+    {
+      "t": "17h",
+      "text": "各位觀眾，所謂的好乾爹 就是在你需要的時候 給你一台好用又有口碑掃地機器人 沒錯！這次的乾爹就是石頭掃地機器人 這次的商品是滾筒掃地機器人的頂點！ Qrevo Edge 2 Flow 搖滾天王 有著滾筒掃拖機器人界最薄機身8.98cm 不管是沙發底還是床底，都幫你清潔的乾乾淨淨 而且！滾輪拖布的增壓自清潔系統，邊洗邊拖",
+      "link": "https://www.facebook.com/reel/4210947569196863/"
+    },
+    {
+      "t": "1d",
+      "text": "大V天龍啊啊啊！ 再5跟我就打平啦⋯ 應該",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0pKpwDvhFr7DHzY6LuXC3jhYeedsn9RGTAfERghHmvgdJpsiqxqzjQi2KYGcZbskHl"
+    },
+    {
+      "t": "1d",
+      "text": "如何減肥",
+      "link": "https://www.facebook.com/reel/1011473041517331/"
     }
   ],
   "insight_stale": true
