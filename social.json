@@ -1,19 +1,19 @@
 {
-  "updated": "2026-08-06 15:19",
+  "updated": "2026-08-07 16:19",
   "insight": "兩人這兩天正好是對照組。股癌貼英飛凌 Q3：功率元件仍在上升週期，backlog 單季暴增 50 億至 300 億歐元、客戶開始卡產能簽保量約，看的是可驗證的訂單能見度。巴逆逆則從「再 5 根就打平」改口成「感覺怪怪的，這波搞不好只是反彈波」，先收回資金，依據仍是盤感。對照 8/5 帶量攻上 44611 點、隔日回檔逾兩百點，熱搜卻是群創、聯茂等低價輪動股，散戶心態已從凹單轉為驚弓之鳥，而反指標喊撤，往往代表這波還沒走完。建議用她那句「感覺怪怪的」開場，骨幹接股癌的保量約與庫存天數，收在財報單元談怎麼用產業數據取代盤感。",
   "gooaye": [
     {
-      "t": "1h",
-      "text": "ifx q3 功率元件維持上升週期，客戶開始卡產能簽保量約。在中國由於產能都給 AI 而產生排擠，公司積極獲取市占 - 營收 41.72 億歐元, qoq 9.4%、yoy 13% 創單季史高 - backlog  300 億歐元, 單季暴增 50 億 - 庫存天數 175 > 165 天(年底目標 ~150 天) -",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid029ZdLmpTiqp6tAPSufR4aXxibsKRVoJaxoxVAPJfzCWZ6zaE5EStBSDZbqcorGHDml"
+      "t": "5h",
+      "text": "Cloudflare 2q agent 大軍持續擴編，隨便問個問題就是幾十個分頁的抓取，人類看網頁的次數降低 x，去問 ai agent 爬的網頁次數卻不會只有 x，一般是好幾倍 x。多的用量附隨來之經濟和分潤如何分配，prince 有一套想法，但不確定會不會成真 --- - 營收 $696.1M,年增 36%;Q3 ",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid0b6Qf8FT9spAgqQyWyxGYnoe2kQoVbyKp25e1faNNDWoF8jVs4PfYMQL7ktW5MEHel"
     }
   ],
   "banini": [
     {
-      "t": "4h",
-      "text": "感覺⋯ 好像怪怪的⋯ 趁還沒虧很多， 還是收回資金好了 這一波搞不好真的是反彈波而已 如果是的話⋯ 那下一次下墜會很恐怖 現在是緩跌急漲啊",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02vnCU1T2WsCz6P1hDG2gPJtkYdALLyH2eUyXT9KcTkYpAj2VcoyqKbTF7GgmJFpzhl"
+      "t": "8/7 擷取",
+      "text": "拋棄南亞科這個軟腳男後 要不要再相信記憶體， 相信旺宏一次呢？",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02XCTAdi1HeWBS5z6USCgsBNWXe7PrU3K2nGLjbe1KquykDxLA8tAU8NdTXREA144rl"
     }
   ],
-  "insight_stale": false
+  "insight_stale": true
 }
