@@ -1,58 +1,38 @@
 {
-  "updated": "2026-08-12 09:18",
+  "updated": "2026-08-13 09:16",
   "insight": "兩人這幾天正好一冷一熱。股癌連著拆 AI 的變現路徑：Google 走了 Jeff Dean、Demis 也準下車，Cloud 成績漂亮反被解讀成算力拿去外賣而非自用；Cloudflare 2Q 營收年增 36%，agent 大軍把爬網次數翻上好幾倍，分潤卻沒人說得清，他問的其實是誰真的收得到租。巴逆逆則在情緒的另一端，從「站不住的感覺、有賺就該跑」一路喊到「又要崩了嗎，我是不是該盡貴金屬了」，還順手點名 00410A 這次沒破發。對照 8/10 大盤反彈 702 點站回 44928、成交量卻縮到 8762 億，熱搜是黃金、CPO 與算力 ETF：指數在漲、散戶想跑，反指標喊撤往往代表這波還沒走完。建議用她那句「該盡貴金屬了」開場，骨幹接股癌的算力自用與分潤之辯，收在 ETF 單元談怎麼用產業數據取代盤感。",
   "gooaye": [
     {
-      "t": "1d",
-      "text": "jeff dean 下車，demis 準下車，google 後續呢? cloud 交出漂亮成績，市場人士認為這是 google 掉出前緣模型的指標，代表算力拿去賣別人而不是自用，不樂觀鴨 我本來也會想這樣的劇本，直到眼見躺平，相對巨頭們什麼都沒做的 apple 獲得市場的喜愛（YTD 領先群雄）。這時候轉向印錢的 go",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02hFxphW7XHRvdNU4nN4UKfXLoBY8p13J6ZdKfikQuEYR289qQVgBoHC4PVNU1eLQTl"
-    },
-    {
-      "t": "2d",
-      "text": "EP686 |  各位 88 快樂！ 現在只要下載 Saily APP， 在結帳時輸入優惠代碼 [gooaye]， 或透過資訊欄專屬連結：https://saily.com/gooaye 購買方案即享有 85 折的專屬優惠。 #SailyeSIM 股癌傳送門：https://linktr.ee/gooaye",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0NgwAPFTQyMugHJFFn4qRFQ4Mo5pdztJoKcx3x6KU8FVhYPuDTo3EV2mbrr93fwH2l"
-    },
-    {
-      "t": "3d",
-      "text": "Cloudflare 2q agent 大軍持續擴編，隨便問個問題就是幾十個分頁的抓取，人類看網頁的次數降低 x，去問 ai agent 爬的網頁次數卻不會只有 x，一般是好幾倍 x。多的用量附隨來之經濟和分潤如何分配，prince 有一套想法，但不確定會不會成真 --- - 營收 $696.1M,年增 36%;Q3 ",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid0ak6eXxugEfmer4wKUZf46QN4dL8paZpC2kNad3bNdBzaH4LqmfmpCKg3yjSygnZ6l"
-    },
-    {
-      "t": "4d",
-      "text": "ifx q3 功率元件維持上升週期，客戶開始卡產能簽保量約。在中國由於產能都給 AI 而產生排擠，公司積極獲取市占 - 營收 41.72 億歐元, qoq 9.4%、yoy 13% 創單季史高 - backlog  300 億歐元, 單季暴增 50 億 - 庫存天數 175 > 165 天(年底目標 ~150 天) -",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid069dfq1s6BB62Nxu1ChktdtgBLT5aJta9FRQaro84CPKys8tpKHeuLZMo4PQCiXryl"
-    },
-    {
-      "t": "5d",
-      "text": "EP685 |  人類又找回勇氣了 本集節目由【NordVPN】贊助 現在搜尋 https://nordvpn.com/gooaye 或結帳時輸入股癌的專屬優惠碼【gooaye】 購買2年方案＋送四個月一個月只要一杯咖啡的價格就能取得VPN服務還有30天試用期， 不滿意可隨時取消 #NordVPN 股癌傳送門：http",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid02hCU9tFbqQy8dBQmK8tXNPJdJs4B13uJzu6dkT1owHACVGpnBSAi1TQpfCHY2FsxEl"
+      "t": "35m",
+      "text": "cerebras q2 這家爭取到滿多產能的，後續就看和別人的機架結合是否能交出公司答應的成效 - disaggregation 合作夥伴有 amd helios 和 aws trainium - oai 貢獻顯著，隨 aws 及其他客戶擴大會稀釋佔比 - hbm 架構在吞吐量和速度間做取捨，而像 cerebras s",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid09ze9pZxBRg66f9r1JvsZeFTzE5xKLtDRgKpCjif1w3zBZwsp6Mr6Xg9zT9dCVH2Vl"
     }
   ],
   "banini": [
     {
-      "t": "4m",
-      "text": "昨天剛進場的2位突然都懶了起來 請問怎麼回事？",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02G9kqFbkr5jqmtdhUBnMMLpeG39YNkML3631CygrwfiPq1mpvcsojrikQTogqXAqtl"
-    },
-    {
       "t": "9h",
-      "text": "穿的美美的去領蝦皮(⊙ω⊙)/ 接下來幾天都有業配要發 兩個都是中長期業配～ 希望有更多的業配乾爹～ 我也在持續找股票以外的東西分享給大家 希望有一天成為成功網紅的象徵：旅遊YTR 是說我的哀鳳最近好卡的感覺⋯",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0qgTkKjDnzRs4xAX8G1fv2jdKkj8T1u3j9n9PSm3bRBoJ2AnJTsCoFt9933oWAUEzl"
+      "text": "拯救阿嘎大成功～～～",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0VwWBsRroeH1wicPaXSboFiD1d46ixzbNM5V5ZTRzZ62Vt84MXWbtqq1N38CfmZrUl"
     },
     {
-      "t": "11h",
+      "t": "14h",
+      "text": "沒想到居然有人主動付費挑戰我啊～ 接下來三個月我會每週review一樣他說的對不對 是說⋯明天我是不是要來一個拯救阿嘎大作戰 一起把阿嘎買到400以上呢～～ 好猶豫喔！ 沒想到居然有人主動付費挑戰我啊～ 接下來三個月我會每週review一樣他說的對不對…",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid029xTQhHxXRbYeVqkQhMQcLGgvsGMjPP23vcw8TjkR5Zqg4r1rNb9tXXfUZA5TeH1Gl"
+    },
+    {
+      "t": "1d",
+      "text": "穿的美美的去領蝦皮(⊙ω⊙)/ 接下來幾天都有業配要發 兩個都是中長期業配～ 希望有更多的業配乾爹～ 我也在持續找股票以外的東西分享給大家 希望有一天成為成功網紅的象徵：旅遊YTR 是說我的哀鳳最近好卡的感覺⋯",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02u3wvwkaR258e9g9vNynQhUN93FQjQroA2xZhyqkvAtFsfCDmSKRT8pMikAWjNpHAl"
+    },
+    {
+      "t": "1d",
       "text": "不要再買股票了 你看， 買Seiko,Casio多好",
       "link": "https://www.facebook.com/reel/2227489127811521/"
     },
     {
-      "t": "20h",
+      "t": "1d",
       "text": "廢物聯盟換血 我把國巨這個賠錢貨甩了⋯  結果發現更多廢物_(:_」∠)_ 今天是不是跌1000點啊(;´༎ຶД༎ຶ`)",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid024hRyemhnowiaq2NYV4uwiPtmvJcDWwC4ZVkhgHgbYQodTAhfJGA4BRipUCvu1Bkdl"
-    },
-    {
-      "t": "23h",
-      "text": "我就是看看上了，買了，賺了幾%，早餐不吃就跑跑走的渣女！  我對股票再無信仰",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02r6Nu88FNiKVBjHepnE6LcjLrDKazeCsbd2YTMZCsaxVNzjeDQSX3mwRonQTLyUAZl"
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0384vAGo4QqgqEjagkBeCAhEjH9jnJLLkgQTJQuSVieCc8afMCy718CcPJgZBuJeqZl"
     }
   ],
   "insight_stale": true
