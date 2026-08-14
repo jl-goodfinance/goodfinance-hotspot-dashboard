@@ -1,38 +1,53 @@
 {
-  "updated": "2026-08-13 09:16",
+  "updated": "2026-08-14 09:16",
   "insight": "兩人這幾天正好一冷一熱。股癌連著拆 AI 的變現路徑：Google 走了 Jeff Dean、Demis 也準下車，Cloud 成績漂亮反被解讀成算力拿去外賣而非自用；Cloudflare 2Q 營收年增 36%，agent 大軍把爬網次數翻上好幾倍，分潤卻沒人說得清，他問的其實是誰真的收得到租。巴逆逆則在情緒的另一端，從「站不住的感覺、有賺就該跑」一路喊到「又要崩了嗎，我是不是該盡貴金屬了」，還順手點名 00410A 這次沒破發。對照 8/10 大盤反彈 702 點站回 44928、成交量卻縮到 8762 億，熱搜是黃金、CPO 與算力 ETF：指數在漲、散戶想跑，反指標喊撤往往代表這波還沒走完。建議用她那句「該盡貴金屬了」開場，骨幹接股癌的算力自用與分潤之辯，收在 ETF 單元談怎麼用產業數據取代盤感。",
   "gooaye": [
     {
-      "t": "35m",
+      "t": "22h",
       "text": "cerebras q2 這家爭取到滿多產能的，後續就看和別人的機架結合是否能交出公司答應的成效 - disaggregation 合作夥伴有 amd helios 和 aws trainium - oai 貢獻顯著，隨 aws 及其他客戶擴大會稀釋佔比 - hbm 架構在吞吐量和速度間做取捨，而像 cerebras s",
-      "link": "https://www.facebook.com/Gooaye/posts/pfbid09ze9pZxBRg66f9r1JvsZeFTzE5xKLtDRgKpCjif1w3zBZwsp6Mr6Xg9zT9dCVH2Vl"
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02Dr5s1Et1GyPGQC3aWtvPmWYYm7uF9K39JG6gSiMSGNzTE5XiBHD6LgN9jE5J5eQJl"
+    },
+    {
+      "t": "18h",
+      "text": "EP687 |  宙斯法則必須重新被尊重 中秋禮盒大家都在等我推薦， 今年一樣是【如邑堂】。 台灣蟬聯五屆太陽餅冠軍， 有國際名廚聯名的禮盒， 也有季節限定的頂級黑松露太陽餅禮盒， 還有各款月餅、太陽餅。 今年大推金采禮盒，還有餡金流蛋黃酥。 中秋送禮，買如邑堂就對了。 2026中秋優惠 滿額優惠｜滿2000折100、",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02wA9ujmmKhsCFr3j1azzoHfg6TRnhMNy1pDjjCrFtZU49jCtqJ5rzebdZsG9mohMZl"
+    },
+    {
+      "t": "2d",
+      "text": "因應歐盟 AI 法案的透明度要求，Claude 生成的內容上會加上 AI 生成標記 特別是文字浮水印那個太潮不曉得具體要怎麼執行，直覺是會一次把一堆內容都判斷成為 AI 生成，接著爛尾 -- 1. 文字內嵌浮水印 Claude 模型生成文字時，會在文字內織入一種人眼看不到的浮水印，不影響內容意義、品質或可讀性。這個浮水",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02qAyXoVTnRMaweEbTX5u49mrwYdobVhAhaCMTDwMLsdgEaen8SGjQrH16s54H7X5Nl"
+    },
+    {
+      "t": "4d",
+      "text": "jeff dean 下車，demis 準下車，google 後續呢? cloud 交出漂亮成績，市場人士認為這是 google 掉出前緣模型的指標，代表算力拿去賣別人而不是自用，不樂觀鴨 我本來也會想這樣的劇本，直到眼見躺平，相對巨頭們什麼都沒做的 apple 獲得市場的喜愛（YTD 領先群雄）。這時候轉向印錢的 go",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02guep7Da3eHsrm4pyxxZJD55d6GDDNfLPHK2DaJYTeoFR315pSh7c32nKBKrjDeYil"
+    },
+    {
+      "t": "5d",
+      "text": "EP686 |  各位 88 快樂！ 現在只要下載 Saily APP， 在結帳時輸入優惠代碼 [gooaye]， 或透過資訊欄專屬連結：https://saily.com/gooaye 購買方案即享有 85 折的專屬優惠。 #SailyeSIM 股癌傳送門：https://linktr.ee/gooaye",
+      "link": "https://www.facebook.com/Gooaye/posts/pfbid02SNDsGn7W1HRgjx3RdXYyHzEcevqvohWhqw98dMtPiH5nXdEqCXgbVqMHc3Ub9VzYl"
     }
   ],
   "banini": [
     {
-      "t": "9h",
-      "text": "拯救阿嘎大成功～～～",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0VwWBsRroeH1wicPaXSboFiD1d46ixzbNM5V5ZTRzZ62Vt84MXWbtqq1N38CfmZrUl"
+      "t": "7h",
+      "text": "夢到我在800元放開美光 好險沒有⋯ 我只是套在1100_(:_」∠)_",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02E55dZMhBkjx1AF1DmVsmFUsd14Q7NCkVaZrp5mDngMguyDcneLmFht5rtMeoKzwxl"
     },
     {
-      "t": "14h",
-      "text": "沒想到居然有人主動付費挑戰我啊～ 接下來三個月我會每週review一樣他說的對不對 是說⋯明天我是不是要來一個拯救阿嘎大作戰 一起把阿嘎買到400以上呢～～ 好猶豫喔！ 沒想到居然有人主動付費挑戰我啊～ 接下來三個月我會每週review一樣他說的對不對…",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid029xTQhHxXRbYeVqkQhMQcLGgvsGMjPP23vcw8TjkR5Zqg4r1rNb9tXXfUZA5TeH1Gl"
-    },
-    {
-      "t": "1d",
-      "text": "穿的美美的去領蝦皮(⊙ω⊙)/ 接下來幾天都有業配要發 兩個都是中長期業配～ 希望有更多的業配乾爹～ 我也在持續找股票以外的東西分享給大家 希望有一天成為成功網紅的象徵：旅遊YTR 是說我的哀鳳最近好卡的感覺⋯",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02u3wvwkaR258e9g9vNynQhUN93FQjQroA2xZhyqkvAtFsfCDmSKRT8pMikAWjNpHAl"
+      "t": "20h",
+      "text": "相對剝奪感 今年6月的時候，朋友股票大賺我小賺 覺得至少今年有進步 現在8月了，朋友還是大賺，而自己卻變成虧損 大半年過去了，別說進步了…… 為什麼做什麼都是半吊子…… 為什麼自己兢兢業業的，卻跟不上這個世界…… 別跟我說0050,我也有 只是個股輸的更多 然後IG現在都會吃文章，超爛",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0XWux9XrNNRFPktA56QFPMeUMLwnFTTWxHxUsi55UYE4yTMPGSxMHNPxqPfhmhqAVl"
     },
     {
       "t": "1d",
-      "text": "不要再買股票了 你看， 買Seiko,Casio多好",
-      "link": "https://www.facebook.com/reel/2227489127811521/"
+      "text": "今天晚上美光終於回到920以上了 看來明天穩了！ 是說我的損益還沒回到6月水平⋯再加上停損的 感覺一切都回到4月，但是點位卻超級高(｡ ́︿ ̀｡)",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid02Znwu46ndVncVPbVdh1xtFNqoQcZEsX4s5MQuqhS6PWHViDQMPnQxbHriUtL4xVSkl"
     },
     {
       "t": "1d",
-      "text": "廢物聯盟換血 我把國巨這個賠錢貨甩了⋯  結果發現更多廢物_(:_」∠)_ 今天是不是跌1000點啊(;´༎ຶД༎ຶ`)",
-      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid0384vAGo4QqgqEjagkBeCAhEjH9jnJLLkgQTJQuSVieCc8afMCy718CcPJgZBuJeqZl"
+      "text": "沒想到居然有人主動付費挑戰我啊～ 接下來三個月我會每週review一樣他說的對不對 是說⋯明天我是不是要來一個拯救阿嘎大作戰 一起把阿嘎買到400以上呢～～  好猶豫喔！",
+      "link": "https://www.facebook.com/DieWithoutBang/posts/pfbid05vrhDUkxkfvYU6W1zswWqZKcxTKLyHuvZpGeYbeX8CjcFabointD7L4s4aKsEM2ul"
     }
   ],
   "insight_stale": true
