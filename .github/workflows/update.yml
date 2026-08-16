@@ -39,10 +39,12 @@ jobs:
           git add docs/
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "update dashboard $(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M')"
-          # 遠端若已被其他 run 推進，rebase 後重試
+          # 遠端若已被其他 run 推進，rebase 後重試。
+          # 注意：rebase 時 -X theirs 才是「保留本次重播的新建置」，
+          # -X ours 會反過來採用遠端舊版、把剛產生的頁面丟掉。
           for i in 1 2 3; do
             git push && exit 0
             echo "push rejected, rebasing (attempt $i)"
-            git pull --rebase -X ours origin main
+            git pull --rebase -X theirs origin main
           done
           git push
