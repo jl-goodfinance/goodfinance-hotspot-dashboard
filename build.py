@@ -781,10 +781,8 @@ def ts_chip(data, key):
     try:
         built = datetime.strptime(data["updated"], "%Y-%m-%d %H:%M")
         got = datetime.strptime(t, "%Y-%m-%d %H:%M")
-        gap = (built - got).total_seconds() / 3600
-        if got.date() != built.date():
-            label = f"{got.month}/{got.day} {label}"
-        if gap >= 2:
+        label = f"{got.month}/{got.day} {label}"   # 一律顯示日期＋時間
+        if (built - got).total_seconds() / 3600 >= 2:
             cls = " old"
     except Exception:
         pass
@@ -843,7 +841,7 @@ def render_cat_cards(data):
 
 
 def render_focus(data):
-    """三張焦點卡：最熱財經熱搜、其餘台股題材、KOL 風向"""
+    """焦點卡：最熱財經熱搜、其餘台股題材"""
     ft = data["fin_trends"]
     top = ft[0] if ft else {"kw": "—", "traffic": "", "news": [""]}
     top_news = [n for n in (top.get("news") or []) if n]
@@ -870,7 +868,7 @@ def render_focus(data):
 
 
 def render_kol_card(data):
-    """KOL 風向大卡：兩人各 5 則 FB 貼文 + 內容鋪陳觀察"""
+    """KOL 風向大卡（目前停用，保留供日後恢復）：兩人各 5 則 FB 貼文 + 觀察"""
     g = data["gooaye"]
     social = data.get("social")
 
@@ -1173,7 +1171,6 @@ def main():
             .replace("<!--PTT_ROWS-->", render_ptt(data["ptt"]))
             .replace("<!--WATCH_PANELS-->", render_watch(data["watch"]))
             .replace("<!--YT_BLOCKS-->", render_yt(data["yt"]))
-            .replace("<!--KOL_CARD-->", render_kol_card(data))
             .replace("<!--TS_TWSE-->", ts_chip(data, "twse"))
             .replace("<!--TS_TRENDS-->", ts_chip(data, "trends"))
             .replace("<!--TS_WATCH-->", ts_chip(data, "watch"))
