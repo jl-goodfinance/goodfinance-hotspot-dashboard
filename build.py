@@ -183,6 +183,32 @@ def get_cnyes_news():
     return out
 
 
+def get_tpex_amount():
+    """櫃買中心當日成交金額（億）：marketStats 不帶日期即回傳最近交易日，
+    表內 10 類分項加總。需帶 Accept: application/json，否則回傳 HTML。"""
+    try:
+        req = urllib.request.Request(
+            "https://www.tpex.org.tw/www/zh-tw/afterTrading/marketStats?type=Daily&response=json",
+            headers={**UA, "Accept": "application/json"})
+        d = None
+        for i in range(3):  # 櫃買端點偶發 5xx，重試三次
+            try:
+                d = json.loads(urllib.request.urlopen(req, timeout=20, context=CTX).read().decode())
+                break
+            except urllib.error.HTTPError as e:
+                if e.code < 500 or i == 2:
+                    raise
+                time.sleep(4)
+        t = d["tables"][0]
+        total = sum(float(r[1].replace(",", "")) for r in t["data"] if r[1].strip())
+        p = t["date"].split("/")
+        iso = f"{int(p[0]) + 1911}-{int(p[1]):02d}-{int(p[2]):02d}"
+        return iso, round(total / 1e8)
+    except Exception as e:
+        print("tpex error:", e)
+        return None, None
+
+
 def get_taiex():
     """大盤：指數線用 Yahoo ^TWII（3 個月），成交金額用證交所 FMTQIK。
     FMTQIK 僅當月可靠，故以 docs/taiex_amounts.json 逐日累積快取。"""
@@ -243,6 +269,22 @@ def get_taiex():
     except Exception as e:
         print("taiex realtime error:", e)
     # 只取今年（1/1 起）的交易日
+    # 4) 上櫃成交金額（億），逐日累積快取
+    tpex_p = DOCS / "tpex_amounts.json"
+    tpex = {}
+    if tpex_p.exists():
+        try:
+            tpex = json.loads(tpex_p.read_text(encoding="utf-8"))
+        except Exception:
+            tpex = {}
+    t_date, t_amt = get_tpex_amount()
+    if t_date and t_amt:
+        tpex[t_date] = t_amt
+        DOCS.mkdir(exist_ok=True)
+        tpex_p.write_text(json.dumps(tpex, ensure_ascii=False), encoding="utf-8")
+    for day in days:
+        day["tpex"] = tpex.get(day["date"])
+
     ytd = [d for d in days if d["date"] >= f"{now.year}-01-01"]
     return {"days": ytd or days[-260:], "rt": rt, "year": now.year}
 
@@ -694,8 +736,6 @@ def aggregate():
     stamp("news")
     twse_date, twse, twse_fetched = get_twse_top()
     fetched["twse"] = twse_fetched or now.strftime("%Y-%m-%d %H:%M")
-    kols = get_kols()
-    stamp("kols")
     gooaye = get_gooaye()
     banini = google_news("巴逆逆", limit=3)
 
@@ -751,7 +791,7 @@ def aggregate():
         "news_by_cat": {c: news_by_cat[c][:10] for c in PRIORITY},
         "cat_counts": cat_counts,
         "twse": twse, "twse_date": twse_date,
-        "kols": kols, "gooaye": gooaye, "banini": banini,
+        "gooaye": gooaye, "banini": banini,
         "ptt": ptt,
         "watch": watch,
         "social": social,
@@ -943,6 +983,13 @@ def render_market_hero(taiex, data=None):
     ccls, sign = ("up", "▲") if up else ("down", "▼")
     known_amts = [d["amount"] for d in days if d.get("amount")]
     amt = known_amts[-1] if known_amts else 0
+    # 上櫃：取最後一個有上市金額之日的上櫃金額（同日對齊），沒有就用最近已知值
+    last_amt_day = next((d for d in reversed(days) if d.get("amount")), None)
+    tpex_amt = (last_amt_day or {}).get("tpex")
+    if tpex_amt is None:
+        tpex_amt = next((d["tpex"] for d in reversed(days) if d.get("tpex")), None)
+    total_amt = amt + (tpex_amt or 0)
+    tpex_amt_label = f"{tpex_amt:,} 億" if tpex_amt else "—"
     avg_base = known_amts[-21:-1] or known_amts
     avg20 = statistics.mean(avg_base) if avg_base else 0
     vol_ratio = amt / avg20 if avg20 else 1
@@ -1007,7 +1054,7 @@ def render_market_hero(taiex, data=None):
             <div class="mk-idx">{idx:,.2f}<span class="mk-chg {ccls}">{sign} {abs(chg):,.2f}（{pct:+.2f}%）</span></div>
           </div>
           <div class="mk-stats">
-            <div class="mk-stat"><span>成交金額</span><b>{amt/10000:,.2f} 兆</b></div>
+            <div class="mk-stat"><span>總成交金額（上市＋上櫃）</span><b>{total_amt/10000:,.2f} 兆</b><small class="mk-sub">上市 {amt:,} 億 · 上櫃 {tpex_amt_label}</small></div>
             <div class="mk-stat"><span>量能（vs 近{n_avg}日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
             <div class="mk-stat"><span>今年以來</span><b class="{'up' if ytd_pct>=0 else 'down'}">{ytd_pct:+.1f}%</b></div>
             <div class="mk-stat"><span>年內區間位置</span><b>{pos:.0f}%</b></div>
@@ -1161,7 +1208,6 @@ def main():
             .replace("<!--MARKET_HERO-->", render_market_hero(data["taiex"], data))
             .replace("<!--FOCUS_CARDS-->", render_focus(data))
             .replace("<!--CAT_CARDS-->", render_cat_cards(data))
-            .replace("<!--KOL_ROWS-->", render_kol_table(data["kols"]))
             .replace("<!--TRENDS_ROWS-->", render_trends_table(
                 data["trends"], data.get("stay", {}).get("trend")))
             .replace("<!--TWSE_ROWS-->", render_twse(data["twse"]))
@@ -1175,8 +1221,7 @@ def main():
             .replace("<!--TS_TRENDS-->", ts_chip(data, "trends"))
             .replace("<!--TS_WATCH-->", ts_chip(data, "watch"))
             .replace("<!--TS_YT-->", ts_chip(data, "yt"))
-            .replace("<!--TS_PTT-->", ts_chip(data, "ptt"))
-            .replace("<!--TS_KOLS-->", ts_chip(data, "kols")))
+            .replace("<!--TS_PTT-->", ts_chip(data, "ptt")))
     (DOCS / "index.html").write_text(page, encoding="utf-8")
     print("rendered docs/index.html, updated", data["updated"])
 

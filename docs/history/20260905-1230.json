@@ -4,16 +4,17 @@
   "news": {},
   "trend": {}
  },
- "updated": "2026-09-05 12:33",
+ "updated": "2026-09-05 12:30",
  "fetched": {
-  "trends": "2026-09-05 12:33",
-  "news": "2026-09-05 12:33",
-  "twse": "2026-09-05 12:33",
-  "ptt": "2026-09-05 12:33",
-  "watch": "2026-09-05 12:33",
+  "trends": "2026-09-05 12:30",
+  "news": "2026-09-05 12:30",
+  "twse": "2026-09-05 12:30",
+  "kols": "2026-09-05 12:31",
+  "ptt": "2026-09-05 12:31",
+  "watch": "2026-09-05 12:31",
   "social": "2026-08-16 09:16",
-  "taiex": "2026-09-05 12:33",
-  "yt": "2026-09-05 12:33"
+  "taiex": "2026-09-05 12:31",
+  "yt": "2026-09-05 12:31"
  },
  "trends": [
   {
@@ -595,18 +596,6 @@
   ],
   "總經": [
    {
-    "id": 6598421,
-    "title": "川普：魏科夫、庫許納將出訪 推動俄烏和平談判",
-    "kw": [
-     "俄羅斯",
-     "烏克蘭",
-     "川普",
-     "魏科夫",
-     "和平協議"
-    ],
-    "at": 1788582678
-   },
-   {
     "id": 6598341,
     "title": "8月非農強彈藏隱憂 分析師質疑美國就業數據失真",
     "kw": [
@@ -739,6 +728,17 @@
      "聯準會"
     ],
     "at": 1788561187
+   },
+   {
+    "id": 6597756,
+    "title": "〈紐約匯市〉美元上漲周線仍跌 就業數據推升Fed升息預期",
+    "kw": [
+     "美元",
+     "加幣",
+     "日元",
+     "升息"
+    ],
+    "at": 1788560134
    }
   ],
   "股票交易": [
@@ -859,8 +859,8 @@
   ]
  },
  "cat_counts": {
-  "總經": 58,
-  "股票交易": 44,
+  "股票交易": 45,
+  "總經": 57,
   "固定收益": 39,
   "財富管理": 28,
   "融資": 1
@@ -908,6 +908,78 @@
   }
  ],
  "twse_date": "20260904",
+ "kols": [
+  {
+   "name": "游庭皓的財經皓角",
+   "subs": "69.7萬",
+   "topic": "每日盤勢 · 總經",
+   "color": "blue",
+   "buzz": 4
+  },
+  {
+   "name": "阿格力",
+   "subs": "31萬",
+   "topic": "存股 · 生活選股",
+   "color": "blue",
+   "buzz": 2
+  },
+  {
+   "name": "志祺七七",
+   "subs": "169萬",
+   "topic": "泛知識 · 財經合作款",
+   "color": "",
+   "buzz": 1
+  },
+  {
+   "name": "慢活夫妻",
+   "subs": "12萬",
+   "topic": "理財生活",
+   "color": "",
+   "buzz": 1
+  },
+  {
+   "name": "財報狗",
+   "subs": "1.42萬",
+   "topic": "基本面 · Podcast",
+   "color": "blue",
+   "buzz": 1
+  },
+  {
+   "name": "Cheap",
+   "subs": "163萬",
+   "topic": "歷史 · 時事評論",
+   "color": "",
+   "buzz": 0
+  },
+  {
+   "name": "柴鼠兄弟",
+   "subs": "116萬",
+   "topic": "ETF · 理財入門",
+   "color": "orange",
+   "buzz": 0
+  },
+  {
+   "name": "好葉",
+   "subs": "102萬",
+   "topic": "自我成長",
+   "color": "",
+   "buzz": 0
+  },
+  {
+   "name": "SHIN LI 李勛",
+   "subs": "47萬",
+   "topic": "小資理財 · 信用卡",
+   "color": "orange",
+   "buzz": 0
+  },
+  {
+   "name": "Ms.Selena",
+   "subs": "19.1萬",
+   "topic": "被動收入 · 房產",
+   "color": "orange",
+   "buzz": 0
+  }
+ ],
  "gooaye": {
   "ep": "EP693 | 🍖",
   "ep_date": "02 Sep 2026",
@@ -999,7 +1071,7 @@
   }
  ],
  "watch": {
-  "fetched": "2026-09-05 12:33",
+  "fetched": "2026-09-05 12:31",
   "series": {
    "開戶": [
     28,
@@ -1083,8 +1155,8 @@
     11,
     15,
     23,
-    25,
     26,
+    25,
     23,
     22,
     11,
@@ -1528,980 +1600,817 @@
    {
     "date": "2026-01-02",
     "index": 29349.81,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-05",
     "index": 30105.04,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-06",
     "index": 30576.3,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-07",
     "index": 30435.47,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-08",
     "index": 30360.55,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-09",
     "index": 30288.96,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-12",
     "index": 30567.29,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-13",
     "index": 30707.22,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-14",
     "index": 30941.78,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-15",
     "index": 30810.58,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-16",
     "index": 31408.7,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-19",
     "index": 31639.29,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-20",
     "index": 31759.99,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-21",
     "index": 31246.37,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-22",
     "index": 31746.08,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-23",
     "index": 31961.51,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-26",
     "index": 32064.52,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-27",
     "index": 32317.92,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-28",
     "index": 32803.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-29",
     "index": 32536.27,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-01-30",
     "index": 32063.75,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-02",
     "index": 31624.03,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-03",
     "index": 32195.36,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-04",
     "index": 32289.81,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-05",
     "index": 31801.27,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-06",
     "index": 31782.92,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-09",
     "index": 32404.62,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-10",
     "index": 33072.97,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-11",
     "index": 33605.71,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-23",
     "index": 33773.26,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-24",
     "index": 34700.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-25",
     "index": 35413.07,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-02-26",
     "index": 35414.49,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-02",
     "index": 35095.09,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-03",
     "index": 34323.65,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-04",
     "index": 32828.88,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-05",
     "index": 33672.94,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-06",
     "index": 33599.54,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-09",
     "index": 32110.42,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-10",
     "index": 32771.87,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-11",
     "index": 34114.19,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-12",
     "index": 33581.86,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-13",
     "index": 33400.32,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-16",
     "index": 33342.51,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-17",
     "index": 33836.57,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-18",
     "index": 34348.58,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-19",
     "index": 33689.68,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-20",
     "index": 33543.88,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-23",
     "index": 32722.5,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-24",
     "index": 32612.24,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-25",
     "index": 33439.11,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-26",
     "index": 33337.62,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-27",
     "index": 33112.59,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-30",
     "index": 32518.16,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-03-31",
     "index": 31722.99,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-01",
     "index": 33174.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-02",
     "index": 32572.43,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-07",
     "index": 33229.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-08",
     "index": 34761.38,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-09",
     "index": 34861.16,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-10",
     "index": 35417.83,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-13",
     "index": 35457.29,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-14",
     "index": 36296.12,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-15",
     "index": 36722.14,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-16",
     "index": 37132.02,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-17",
     "index": 36804.34,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-20",
     "index": 36958.8,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-21",
     "index": 37605.11,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-22",
     "index": 37878.47,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-23",
     "index": 37714.15,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-24",
     "index": 38932.4,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-27",
     "index": 39616.63,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-28",
     "index": 39521.73,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-29",
     "index": 39303.5,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-04-30",
     "index": 38926.63,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-04",
     "index": 40705.14,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-05",
     "index": 40769.29,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-06",
     "index": 41138.85,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-07",
     "index": 41933.78,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-08",
     "index": 41603.94,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-11",
     "index": 41790.06,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-12",
     "index": 41898.32,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-13",
     "index": 41374.5,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-14",
     "index": 41751.75,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-15",
     "index": 41172.36,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-18",
     "index": 40891.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-19",
     "index": 40175.56,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-20",
     "index": 40020.82,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-21",
     "index": 41368.21,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-22",
     "index": 42267.97,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-25",
     "index": 43644.4,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-26",
     "index": 43525.37,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-27",
     "index": 44256.8,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-28",
     "index": 43636.44,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-05-29",
     "index": 44732.94,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-01",
     "index": 45337.91,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-02",
     "index": 45557.31,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-03",
     "index": 46459.16,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-04",
     "index": 45677.46,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-05",
     "index": 45070.94,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-08",
     "index": 43502.78,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-09",
     "index": 44704.44,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-10",
     "index": 43225.54,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-11",
     "index": 43149.46,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-12",
     "index": 44169.04,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-15",
     "index": 45396.99,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-16",
     "index": 45809.19,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-17",
     "index": 45877.39,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-18",
     "index": 46465.2,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-22",
     "index": 47741.51,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-23",
     "index": 47100.65,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-24",
     "index": 46043.6,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-25",
     "index": 46255.26,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-26",
     "index": 44571.76,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-29",
     "index": 44999.9,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-06-30",
     "index": 46125.91,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-07-01",
     "index": 47018.99,
-    "amount": 13678,
-    "tpex": null
+    "amount": 13678
    },
    {
     "date": "2026-07-02",
     "index": 46744.16,
-    "amount": 10836,
-    "tpex": null
+    "amount": 10836
    },
    {
     "date": "2026-07-03",
     "index": 46780.62,
-    "amount": 10780,
-    "tpex": null
+    "amount": 10780
    },
    {
     "date": "2026-07-06",
     "index": 46556.39,
-    "amount": 10644,
-    "tpex": null
+    "amount": 10644
    },
    {
     "date": "2026-07-07",
     "index": 45479.11,
-    "amount": 12281,
-    "tpex": null
+    "amount": 12281
    },
    {
     "date": "2026-07-08",
     "index": 45734.41,
-    "amount": 10046,
-    "tpex": null
+    "amount": 10046
    },
    {
     "date": "2026-07-09",
     "index": 45354.61,
-    "amount": 9968,
-    "tpex": null
+    "amount": 9968
    },
    {
     "date": "2026-07-13",
     "index": 45380.52,
-    "amount": 10677,
-    "tpex": null
+    "amount": 10677
    },
    {
     "date": "2026-07-14",
     "index": 44737.95,
-    "amount": 12452,
-    "tpex": null
+    "amount": 12452
    },
    {
     "date": "2026-07-15",
     "index": 45631.59,
-    "amount": 10244,
-    "tpex": null
+    "amount": 10244
    },
    {
     "date": "2026-07-16",
     "index": 45624.98,
-    "amount": 9332,
-    "tpex": null
+    "amount": 9332
    },
    {
     "date": "2026-07-17",
     "index": 42671.27,
-    "amount": 13332,
-    "tpex": null
+    "amount": 13332
    },
    {
     "date": "2026-07-20",
     "index": 42449.7,
-    "amount": 10415,
-    "tpex": null
+    "amount": 10415
    },
    {
     "date": "2026-07-21",
     "index": 44232.87,
-    "amount": 8663,
-    "tpex": null
+    "amount": 8663
    },
    {
     "date": "2026-07-22",
     "index": 44825.78,
-    "amount": 10260,
-    "tpex": null
+    "amount": 10260
    },
    {
     "date": "2026-07-23",
     "index": 44850.81,
-    "amount": 9306,
-    "tpex": null
+    "amount": 9306
    },
    {
     "date": "2026-07-24",
     "index": 43654.84,
-    "amount": 8271,
-    "tpex": null
+    "amount": 8271
    },
    {
     "date": "2026-07-27",
     "index": 43634.19,
-    "amount": 7476,
-    "tpex": null
+    "amount": 7476
    },
    {
     "date": "2026-07-28",
     "index": 41603.36,
-    "amount": 8726,
-    "tpex": null
+    "amount": 8726
    },
    {
     "date": "2026-07-29",
     "index": 40039.18,
-    "amount": 11492,
-    "tpex": null
+    "amount": 11492
    },
    {
     "date": "2026-07-30",
     "index": 39933.3,
-    "amount": 11469,
-    "tpex": null
+    "amount": 11469
    },
    {
     "date": "2026-07-31",
     "index": 43119.75,
-    "amount": 8877,
-    "tpex": null
+    "amount": 8877
    },
    {
     "date": "2026-08-03",
     "index": 43386.41,
-    "amount": 8855,
-    "tpex": null
+    "amount": 8855
    },
    {
     "date": "2026-08-04",
     "index": 43360.66,
-    "amount": 10870,
-    "tpex": null
+    "amount": 10870
    },
    {
     "date": "2026-08-05",
     "index": 44611.6,
-    "amount": 12002,
-    "tpex": null
+    "amount": 12002
    },
    {
     "date": "2026-08-06",
     "index": 44396.7,
-    "amount": 9741,
-    "tpex": null
+    "amount": 9741
    },
    {
     "date": "2026-08-07",
     "index": 44225.91,
-    "amount": 8508,
-    "tpex": null
+    "amount": 8508
    },
    {
     "date": "2026-08-10",
     "index": 44928.76,
-    "amount": 8804,
-    "tpex": null
+    "amount": 8804
    },
    {
     "date": "2026-08-11",
     "index": 45120.72,
-    "amount": 9021,
-    "tpex": null
+    "amount": 9021
    },
    {
     "date": "2026-08-12",
     "index": 45518.07,
-    "amount": 8927,
-    "tpex": null
+    "amount": 8927
    },
    {
     "date": "2026-08-13",
     "index": 46021.48,
-    "amount": 11040,
-    "tpex": null
+    "amount": 11040
    },
    {
     "date": "2026-08-14",
     "index": 45811.01,
-    "amount": 11097,
-    "tpex": null
+    "amount": 11097
    },
    {
     "date": "2026-08-17",
     "index": 45857.27,
-    "amount": 9794,
-    "tpex": null
+    "amount": 9794
    },
    {
     "date": "2026-08-18",
     "index": 45308.68,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-19",
     "index": 44719.35,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-20",
     "index": 44933.74,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-21",
     "index": 45224.29,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-24",
     "index": 44762.32,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-25",
     "index": 45169.46,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-26",
     "index": 45832.62,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-27",
     "index": 45975.22,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-28",
     "index": 46331.45,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-08-31",
     "index": 46128.47,
-    "amount": null,
-    "tpex": null
+    "amount": null
    },
    {
     "date": "2026-09-01",
     "index": 46948.72,
-    "amount": 11876,
-    "tpex": null
+    "amount": 11876
    },
    {
     "date": "2026-09-02",
     "index": 46164.72,
-    "amount": 9765,
-    "tpex": null
+    "amount": 9765
    },
    {
     "date": "2026-09-03",
     "index": 45857.66,
-    "amount": 9933,
-    "tpex": null
+    "amount": 9933
    },
    {
     "date": "2026-09-04",
     "index": 46551.13,
-    "amount": 8582,
-    "tpex": 2029
+    "amount": 8582
    }
   ],
   "rt": {
