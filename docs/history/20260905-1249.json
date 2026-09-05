@@ -4,16 +4,16 @@
   "news": {},
   "trend": {}
  },
- "updated": "2026-09-05 12:59",
+ "updated": "2026-09-05 12:49",
  "fetched": {
-  "trends": "2026-09-05 12:59",
-  "news": "2026-09-05 12:59",
-  "twse": "2026-09-05 12:59",
-  "ptt": "2026-09-05 12:59",
-  "watch": "2026-09-05 12:59",
+  "trends": "2026-09-05 12:49",
+  "news": "2026-09-05 12:49",
+  "twse": "2026-09-05 12:49",
+  "ptt": "2026-09-05 12:49",
+  "watch": "2026-09-05 12:49",
   "social": "2026-08-16 09:16",
-  "taiex": "2026-09-05 12:59",
-  "yt": "2026-09-05 12:59"
+  "taiex": "2026-09-05 12:51",
+  "yt": "2026-09-05 12:51"
  },
  "trends": [
   {
@@ -74,7 +74,7 @@
    "news": [
     "No. 26 seed Emma Navarro upsets Karolina Muchova in Round 3 at 2026 US Open",
     "Muchova and Svitolina upset while Noskova survives at US Open",
-    "Watch (7) Muchova vs. (26) Navarro (Women's Third Round)"
+    "Tennis-Navarro stuns seventh seed Muchova to reach US Open fourth round"
    ],
    "cat": "總經"
   },
@@ -114,7 +114,7 @@
    "news": [
     "No. 26 seed Emma Navarro upsets Karolina Muchova in Round 3 at 2026 US Open",
     "Muchova and Svitolina upset while Noskova survives at US Open",
-    "Watch (7) Muchova vs. (26) Navarro (Women's Third Round)"
+    "Tennis-Navarro stuns seventh seed Muchova to reach US Open fourth round"
    ],
    "cat": "總經"
   },
@@ -914,7 +914,7 @@
   "ep_date": "02 Sep 2026",
   "news": [
    {
-    "title": "1億男哲哲 vs 股癌你信誰？粉絲揭「關鍵差異」選他 釣出本尊神回1句 - tw.news.yahoo.com",
+    "title": "1億男哲哲 vs 股癌你信誰？粉絲揭「關鍵差異」選他 釣出本尊神回1句 - Yahoo新聞",
     "date": "10 Aug 2026",
     "dt": "2026-08-10 15:00:00+08:00"
    },
@@ -924,7 +924,7 @@
     "dt": "2026-06-26 15:00:00+08:00"
    },
    {
-    "title": "「哲哲跟股癌，你信誰？」　竟釣出本尊神回被讚爆 - mirrormedia.mg",
+    "title": "「哲哲跟股癌，你信誰？」　竟釣出本尊神回被讚爆 - 鏡週刊Mirror Media",
     "date": "10 Aug 2026",
     "dt": "2026-08-10 15:00:00+08:00"
    }
@@ -948,11 +948,6 @@
   }
  ],
  "ptt": [
-  {
-   "title": "[新聞] 陳嘉偉重磅警告！金融股拉抬是「多頭最",
-   "url": "https://www.ptt.cc/bbs/Stock/M.1788571967.A.AE7.html",
-   "date": "9/05"
-  },
   {
    "title": "[情報] 非農就業人數",
    "url": "https://www.ptt.cc/bbs/Stock/M.1788525358.A.4D3.html",
@@ -997,10 +992,15 @@
    "title": "[情報] 115年09月02日 三大法人買賣金額統計表",
    "url": "https://www.ptt.cc/bbs/Stock/M.1788333448.A.AFB.html",
    "date": "9/02"
+  },
+  {
+   "title": "[情報] 0902 上市外資買賣超排行",
+   "url": "https://www.ptt.cc/bbs/Stock/M.1788337065.A.DF9.html",
+   "date": "9/02"
   }
  ],
  "watch": {
-  "fetched": "2026-09-05 12:59",
+  "fetched": "2026-09-05 12:49",
   "series": {
    "開戶": [
     28,
@@ -2514,7 +2514,7 @@
   "year": 2026,
   "ytd": {
    "twse": 165765264853071.0,
-   "tpex": 38695329390518.0,
+   "tpex": 5533045016045.0,
    "days": 163,
    "months": 9
   }
@@ -2540,19 +2540,19 @@
        "text": "動畫好可愛。😂"
       },
       {
-       "likes": "306",
-       "author": "@MIAOYU001-e6b",
-       "text": "这下他们怎么不说汇率操纵国了😂"
+       "likes": "92",
+       "author": "@yuana6709",
+       "text": "借錢不用還真的是首罪，不還錢還想吃債主豆腐是罪上加罪"
       },
       {
-       "likes": "188",
-       "author": "@qingtongchan8406",
-       "text": "拿欠条借钱 也是绝了 还是债主和欠债的借更滑稽了"
+       "likes": "90",
+       "author": "@ludefuqin",
+       "text": "全场消费由欧公子买单"
       },
       {
-       "likes": "171",
-       "author": "@pro-me-the-us",
-       "text": "一定是我許願小Lin講日圓成真了🎉🎉🎉"
+       "likes": "77",
+       "author": "@mingzonglee7052",
+       "text": "這集最有看頭的是最后10秒右下角的動畫😂😂😂😂😂"
       }
      ]
     }

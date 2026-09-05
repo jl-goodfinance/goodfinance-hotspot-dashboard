@@ -183,22 +183,36 @@ def get_cnyes_news():
     return out
 
 
+_TPEX_HDR = {**UA, "Accept": "application/json",
+             "Referer": "https://www.tpex.org.tw/zh-tw/mainboard/trading/info/market-stats.html"}
+
+
+def _tpex_json(url, tries=4):
+    """櫃買 API 需帶 Accept: application/json 與 Referer；偶發 5xx/520 重試。
+    部分邊緣節點的憑證缺 Subject Key Identifier 會讓嚴格驗證失敗，
+    此時退回不驗證憑證（僅用於這個公開唯讀資料源）。"""
+    req = urllib.request.Request(url, headers=_TPEX_HDR)
+    ctx = CTX
+    last = None
+    for i in range(tries):
+        try:
+            return json.loads(urllib.request.urlopen(req, timeout=25, context=ctx).read().decode())
+        except Exception as e:
+            last = e
+            # urllib 會把 SSL 錯誤包成 URLError，用訊息判斷
+            if "CERTIFICATE_VERIFY_FAILED" in str(e) or isinstance(getattr(e, "reason", None), ssl.SSLError):
+                ctx = ssl._create_unverified_context()
+                continue
+            if i < tries - 1:
+                time.sleep(4)
+    raise RuntimeError(f"tpex unreachable: {last}")
+
+
 def get_tpex_amount():
     """櫃買中心當日成交金額（億）：marketStats 不帶日期即回傳最近交易日，
     表內 10 類分項加總。需帶 Accept: application/json，否則回傳 HTML。"""
     try:
-        req = urllib.request.Request(
-            "https://www.tpex.org.tw/www/zh-tw/afterTrading/marketStats?type=Daily&response=json",
-            headers={**UA, "Accept": "application/json"})
-        d = None
-        for i in range(3):  # 櫃買端點偶發 5xx，重試三次
-            try:
-                d = json.loads(urllib.request.urlopen(req, timeout=20, context=CTX).read().decode())
-                break
-            except urllib.error.HTTPError as e:
-                if e.code < 500 or i == 2:
-                    raise
-                time.sleep(4)
+        d = _tpex_json("https://www.tpex.org.tw/www/zh-tw/afterTrading/marketStats?type=Daily&response=json")
         t = d["tables"][0]
         total = sum(float(r[1].replace(",", "")) for r in t["data"] if r[1].strip())
         p = t["date"].split("/")
@@ -207,6 +221,48 @@ def get_tpex_amount():
     except Exception as e:
         print("tpex error:", e)
         return None, None
+
+
+def get_ytd_turnover(now):
+    """今年 1 月至今累計成交金額（元）：上市＝FMTQIK 各月加總，上櫃＝marketStats Monthly 各月加總。
+    過去月份結果快取在 docs/turnover_ytd.json，每次只重抓當月。"""
+    cache_p = DOCS / "turnover_ytd.json"
+    cache = {"year": now.year, "twse": {}, "tpex": {}, "days": {}}
+    if cache_p.exists():
+        try:
+            c = json.loads(cache_p.read_text(encoding="utf-8"))
+            if c.get("year") == now.year:
+                cache = c
+        except Exception:
+            pass
+    for m in range(1, now.month + 1):
+        k = str(m)
+        is_past = m < now.month
+        if not (is_past and k in cache["twse"]):
+            try:
+                d = json.loads(fetch_text_retry(
+                    f"https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date={now.year}{m:02d}01&response=json"))
+                rows = [r for r in d.get("data", []) if r[0].startswith(f"{now.year - 1911}/")]
+                if rows:
+                    cache["twse"][k] = sum(float(r[2].replace(",", "")) for r in rows)
+                    cache["days"][k] = len(rows)
+            except Exception as e:
+                print(f"ytd twse {m} error:", e)
+            time.sleep(0.6)
+        if not (is_past and k in cache["tpex"]):
+            try:
+                t = _tpex_json(f"https://www.tpex.org.tw/www/zh-tw/afterTrading/marketStats"
+                               f"?type=Monthly&date={now.year}/{m:02d}/01&response=json")["tables"][0]
+                amt = sum(float(r[1].replace(",", "")) for r in t["data"] if r[1].strip())
+                if amt:
+                    cache["tpex"][k] = amt
+            except Exception as e:
+                print(f"ytd tpex {m} error:", e)
+            time.sleep(0.6)
+    DOCS.mkdir(exist_ok=True)
+    cache_p.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+    return {"twse": sum(cache["twse"].values()), "tpex": sum(cache["tpex"].values()),
+            "days": sum(cache["days"].values()), "months": len(cache["twse"])}
 
 
 def get_taiex():
@@ -286,7 +342,8 @@ def get_taiex():
         day["tpex"] = tpex.get(day["date"])
 
     ytd = [d for d in days if d["date"] >= f"{now.year}-01-01"]
-    return {"days": ytd or days[-260:], "rt": rt, "year": now.year}
+    return {"days": ytd or days[-260:], "rt": rt, "year": now.year,
+            "ytd": get_ytd_turnover(now)}
 
 
 def get_twse_top():
@@ -990,6 +1047,9 @@ def render_market_hero(taiex, data=None):
         tpex_amt = next((d["tpex"] for d in reversed(days) if d.get("tpex")), None)
     total_amt = amt + (tpex_amt or 0)
     tpex_amt_label = f"{tpex_amt:,} 億" if tpex_amt else "—"
+    y = taiex.get("ytd") or {}
+    ytd_twse, ytd_tpex = y.get("twse", 0), y.get("tpex", 0)
+    ytd_total, ytd_days = ytd_twse + ytd_tpex, y.get("days", 0)
     avg_base = known_amts[-21:-1] or known_amts
     avg20 = statistics.mean(avg_base) if avg_base else 0
     vol_ratio = amt / avg20 if avg20 else 1
@@ -1054,7 +1114,8 @@ def render_market_hero(taiex, data=None):
             <div class="mk-idx">{idx:,.2f}<span class="mk-chg {ccls}">{sign} {abs(chg):,.2f}（{pct:+.2f}%）</span></div>
           </div>
           <div class="mk-stats">
-            <div class="mk-stat"><span>總成交金額（上市＋上櫃）</span><b>{total_amt/10000:,.2f} 兆</b><small class="mk-sub">上市 {amt:,} 億 · 上櫃 {tpex_amt_label}</small></div>
+            <div class="mk-stat"><span>今日總成交金額（上市＋上櫃）</span><b>{total_amt/10000:,.2f} 兆</b><small class="mk-sub">上市 {amt:,} 億 · 上櫃 {tpex_amt_label}</small></div>
+            <div class="mk-stat"><span>今年累計成交金額（上市＋上櫃）</span><b>{ytd_total/1e12:,.1f} 兆</b><small class="mk-sub">上市 {ytd_twse/1e12:,.1f} 兆 · 上櫃 {ytd_tpex/1e12:,.1f} 兆 · {ytd_days} 個交易日</small></div>
             <div class="mk-stat"><span>量能（vs 近{n_avg}日均）</span><b class="{'up' if vol_ratio>1.15 else ''}">{vol_ratio:.2f}×</b></div>
             <div class="mk-stat"><span>今年以來</span><b class="{'up' if ytd_pct>=0 else 'down'}">{ytd_pct:+.1f}%</b></div>
             <div class="mk-stat"><span>年內區間位置</span><b>{pos:.0f}%</b></div>
