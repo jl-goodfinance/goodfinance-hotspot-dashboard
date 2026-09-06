@@ -72,7 +72,7 @@
   @media (max-width:1000px){.span4{grid-column:span 6}.span6,.span8{grid-column:span 12}}
   @media (max-width:620px){.span4{grid-column:span 12}}
 
-  .pill{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 11px;background:rgba(148,178,255,.1);color:#aab6cc}
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 11px;background:rgba(148,178,255,.1);color:#aab6cc;white-space:nowrap}
   .pill.blue{background:rgba(61,139,253,.16);color:#7db4ff}
   .pill.violet{background:rgba(124,111,240,.16);color:#a89dff}
   .pill.orange{background:rgba(240,146,74,.15);color:#ffb073}
@@ -129,6 +129,8 @@
   th{text-align:left;font-size:11.5px;color:var(--sub);font-weight:600;padding:2px 6px 9px}
   td{padding:8px 6px;border-top:1px solid var(--line)}
   .num{text-align:right;font-weight:700}
+  td:has(> .pill),td.num{white-space:nowrap}
+  td{overflow-wrap:anywhere}
   .rankball{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(61,139,253,.28);font-size:11.5px;font-weight:700;color:#cfe1ff;border:1px solid rgba(125,180,255,.35)}
   tr.hot .rankball{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 0 14px rgba(61,139,253,.65)}
   tbody tr:first-child .rankball{background:linear-gradient(135deg,#f7b267,#f0924a);color:#2a1504;border-color:transparent;box-shadow:0 0 16px rgba(240,146,74,.7)}
@@ -210,6 +212,7 @@
     .mk-x .mk-mlab:nth-child(even){display:none}
     table{font-size:12.5px}
     td{padding:7px 5px}
+    .pill{font-size:11px;padding:2px 9px}
     .watch{gap:12px}
     .wk-val b{font-size:19px}
     .news li{font-size:12.5px}
